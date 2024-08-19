@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class TurretModel
@@ -13,6 +14,7 @@ public class TurretModel
     public float Health { get; set; }
     public int CurrentXP { get; set; } = 0;
     public int NextLevelXP { get; set; }
+    public int Cost { get; set; }
 
     public TurretModel(string name, LevelProp level, int currentXP)
     {
@@ -33,6 +35,7 @@ public class TurretModel
                 FiringRange = 7.0f;
                 Health = 100.0f;
                 NextLevelXP = 1000;
+                Cost = 500;
                 break;
 
             case LevelProp.LEVEL_TWO:
@@ -42,6 +45,7 @@ public class TurretModel
                 FiringRange = 8.0f;
                 Health = 150.0f;
                 NextLevelXP = 3000;
+                Cost = 1000;
                 break;
 
             case LevelProp.LEVEL_THREE:
@@ -51,6 +55,7 @@ public class TurretModel
                 FiringRange = 10.0f;
                 Health = 200.0f;
                 NextLevelXP = 5000;
+                Cost = 2000;
                 break;
         }
     }
