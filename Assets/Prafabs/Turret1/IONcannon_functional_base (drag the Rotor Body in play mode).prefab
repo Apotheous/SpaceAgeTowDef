@@ -29030,6 +29030,7 @@ GameObject:
   - component: {fileID: 3300114}
   - component: {fileID: 2300114}
   - component: {fileID: 11100000}
+  - component: {fileID: 3761345385164207752}
   m_Layer: 0
   m_Name: IONcannon_functional_base (drag the Rotor Body in play mode)
   m_TagString: Untagged
@@ -29110,7 +29111,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100128}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: faa3716e10170472a8b2fa9fb6b646c7, type: 3}
   m_Animations:
@@ -29123,6 +29124,27 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!65 &3761345385164207752
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100128}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 603.9081, y: 634.87256, z: 664.89}
+  m_Center: {x: 0.000023841858, y: 317.09653, z: 0}
 --- !u!1 &100130
 GameObject:
   m_ObjectHideFlags: 0
