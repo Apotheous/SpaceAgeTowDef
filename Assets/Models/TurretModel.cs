@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-public class TurretModel
+public class TurretModel : MonoBehaviour
 {
     public string Name { get; set; }
     public LevelProp Level { get; set; }
@@ -60,8 +60,6 @@ public class TurretModel
         }
     }
 }
-
-
 
 public enum LevelProp
 {

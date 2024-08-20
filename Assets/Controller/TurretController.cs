@@ -8,7 +8,7 @@ public class TurretController : MonoBehaviour
 
     void Start()
     {
-        turretModel = new TurretModel(gameObject.name, LevelProp.LEVEL_TWO, 0);
+        turretModel = new TurretModel(gameObject.name, LevelProp.LEVEL_ONE, 0);
 
         Debug.Log("Turret Name: " + gameObject.name);
         Debug.Log("Level: " + turretModel.Level);
@@ -17,10 +17,6 @@ public class TurretController : MonoBehaviour
         Debug.Log("Range of Vision: " + turretModel.RangeOfVision);
         Debug.Log("Firing Range: " + turretModel.FiringRange);
         Debug.Log("Health: " + turretModel.Health);
-    }
-
-    void Update()
-    {
-        
+        Debug.Log("cost: " + turretModel.Cost);
     }
 }
