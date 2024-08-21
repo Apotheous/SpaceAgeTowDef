@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &21180160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1188053581250516904, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+  m_PrefabInstance: {fileID: 2750637355889370785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &99855521
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,6 +818,16 @@ Transform:
   - {fileID: 925383170}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1582127512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4216675469017882942, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+  m_PrefabInstance: {fileID: 2750637355889370785}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1679572611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 99714342601031662, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+  m_PrefabInstance: {fileID: 2750637355889370785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2124926649
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,21 +938,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 562061578767831225, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 99714342601031662, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+      propertyPath: m_Name
+      value: Builder3
       objectReference: {fileID: 0}
-    - target: {fileID: 562061578767831225, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
-      propertyPath: onChildAdded.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AddedChild
-      objectReference: {fileID: 0}
-    - target: {fileID: 2338042384375501046, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3477455151714960610, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
+    - target: {fileID: 1188053581250516904, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+      propertyPath: m_Name
+      value: Builder2
       objectReference: {fileID: 0}
     - target: {fileID: 3521602507757066182, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
       propertyPath: m_LocalPosition.x
@@ -979,10 +986,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5690007887470011358, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5
+    - target: {fileID: 4216675469017882942, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+      propertyPath: m_Name
+      value: Builder1
       objectReference: {fileID: 0}
+    - target: {fileID: 6353273124530480161, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+      propertyPath: playerTowers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353273124530480161, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+      propertyPath: playerTowers.Array.data[0]
+      value: 
+      objectReference: {fileID: 1582127512}
+    - target: {fileID: 6353273124530480161, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+      propertyPath: playerTowers.Array.data[1]
+      value: 
+      objectReference: {fileID: 21180160}
+    - target: {fileID: 6353273124530480161, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+      propertyPath: playerTowers.Array.data[2]
+      value: 
+      objectReference: {fileID: 1679572611}
+    - target: {fileID: 6353273124530480161, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+      propertyPath: playerTowers.Array.data[3]
+      value: 
+      objectReference: {fileID: 1679572611}
+    - target: {fileID: 6353273124530480161, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+      propertyPath: playerTowers.Array.data[4]
+      value: 
+      objectReference: {fileID: 1679572611}
+    - target: {fileID: 6353273124530480161, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+      propertyPath: playerTowers.Array.data[5]
+      value: 
+      objectReference: {fileID: 1679572611}
     - target: {fileID: 8748443908505877591, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
       propertyPath: goldText
       value: 

@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TowerBuildManager : MonoBehaviour
 {
     // PUBLIC VARIABLES
+    public GameObject MyTower;
+    public GameObject currentTurret;
     public List <GameObject> craftObjects = new List<GameObject>();   
     public List <GameObject> gridPlanes = new List<GameObject>();
     public static Transform builderTransform;
@@ -31,15 +34,12 @@ public class TowerBuildManager : MonoBehaviour
     }
     void OnMouseDown()
     {
-        builderTransform = GetComponent<Transform>().transform;
-      
-        isActivePlanes = isActivePlanes ? false : true;
-        for (int i = 0; i < gridPlanes.Count; i++)
-        {
-            gridPlanes[i].SetActive(isActivePlanes);
-        }
-    }
 
+        planeOpen();
+        // Kule týklandýðýnda GameManager'daki metodu çaðýr
+        GameManager.Instance.OnTowerClicked(gameObject);
+
+    }
 
     public void planeClose()
     {
@@ -47,5 +47,20 @@ public class TowerBuildManager : MonoBehaviour
         {
             gridPlanes[i].SetActive(false);
         }
+    }   
+    public void planeOpen()
+    {
+        builderTransform = GetComponent<Transform>().transform;
+
+        isActivePlanes = isActivePlanes ? false : true;
+        for (int i = 0; i < gridPlanes.Count; i++)
+        {
+            gridPlanes[i].SetActive(isActivePlanes);
+        }
     }
+    public void DestroyCurrentTurret()
+    {
+        if (currentTurret!=null) { Destroy(currentTurret); }
+    }
+
 }

@@ -32,7 +32,10 @@ public class TurretController : MonoBehaviour,IClickable
     {
         if (uiState==true)
         {
+
+            mybuilder.GetComponent<TowerBuildManager>().DestroyCurrentTurret();
             currentTurret = Instantiate(gameObject, TowerBuildManager.builderTransform);
+            mybuilder.GetComponent<TowerBuildManager>().currentTurret=currentTurret;
             currentTurret.GetComponent<TurretController>().uiState = false;
         }
     }
