@@ -19,6 +19,7 @@ public class TowerBuildManager : MonoBehaviour
     private void Start()
     {
         gridPlanesCount = gridPlanes.Count;
+        gameObject.name = MyTower.name + "_Builder";
     }
     public void StartSpawnTurrets()
     {
@@ -60,7 +61,7 @@ public class TowerBuildManager : MonoBehaviour
     }
     public void DestroyCurrentTurret()
     {
-        if (currentTurret!=null) { Destroy(currentTurret); }
+        Destroy(currentTurret); 
     }
 
 }

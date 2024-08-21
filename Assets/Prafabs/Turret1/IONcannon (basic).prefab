@@ -7587,6 +7587,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 400184}
+  - {fileID: 4834948449718648235}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3300176
@@ -7692,7 +7693,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c66bdbff2061e44ad0b6de1bf6f851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerBuildManager: {fileID: 0}
   mybuilder: {fileID: 0}
+  uiState: 0
+  barrels:
+  - {fileID: 4834948449718648235}
+  bullet: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
 --- !u!54 &-7240717895022224235
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7720,3 +7726,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1849163130771739189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4834948449718648235}
+  m_Layer: 0
+  m_Name: Barrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4834948449718648235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849163130771739189}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: -5, y: 402, z: 546}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 400186}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
