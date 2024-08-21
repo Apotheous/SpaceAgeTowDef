@@ -29031,6 +29031,8 @@ GameObject:
   - component: {fileID: 2300114}
   - component: {fileID: 11100000}
   - component: {fileID: 3761345385164207752}
+  - component: {fileID: 5765176354354979091}
+  - component: {fileID: -4176711333998087790}
   m_Layer: 0
   m_Name: IONcannon_functional_base (drag the Rotor Body in play mode)
   m_TagString: Untagged
@@ -29145,6 +29147,46 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 603.9081, y: 634.87256, z: 664.89}
   m_Center: {x: 0.000023841858, y: 317.09653, z: 0}
+--- !u!114 &5765176354354979091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c66bdbff2061e44ad0b6de1bf6f851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybuilder: {fileID: 0}
+--- !u!54 &-4176711333998087790
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100128}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &100130
 GameObject:
   m_ObjectHideFlags: 0

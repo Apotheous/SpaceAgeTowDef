@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 23000012718083582}
   - component: {fileID: 95000013006542780}
   - component: {fileID: -8828040317787210562}
+  - component: {fileID: 7142490043546100873}
+  - component: {fileID: 3632309413733942697}
   m_Layer: 0
   m_Name: Canon_lvl_4_var_1
   m_TagString: Untagged
@@ -128,6 +130,46 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9841569, y: 1.0611547, z: 0.92177576}
   m_Center: {x: 0, y: 0.5203031, z: 0.09309788}
+--- !u!114 &7142490043546100873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010156534366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c66bdbff2061e44ad0b6de1bf6f851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybuilder: {fileID: 0}
+--- !u!54 &3632309413733942697
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010156534366}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1000011939376292
 GameObject:
   m_ObjectHideFlags: 0
