@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class TurretController : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class TurretController : MonoBehaviour
 
     public List<Transform> barrels = new List<Transform>();
     public GameObject bullet;
+
+    public GameObject targetGamObject;
+    public Transform target;    // Düþman hedef
+    public Transform angleX;    // X ekseninde dönen parça
+    public Transform angleY;    // Y ekseninde dönen parça
+    public float rotationSpeed = 5f; // Dönme hýzý
 
     void Start()
     {
@@ -33,6 +40,9 @@ public class TurretController : MonoBehaviour
 
         mybuilder=TowerBuildManager.builderTransform;
         previusCount = mybuilder.childCount;
+
+        targetGamObject = GameObject.FindWithTag("Enemy");
+        target=targetGamObject.transform;
     }
 
     void OnMouseDown()
@@ -68,6 +78,51 @@ public class TurretController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             Firing();
+        }
+
+        if (target != null)
+        {
+            // X ekseninde hedefin pozisyonunu takip et
+            AimAtTargetX();
+
+            // Y ekseninde hedefin pozisyonunu takip et
+            AimAtTargetY();
+        }
+    }
+
+
+    private void AimAtTargetX()
+    {
+        // Hedefin taretle olan fark vektörünü hesapla
+        Vector3 directionToTarget = target.position - angleX.position;
+
+        // Y bileþenini sýfýrla, sadece yatay düzlemde çalýþ
+        directionToTarget.y = 0;
+
+        // Eðer directionToTarget sýfýr vektörü deðilse
+        if (directionToTarget.sqrMagnitude > 0.001f)
+        {
+            // Hedefe yönelmek için gereken rotasyonu hesapla
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+
+            // X ekseninde düzgün bir þekilde dönmesi için interpolasyon (lerp) kullan
+            angleX.rotation = Quaternion.Slerp(angleX.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        }
+    }
+
+    private void AimAtTargetY()
+    {
+        // Hedefin taretle olan fark vektörünü hesapla
+        Vector3 directionToTarget = target.position - angleY.position;
+
+        // Eðer directionToTarget sýfýr vektörü deðilse
+        if (directionToTarget.sqrMagnitude > 0.001f)
+        {
+            // Hedefe yönelmek için gereken rotasyonu hesapla
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+
+            // Y ekseninde düzgün bir þekilde dönmesi için interpolasyon (lerp) kullan
+            angleY.rotation = Quaternion.Slerp(angleY.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
     }
     void Firing()
@@ -107,10 +162,13 @@ public class TurretController : MonoBehaviour
         {
             // Mermi ateþleme iþlemi
             Debug.Log(numberOfBarrels + " namludan mermi ateþleniyor");
-            // Burada her bir namlu için mermi spawn iþlemi gerçekleþtirilebilir.
-            GameObject firingBullet= Instantiate(bullet, barrels[i].transform);
-            firingBullet.transform.position = barrels[i].transform.position;
-            firingBullet.GetComponent<Rigidbody>().AddForce(transform.forward * 5000f);
+
+            // Mermiyi namludan dünya koordinatlarýnda instantiate edin
+            GameObject firingBullet = Instantiate(bullet, barrels[i].transform.position, barrels[i].transform.rotation);
+
+            // Rigidbody'e doðru yönle kuvvet uygulayýn
+            Rigidbody rb = firingBullet.GetComponent<Rigidbody>();
+            rb.AddForce(barrels[i].transform.forward * 5000f);
         }
     }
 

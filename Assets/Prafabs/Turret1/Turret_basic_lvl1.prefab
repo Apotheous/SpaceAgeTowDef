@@ -33,7 +33,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1808467619}
-  - {fileID: 3414397987076965947}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1187288394461268267
@@ -75,6 +74,11 @@ MonoBehaviour:
   barrels:
   - {fileID: 3414397987076965947}
   bullet: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
+  targetGamObject: {fileID: 0}
+  target: {fileID: 0}
+  angleX: {fileID: 1808467619}
+  angleY: {fileID: 952783353}
+  rotationSpeed: 5
 --- !u!54 &-6771511473950063612
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,7 +136,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3414397987076965947}
   m_Father: {fileID: 1808467619}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &952783355
@@ -294,9 +299,9 @@ Transform:
   m_GameObject: {fileID: 5637261168035718702}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.005, y: 1.239, z: 1.222}
+  m_LocalPosition: {x: -0.005, y: 0.36900008, z: 1.222}
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 939335179}
+  m_Father: {fileID: 952783353}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
