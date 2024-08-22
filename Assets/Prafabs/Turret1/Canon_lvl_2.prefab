@@ -313,7 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerBuildManager: {fileID: 0}
   mybuilder: {fileID: 0}
-  uiState: 0
+  uiState: 1
   barrels:
   - {fileID: 939578371727991287}
   - {fileID: 5813221353695688521}
@@ -331,7 +331,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013227101710}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
