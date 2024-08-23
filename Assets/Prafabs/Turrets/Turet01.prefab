@@ -106,7 +106,8 @@ MonoBehaviour:
   barrels:
   - {fileID: 5006595925651781544}
   - {fileID: 6726265055245099629}
-  bullet: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
+  bulletPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
+  bulletPool: []
   targetGamObject: {fileID: 0}
   target: {fileID: 0}
   angleX: {fileID: 2815805032784559850}
