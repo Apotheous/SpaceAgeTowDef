@@ -157,6 +157,9 @@ MonoBehaviour:
   angleX: {fileID: 4000013848247632}
   angleY: {fileID: 4000013643732794}
   rotationSpeed: 5
+  bullets: []
+  visionRange: 50
+  firingRange: 40
 --- !u!54 &-7475110019500649138
 Rigidbody:
   m_ObjectHideFlags: 0

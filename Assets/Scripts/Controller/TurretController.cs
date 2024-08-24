@@ -25,6 +25,12 @@ public class TurretController : MonoBehaviour
     public float rotationSpeed = 5f; // Dönme hýzý
 
     public List<GameObject> bullets = new List<GameObject>();
+
+
+    public float visionRange;
+    public float firingRange;
+    public float dist;
+
     private void Awake()
     {
         Instance = this;
@@ -32,23 +38,25 @@ public class TurretController : MonoBehaviour
 
     void Start()
     {
-        turretModel = new TurretModel(gameObject.name, LevelProp.LEVEL_ONE, 0);
-
-        Debug.Log("Turret Name: " + gameObject.name);
-        Debug.Log("Level: " + turretModel.Level);
-        Debug.Log("Shooting Frequency: " + turretModel.ShootingFrequency);
-        Debug.Log("Damage: " + turretModel.Damage);
-        Debug.Log("Range of Vision: " + turretModel.RangeOfVision);
-        Debug.Log("Firing Range: " + turretModel.FiringRange);
-        Debug.Log("Health: " + turretModel.Health);
-        Debug.Log("Cost: " + turretModel.Cost);
-
-        mybuilder = TowerBuildManager.builderTransform;
-        previusCount = mybuilder.childCount;
-
-        targetGamObject = GameObject.FindWithTag("Enemy");
-        target = targetGamObject.transform;
+        TurretModelStart();
     }
+
+    private void Update()
+    {
+        dist = Vector3.Distance(target.position, transform.position);
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Firing();
+        }
+
+        if (target != null)
+        {
+            AimAtTargetX();
+
+            AimAtTargetY();
+        }
+    }
+
 
     void OnMouseDown()
     {
@@ -74,23 +82,29 @@ public class TurretController : MonoBehaviour
             Debug.Log("+++++" + collider.name);
         }
     }
-
-    private void Update()
+    #region StartFoncs
+    private void TurretModelStart()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Firing();
-        }
+        turretModel = new TurretModel(gameObject.name, LevelProp.LEVEL_ONE, 0);
 
-        if (target != null)
-        {
-            // X ekseninde hedefin pozisyonunu takip et
-            AimAtTargetX();
+        Debug.Log("Turret Name: " + gameObject.name);
+        Debug.Log("Level: " + turretModel.Level);
+        Debug.Log("Shooting Frequency: " + turretModel.ShootingFrequency);
+        Debug.Log("Damage: " + turretModel.Damage);
+        Debug.Log("Range of Vision: " + turretModel.RangeOfVision);
+        Debug.Log("Firing Range: " + turretModel.FiringRange);
+        Debug.Log("Health: " + turretModel.Health);
+        Debug.Log("Cost: " + turretModel.Cost);
 
-            // Y ekseninde hedefin pozisyonunu takip et
-            AimAtTargetY();
-        }
+        mybuilder = TowerBuildManager.builderTransform;
+        previusCount = mybuilder.childCount;
+
+        targetGamObject = GameObject.FindWithTag("Enemy");
+        target = targetGamObject.transform;
     }
+
+    #endregion
+
 
     #region TargetFallow
     private void AimAtTargetX()
@@ -129,30 +143,8 @@ public class TurretController : MonoBehaviour
     }
     #endregion
 
-    void Firing()
-    {
-        Fire(barrels.Count, FireType.Bullet);
-    }
 
-    public void Fire(int barrelCount, FireType fireType)
-    {
-        switch (barrelCount)
-        {
-            case 1:
-                FireOneBarrel(fireType);
-                break;
-            case 2:
-                FireTwoBarrels(fireType);
-                break;
-            case 4:
-                FireFourBarrels(fireType);
-                break;
-            default:
-                Debug.LogError("Desteklenmeyen namlu sayýsý: " + barrelCount);
-                break;
-        }
-    }
-
+    #region BulletPool
     public void FireBulletFromPool(int barrelIndex)
     {
         if (bullets.Count > 0)
@@ -191,6 +183,33 @@ public class TurretController : MonoBehaviour
         bullet.transform.localRotation = Quaternion.identity; // Rotasyonu sýfýrla
 
         bullets.Add(bullet);
+    }
+
+    #endregion
+
+    #region Fire Funcs
+    void Firing()
+    {
+        if (!uiState) Fire(barrels.Count, FireType.Bullet);
+    }
+
+    public void Fire(int barrelCount, FireType fireType)
+    {
+        switch (barrelCount)
+        {
+            case 1:
+                FireOneBarrel(fireType);
+                break;
+            case 2:
+                FireTwoBarrels(fireType);
+                break;
+            case 4:
+                FireFourBarrels(fireType);
+                break;
+            default:
+                Debug.LogError("Desteklenmeyen namlu sayýsý: " + barrelCount);
+                break;
+        }
     }
 
     public void FireOneBarrel(FireType fireType)
@@ -247,10 +266,12 @@ public class TurretController : MonoBehaviour
             // Burada her bir namlu için lazer beam oluþturulabilir.
         }
     }
+    #endregion
+
 }
 
 public enum FireType
 {
-    Bullet, // Mermi
-    Laser   // Lazer
+    Bullet,
+    Laser   
 }
