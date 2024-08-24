@@ -31,6 +31,13 @@ public class TurretController : MonoBehaviour
     public float firingRange;
     public float dist;
 
+    public bool onVision;
+    public bool onTarget;
+    //public bool onFiring;
+    public float Timer;
+    public float fireRate;
+
+
     private void Awake()
     {
         Instance = this;
@@ -43,20 +50,61 @@ public class TurretController : MonoBehaviour
 
     private void Update()
     {
-        dist = Vector3.Distance(target.position, transform.position);
-        if (Input.GetKeyDown(KeyCode.X))
+
+
+        Information();
+
+        if (onTarget)
         {
-            Firing();
+            //Firing();
+            StartCoroutine(Fade());
         }
 
-        if (target != null)
+        if (target != null&&onVision)
         {
             AimAtTargetX();
 
             AimAtTargetY();
         }
     }
+    IEnumerator Fade()
+    {
+        for (int i = 0; i < fireRate; i++)
+        {
+            Timer += Time.deltaTime;
+            if (Timer>= fireRate)
+            {
+                Firing();
+                Timer = 0f;
+            }
+        }
+ 
+        
+   
+        yield return new WaitForSeconds(5f);
 
+    }
+    private void Information()
+    {
+        dist = Vector3.Distance(target.position, transform.position);
+        if (dist < visionRange)
+        {
+            onVision = true;
+
+        }
+        else 
+        { 
+            onVision = false; 
+        }
+        if (dist < firingRange)
+        {
+            onTarget = true;
+        }
+        else
+        {
+            onTarget= false;
+        }
+    }
 
     void OnMouseDown()
     {
