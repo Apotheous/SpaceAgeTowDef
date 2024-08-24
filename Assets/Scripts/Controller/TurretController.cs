@@ -56,8 +56,7 @@ public class TurretController : MonoBehaviour
 
         if (onTarget)
         {
-            //Firing();
-            StartCoroutine(Fade());
+            HandleFiring(fireRate, Firing);
         }
 
         if (target != null&&onVision)
@@ -67,22 +66,15 @@ public class TurretController : MonoBehaviour
             AimAtTargetY();
         }
     }
-    IEnumerator Fade()
+    public void HandleFiring(float fireRate, System.Action firingAction)
     {
-        for (int i = 0; i < fireRate; i++)
-        {
-            Timer += Time.deltaTime;
-            if (Timer>= fireRate)
-            {
-                Firing();
-                Timer = 0f;
-            }
-        }
- 
-        
-   
-        yield return new WaitForSeconds(5f);
+        Timer += Time.deltaTime;
 
+        if (Timer >= fireRate)
+        {
+            firingAction.Invoke();
+            Timer = 0f;
+        }
     }
     private void Information()
     {
