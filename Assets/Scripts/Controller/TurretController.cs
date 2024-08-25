@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.GraphicsBuffer;
 
 public class TurretController : MonoBehaviour
@@ -44,6 +46,10 @@ public class TurretController : MonoBehaviour
     public float fireRate;
 
     public int GizmosRange;
+
+    public UnityEvent gunShot;
+
+
 
     private void Awake()
     {
@@ -187,6 +193,7 @@ public class TurretController : MonoBehaviour
     #endregion
 
 
+
     #region Trackingtarget
     private void AimAtTargetX()
     {
@@ -234,7 +241,7 @@ public class TurretController : MonoBehaviour
             bullet.transform.SetParent(null);
             bullets.RemoveAt(0);
             bullet.SetActive(true);
-
+            gunShot.Invoke();
             // Mermiyi namlunun pozisyonuna ve rotasyonuna ayarla
             bullet.transform.position = barrels[barrelIndex].position;
             bullet.transform.rotation = barrels[barrelIndex].rotation;
@@ -250,6 +257,7 @@ public class TurretController : MonoBehaviour
             GameObject newBullet = Instantiate(bulletPrefab, barrels[barrelIndex].position, barrels[barrelIndex].rotation);
             Rigidbody rb = newBullet.GetComponent<Rigidbody>();
             rb.AddForce(barrels[barrelIndex].forward * 5000f);
+            gunShot.Invoke();
         }
     }
 
