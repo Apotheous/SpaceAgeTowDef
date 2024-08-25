@@ -182,14 +182,12 @@ public class TurretController : MonoBehaviour
         mybuilder = TowerBuildManager.builderTransform;
         previusCount = mybuilder.childCount;
 
-        //targetGamObject = GameObject.FindWithTag("Enemy");
-        //target = targetGamObject.transform;
     }
 
     #endregion
 
 
-    #region TargetFallow
+    #region Trackingtarget
     private void AimAtTargetX()
     {
         // Hedefin taretle olan fark vektörünü hesapla
@@ -233,6 +231,7 @@ public class TurretController : MonoBehaviour
         if (bullets.Count > 0)
         {
             GameObject bullet = bullets[0];
+            bullet.transform.SetParent(null);
             bullets.RemoveAt(0);
             bullet.SetActive(true);
 
