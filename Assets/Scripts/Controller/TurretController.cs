@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 public class TurretController : MonoBehaviour
 {
     public static TurretController Instance { get; private set; }
+    private EnemyMainBase enemyMain;
     private TurretModel turretModel;
     public TowerBuildManager towerBuildManager;
     public Transform mybuilder;
@@ -18,8 +19,13 @@ public class TurretController : MonoBehaviour
     public GameObject bulletPrefab;
     public List<GameObject> bulletPool = new List<GameObject>(); // Obje havuzu
 
+
+    public List<Transform> enemyUnitList = new List<Transform>();
+
     public GameObject targetGamObject;
+
     public Transform target;    // Düþman hedef
+
     public Transform angleX;    // X ekseninde dönen parça
     public Transform angleY;    // Y ekseninde dönen parça
     public float rotationSpeed = 5f; // Dönme hýzý
@@ -37,6 +43,7 @@ public class TurretController : MonoBehaviour
     public float Timer;
     public float fireRate;
 
+    public int GizmosRange;
 
     private void Awake()
     {
@@ -46,12 +53,11 @@ public class TurretController : MonoBehaviour
     void Start()
     {
         TurretModelStart();
+        InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
     private void Update()
     {
-
-
         Information();
 
         if (onTarget)
@@ -76,13 +82,13 @@ public class TurretController : MonoBehaviour
             Timer = 0f;
         }
     }
+
     private void Information()
     {
-        dist = Vector3.Distance(target.position, transform.position);
+        //dist = Vector3.Distance(target.position, transform.position);
         if (dist < visionRange)
         {
             onVision = true;
-
         }
         else 
         { 
@@ -97,7 +103,32 @@ public class TurretController : MonoBehaviour
             onTarget= false;
         }
     }
+    void UpdateTarget()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        float shortestDistance = Mathf.Infinity;
+        GameObject nearestEnemy = null;
+        foreach (GameObject enemy in enemies)
+        {
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy < shortestDistance)
+            {
+                shortestDistance = distanceToEnemy;
+                nearestEnemy = enemy;
+            }
+        }
 
+        if (nearestEnemy != null && shortestDistance <= GizmosRange)
+        {
+            target = nearestEnemy.transform;
+            //targetEnemy = nearestEnemy.GetComponent<EnemyUnit>();
+        }
+        else
+        {
+            target = null;
+        }
+
+    }
     void OnMouseDown()
     {
         if (uiState == true)
@@ -109,7 +140,11 @@ public class TurretController : MonoBehaviour
             currentTurret.GetComponent<TurretController>().uiState = false;
         }
     }
-
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, GizmosRange);
+    }
     void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.GetComponent<TowerMan>() != null)
@@ -139,8 +174,8 @@ public class TurretController : MonoBehaviour
         mybuilder = TowerBuildManager.builderTransform;
         previusCount = mybuilder.childCount;
 
-        targetGamObject = GameObject.FindWithTag("Enemy");
-        target = targetGamObject.transform;
+        //targetGamObject = GameObject.FindWithTag("Enemy");
+        //target = targetGamObject.transform;
     }
 
     #endregion
@@ -214,13 +249,13 @@ public class TurretController : MonoBehaviour
     public void ReturnBulletToPool(GameObject bullet)
     {
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.velocity = Vector3.zero; // Mevcut hýzýný sýfýrla
-        rb.angularVelocity = Vector3.zero; // Mevcut dönme hýzýný sýfýrla
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
 
         bullet.SetActive(false);
         bullet.transform.SetParent(barrels[0]);
-        bullet.transform.localPosition = Vector3.zero; // Pozisyonu sýfýrla
-        bullet.transform.localRotation = Quaternion.identity; // Rotasyonu sýfýrla
+        bullet.transform.localPosition = Vector3.zero;
+        bullet.transform.localRotation = Quaternion.identity; 
 
         bullets.Add(bullet);
     }

@@ -237,6 +237,7 @@ MonoBehaviour:
   - {fileID: 6204480120606672537}
   bulletPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
   bulletPool: []
+  enemyUnitList: []
   targetGamObject: {fileID: 0}
   target: {fileID: 0}
   angleX: {fileID: 4000012604501588}
@@ -250,6 +251,7 @@ MonoBehaviour:
   onTarget: 0
   Timer: 0
   fireRate: 1
+  GizmosRange: 100
 --- !u!54 &1884083470718472261
 Rigidbody:
   m_ObjectHideFlags: 0
