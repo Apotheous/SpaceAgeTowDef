@@ -698,7 +698,7 @@ MonoBehaviour:
   myUnits: {fileID: 1089654663557432098, guid: fa2dc93095ada4941b64975f93282cd8, type: 3}
   mySpawnPoint: {fileID: 203462279}
   Timer: 0
-  spawnRate: 2
+  spawnRate: 5
 --- !u!1 &1032999504
 GameObject:
   m_ObjectHideFlags: 0

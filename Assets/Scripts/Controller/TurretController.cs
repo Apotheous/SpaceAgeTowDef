@@ -71,6 +71,8 @@ public class TurretController : MonoBehaviour
 
             AimAtTargetY();
         }
+
+
     }
     public void HandleFiring(float fireRate, System.Action firingAction)
     {
@@ -85,23 +87,28 @@ public class TurretController : MonoBehaviour
 
     private void Information()
     {
-        //dist = Vector3.Distance(target.position, transform.position);
-        if (dist < visionRange)
+        
+        if (target!=null)
         {
-            onVision = true;
+            dist = Vector3.Distance(transform.position, target.position);
+            if (dist < visionRange)
+            {
+                onVision = true;
+            }
+            else
+            {
+                onVision = false;
+            }
+            if (dist < firingRange)
+            {
+                onTarget = true;
+            }
+            else
+            {
+                onTarget = false;
+            }
         }
-        else 
-        { 
-            onVision = false; 
-        }
-        if (dist < firingRange)
-        {
-            onTarget = true;
-        }
-        else
-        {
-            onTarget= false;
-        }
+
     }
     void UpdateTarget()
     {
@@ -115,6 +122,7 @@ public class TurretController : MonoBehaviour
             {
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
+                target = enemy.transform;
             }
         }
 
