@@ -45,11 +45,15 @@ public class TurretController : MonoBehaviour
     public float Timer;
     public float fireRate;
 
+
     public int GizmosRange;
 
     public UnityEvent gunShot;
 
 
+    public float barrelTimer;
+    public float barrelTimerRate;
+    public float barrelTimerLine;
 
     private void Awake()
     {
@@ -77,8 +81,6 @@ public class TurretController : MonoBehaviour
 
             AimAtTargetY();
         }
-
-
     }
     public void HandleFiring(float fireRate, System.Action firingAction)
     {
@@ -237,6 +239,7 @@ public class TurretController : MonoBehaviour
     {
         if (bullets.Count > 0)
         {
+            Debug.Log("+++++++ BulletPool= ");
             GameObject bullet = bullets[0];
             bullet.transform.SetParent(null);
             bullets.RemoveAt(0);
@@ -250,15 +253,18 @@ public class TurretController : MonoBehaviour
             rb.velocity = Vector3.zero; // Eski hýzýný sýfýrla
             rb.angularVelocity = Vector3.zero; // Eski dönme hýzýný sýfýrla
             rb.AddForce(barrels[barrelIndex].forward * 5000f);
+              
         }
         else
         {
+            Debug.Log("+++++++ BulletPool= ");
             // Eðer obje havuzunda mermi yoksa yeni bir mermi oluþtur
             GameObject newBullet = Instantiate(bulletPrefab, barrels[barrelIndex].position, barrels[barrelIndex].rotation);
             Rigidbody rb = newBullet.GetComponent<Rigidbody>();
             rb.AddForce(barrels[barrelIndex].forward * 5000f);
             gunShot.Invoke();
-        }
+              
+        }       
     }
 
     public void ReturnBulletToPool(GameObject bullet)
@@ -297,7 +303,7 @@ public class TurretController : MonoBehaviour
                 FireFourBarrels(fireType);
                 break;
             default:
-                Debug.LogError("Desteklenmeyen namlu sayýsý: " + barrelCount);
+                Debug.LogError(" Desteklenmeyen namlu sayýsý: " + barrelCount);
                 break;
         }
     }
@@ -317,33 +323,47 @@ public class TurretController : MonoBehaviour
 
     public void FireTwoBarrels(FireType fireType)
     {
-        for (int i = 0; i < 2; i++)
+        switch (fireType)
         {
-            switch (fireType)
-            {
-                case FireType.Bullet:
-                    FireBulletFromPool(i);
-                    break;
-                case FireType.Laser:
-                    FireLaser(2);
-                    break;
-            }
+            case FireType.Bullet:
+                if (barrelTimer == 0)
+                {
+                    FireBulletFromPool(0);
+                }
+                barrelTimer += barrelTimerRate;
+                if (barrelTimer >= barrelTimerLine)
+                {
+                    FireBulletFromPool(1);
+                    barrelTimer = 0;
+                }
+                break;
+            case FireType.Laser:
+                FireLaser(2);
+                break;
         }
     }
 
     public void FireFourBarrels(FireType fireType)
     {
-        for (int i = 0; i < 4; i++)
+        switch (fireType)
         {
-            switch (fireType)
+            case FireType.Bullet:
+            if (barrelTimer == 0)
             {
-                case FireType.Bullet:
-                    FireBulletFromPool(i);
-                    break;
-                case FireType.Laser:
-                    FireLaser(4);
-                    break;
+                FireBulletFromPool(0);
+                FireBulletFromPool(1);
             }
+            barrelTimer += barrelTimerRate;
+            if (barrelTimer >= barrelTimerLine)
+            {
+                FireBulletFromPool(2);
+                FireBulletFromPool(3);
+                barrelTimer = 0;
+            }
+            break;
+            case FireType.Laser:
+                FireLaser(4);
+                break;
         }
     }
 

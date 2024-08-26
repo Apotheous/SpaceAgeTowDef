@@ -1026,6 +1026,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  barrelTimer: 0
+  barrelTimerRate: 0.05
+  barrelTimerLine: 0
 --- !u!65 &-6786965534271810944
 BoxCollider:
   m_ObjectHideFlags: 0
