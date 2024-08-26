@@ -352,7 +352,7 @@ MonoBehaviour:
         m_CallState: 2
   barrelTimer: 0
   barrelTimerRate: 0.05
-  barrelTimerLine: 0
+  barrelTimerLine: 0.1
 --- !u!54 &-3864039065064739442
 Rigidbody:
   m_ObjectHideFlags: 0

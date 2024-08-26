@@ -91,7 +91,7 @@ MonoBehaviour:
         m_CallState: 2
   barrelTimer: 0
   barrelTimerRate: 0.05
-  barrelTimerLine: 0
+  barrelTimerLine: 0.1
 --- !u!65 &-4030641887060758650
 BoxCollider:
   m_ObjectHideFlags: 0
