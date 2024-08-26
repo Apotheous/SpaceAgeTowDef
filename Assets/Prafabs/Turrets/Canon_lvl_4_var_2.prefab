@@ -271,6 +271,8 @@ MonoBehaviour:
   barrelTimer: 0
   barrelTimerRate: 0.05
   barrelTimerLine: 0.1
+  notDeep: 30
+  notDeepT: 0
 --- !u!54 &1884083470718472261
 Rigidbody:
   m_ObjectHideFlags: 0

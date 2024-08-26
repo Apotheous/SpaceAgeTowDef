@@ -55,6 +55,10 @@ public class TurretController : MonoBehaviour
     public float barrelTimerRate;
     public float barrelTimerLine;
 
+
+    public float notDeep;
+    public float notDeepT;
+
     private void Awake()
     {
         Instance = this;
@@ -129,13 +133,19 @@ public class TurretController : MonoBehaviour
             if (distanceToEnemy < shortestDistance)
             {
                 shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
-                target = enemy.transform;
+                notDeepT = distanceToEnemy;
+                //average value notDeep 30f
+                if (notDeepT > notDeep)
+                {
+                    nearestEnemy = enemy;
+                    target = enemy.transform;
+                }
             }
         }
 
         if (nearestEnemy != null && shortestDistance <= GizmosRange)
         {
+
             target = nearestEnemy.transform;
             //targetEnemy = nearestEnemy.GetComponent<EnemyUnit>();
         }
@@ -143,7 +153,6 @@ public class TurretController : MonoBehaviour
         {
             target = null;
         }
-
     }
     void OnMouseDown()
     {
