@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 using static UnityEngine.GraphicsBuffer;
@@ -19,6 +20,7 @@ public class TurretController : MonoBehaviour
 
     public List<Transform> barrels = new List<Transform>();
     public GameObject bulletPrefab;
+    public int shotForce;
     public List<GameObject> bulletPool = new List<GameObject>(); // Obje havuzu
 
 
@@ -58,6 +60,8 @@ public class TurretController : MonoBehaviour
 
     public float notDeep;
     public float notDeepT;
+
+    public float BarrelHeightAllowance;
 
     private void Awake()
     {
@@ -227,18 +231,36 @@ public class TurretController : MonoBehaviour
 
     private void AimAtTargetY()
     {
+        // Taretin gövdesi ile namlusu arasýndaki yükseklik farkýný tanýmla
+        float fark = angleY.position.y - BarrelHeightAllowance;
+
         // Hedefin taretle olan fark vektörünü hesapla
         Vector3 directionToTarget = target.position - angleY.position;
 
         // Eðer directionToTarget sýfýr vektörü deðilse
         if (directionToTarget.sqrMagnitude > 0.001f)
         {
+            // Yükseklik farkýný hesaba kat
+            directionToTarget.y -= fark;
+
             // Hedefe yönelmek için gereken rotasyonu hesapla
             Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
 
             // Y ekseninde düzgün bir þekilde dönmesi için interpolasyon (lerp) kullan
             angleY.rotation = Quaternion.Slerp(angleY.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
+        //// Hedefin taretle olan fark vektörünü hesapla
+        //Vector3 directionToTarget = target.position - angleY.position;
+
+        //// Eðer directionToTarget sýfýr vektörü deðilse
+        //if (directionToTarget.sqrMagnitude > 0.001f)
+        //{
+        //    // Hedefe yönelmek için gereken rotasyonu hesapla
+        //    Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+
+        //    // Y ekseninde düzgün bir þekilde dönmesi için interpolasyon (lerp) kullan
+        //    angleY.rotation = Quaternion.Slerp(angleY.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        //}
     }
     #endregion
 
@@ -261,7 +283,7 @@ public class TurretController : MonoBehaviour
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             rb.velocity = Vector3.zero; // Eski hýzýný sýfýrla
             rb.angularVelocity = Vector3.zero; // Eski dönme hýzýný sýfýrla
-            rb.AddForce(barrels[barrelIndex].forward * 5000f);
+            rb.AddForce(barrels[barrelIndex].forward * shotForce);
               
         }
         else
@@ -270,7 +292,7 @@ public class TurretController : MonoBehaviour
             // Eðer obje havuzunda mermi yoksa yeni bir mermi oluþtur
             GameObject newBullet = Instantiate(bulletPrefab, barrels[barrelIndex].position, barrels[barrelIndex].rotation);
             Rigidbody rb = newBullet.GetComponent<Rigidbody>();
-            rb.AddForce(barrels[barrelIndex].forward * 5000f);
+            rb.AddForce(barrels[barrelIndex].forward * shotForce);
             gunShot.Invoke();
               
         }       

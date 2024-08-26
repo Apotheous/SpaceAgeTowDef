@@ -58,6 +58,7 @@ MonoBehaviour:
   - {fileID: 1552574119833565033}
   - {fileID: 2433651244285965319}
   bulletPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
+  shotForce: 10000
   bulletPool: []
   enemyUnitList: []
   targetGamObject: {fileID: 0}
@@ -72,7 +73,7 @@ MonoBehaviour:
   onVision: 0
   onTarget: 0
   Timer: 0
-  fireRate: 1
+  fireRate: 0.1
   GizmosRange: 100
   gunShot:
     m_PersistentCalls:
@@ -92,8 +93,9 @@ MonoBehaviour:
   barrelTimer: 0
   barrelTimerRate: 0.05
   barrelTimerLine: 0.1
-  notDeep: 30
+  notDeep: 0
   notDeepT: 0
+  BarrelHeightAllowance: 7.5
 --- !u!65 &-4030641887060758650
 BoxCollider:
   m_ObjectHideFlags: 0
