@@ -29050,8 +29050,8 @@ Transform:
   m_GameObject: {fileID: 100128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00184372, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8772499712463745267}
@@ -29167,7 +29167,7 @@ MonoBehaviour:
   barrels:
   - {fileID: 6897131739017738346}
   bulletPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
-  shotForce: 400
+  shotForce: 150
   bulletPool: []
   enemyUnitList: []
   targetGamObject: {fileID: 0}
@@ -29204,7 +29204,7 @@ MonoBehaviour:
   barrelTimerLine: 0.1
   notDeep: 0
   notDeepT: 0
-  BarrelHeightAllowance: 7.5
+  BarrelHeightAllowance: 0
 --- !u!54 &-4176711333998087790
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29213,7 +29213,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100128}
   serializedVersion: 4
-  m_Mass: 1000
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

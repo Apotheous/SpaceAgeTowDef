@@ -231,36 +231,36 @@ public class TurretController : MonoBehaviour
 
     private void AimAtTargetY()
     {
-        // Taretin gövdesi ile namlusu arasýndaki yükseklik farkýný tanýmla
-        float fark = angleY.position.y - BarrelHeightAllowance;
+        //// Taretin gövdesi ile namlusu arasýndaki yükseklik farkýný tanýmla
+        //float fark = angleY.position.y - BarrelHeightAllowance;
 
-        // Hedefin taretle olan fark vektörünü hesapla
-        Vector3 directionToTarget = target.position - angleY.position;
-
-        // Eðer directionToTarget sýfýr vektörü deðilse
-        if (directionToTarget.sqrMagnitude > 0.001f)
-        {
-            // Yükseklik farkýný hesaba kat
-            directionToTarget.y -= fark;
-
-            // Hedefe yönelmek için gereken rotasyonu hesapla
-            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-
-            // Y ekseninde düzgün bir þekilde dönmesi için interpolasyon (lerp) kullan
-            angleY.rotation = Quaternion.Slerp(angleY.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-        }
         //// Hedefin taretle olan fark vektörünü hesapla
         //Vector3 directionToTarget = target.position - angleY.position;
 
         //// Eðer directionToTarget sýfýr vektörü deðilse
         //if (directionToTarget.sqrMagnitude > 0.001f)
         //{
+        //    // Yükseklik farkýný hesaba kat
+        //    directionToTarget.y -= fark;
+
         //    // Hedefe yönelmek için gereken rotasyonu hesapla
         //    Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
 
         //    // Y ekseninde düzgün bir þekilde dönmesi için interpolasyon (lerp) kullan
         //    angleY.rotation = Quaternion.Slerp(angleY.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         //}
+        // Hedefin taretle olan fark vektörünü hesapla
+        Vector3 directionToTarget = target.position - angleY.position;
+
+        // Eðer directionToTarget sýfýr vektörü deðilse
+        if (directionToTarget.sqrMagnitude > 0.001f)
+        {
+            // Hedefe yönelmek için gereken rotasyonu hesapla
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+
+            // Y ekseninde düzgün bir þekilde dönmesi için interpolasyon (lerp) kullan
+            angleY.rotation = Quaternion.Slerp(angleY.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        }
     }
     #endregion
 

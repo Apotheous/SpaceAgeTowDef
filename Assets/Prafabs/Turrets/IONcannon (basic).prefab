@@ -7583,8 +7583,8 @@ Transform:
   m_GameObject: {fileID: 100186}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00184372, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8511463032953862814}
@@ -7658,7 +7658,7 @@ Animation:
   - {fileID: 7400006, guid: faa3716e10170472a8b2fa9fb6b646c7, type: 3}
   - {fileID: 7400008, guid: faa3716e10170472a8b2fa9fb6b646c7, type: 3}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!65 &3174665706018366304
@@ -7700,7 +7700,7 @@ MonoBehaviour:
   barrels:
   - {fileID: 4834948449718648235}
   bulletPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
-  shotForce: 400
+  shotForce: 150
   bulletPool: []
   enemyUnitList: []
   targetGamObject: {fileID: 0}
@@ -7737,7 +7737,7 @@ MonoBehaviour:
   barrelTimerLine: 0.1
   notDeep: 0
   notDeepT: 0
-  BarrelHeightAllowance: 7.5
+  BarrelHeightAllowance: 0
 --- !u!54 &-7240717895022224235
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7746,7 +7746,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100186}
   serializedVersion: 4
-  m_Mass: 1000
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -7937,4 +7937,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76456f08469ecb246a4bcd155aa18ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunShotSound: {fileID: 0}
+  gunShotSound: {fileID: 3092091641140377660}
