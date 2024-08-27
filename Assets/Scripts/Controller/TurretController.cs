@@ -9,6 +9,7 @@ using static UnityEngine.GraphicsBuffer;
 public class TurretController : MonoBehaviour
 {
     public static TurretController Instance { get; private set; }
+
     private EnemyMainBase enemyMain;
     private TurretModel turretModel;
     public TowerBuildManager towerBuildManager;
@@ -18,50 +19,67 @@ public class TurretController : MonoBehaviour
     int previusCount;
     public bool uiState;
 
-    public List<Transform> barrels = new List<Transform>();
-    public GameObject bulletPrefab;
-    public int shotForce;
-    public List<GameObject> bulletPool = new List<GameObject>(); // Obje havuzu
+    private Transform target;    // Düþman hedef
 
 
-    public List<Transform> enemyUnitList = new List<Transform>();
-
-    public GameObject targetGamObject;
-
-    public Transform target;    // Düþman hedef
-
-    public Transform angleX;    // X ekseninde dönen parça
-    public Transform angleY;    // Y ekseninde dönen parça
-    public float rotationSpeed = 5f; // Dönme hýzý
-
-    public List<GameObject> bullets = new List<GameObject>();
-
-
-    public float visionRange;
-    public float firingRange;
-    public float dist;
-
-    public bool onVision;
-    public bool onTarget;
-    //public bool onFiring;
-    public float Timer;
-    public float fireRate;
-
-
-    public int GizmosRange;
 
     public UnityEvent gunShot;
 
+    [System.Serializable]
+    public class MainObjs
+    {
 
-    public float barrelTimer;
-    public float barrelTimerRate;
-    public float barrelTimerLine;
+    }
+
+    [System.Serializable]
+    public class WeaponClass
+    {
+        public List<Transform> barrels = new List<Transform>();
+        public int shotForce;
+
+        public float visionRange;
+        public float firingRange;
+        public float dist;
+
+        public bool onVision;
+        public bool onTarget;
+
+        public float Timer;
+        public float fireRate;
+        public int GizmosRange;
+
+        public float barrelTimer;
+        public float barrelTimerRate;
+        public float barrelTimerLine;
+
+    }
+
+    [System.Serializable]
+    public class BulletClass
+    {
+        public List<GameObject> bullets = new List<GameObject>();
+        [HideInInspector]
+        public List<GameObject> bulletPool = new List<GameObject>();//--????
+        public GameObject bulletPrefab;
+    }
+    [System.Serializable]
+    public class RotationClass
+    {
+
+        public Transform angleX;    // X ekseninde dönen parça
+        public Transform angleY;    // Y ekseninde dönen parça
+        public float rotationSpeed = 5f; // Dönme hýzý
+
+        public float notDeep;
+        public float notDeepT;
+        public float BarrelHeightAllowance;
+    }
+    
+    public WeaponClass weaponClass;
+    public BulletClass bulletClass;
+    public RotationClass rotationClass;
 
 
-    public float notDeep;
-    public float notDeepT;
-
-    public float BarrelHeightAllowance;
 
     private void Awake()
     {
@@ -78,12 +96,12 @@ public class TurretController : MonoBehaviour
     {
         Information();
 
-        if (onTarget)
+        if (weaponClass.onTarget)
         {
-            HandleFiring(fireRate, Firing);
+            HandleFiring(weaponClass.fireRate, Firing);
         }
 
-        if (target != null&&onVision)
+        if (target != null && weaponClass.onVision)
         {
             AimAtTargetX();
 
@@ -92,12 +110,12 @@ public class TurretController : MonoBehaviour
     }
     public void HandleFiring(float fireRate, System.Action firingAction)
     {
-        Timer += Time.deltaTime;
+        weaponClass.Timer += Time.deltaTime;
 
-        if (Timer >= fireRate)
+        if (weaponClass.Timer >= fireRate)
         {
             firingAction.Invoke();
-            Timer = 0f;
+            weaponClass.Timer = 0f;
         }
     }
 
@@ -106,22 +124,22 @@ public class TurretController : MonoBehaviour
         
         if (target!=null)
         {
-            dist = Vector3.Distance(transform.position, target.position);
-            if (dist < visionRange)
+            weaponClass.dist = Vector3.Distance(transform.position, target.position);
+            if (weaponClass.dist < weaponClass.visionRange)
             {
-                onVision = true;
+                weaponClass.onVision = true;
             }
             else
             {
-                onVision = false;
+                weaponClass.onVision = false;
             }
-            if (dist < firingRange)
+            if (weaponClass.dist < weaponClass.firingRange)
             {
-                onTarget = true;
+                weaponClass.onTarget = true;
             }
             else
             {
-                onTarget = false;
+                weaponClass.onTarget = false;
             }
         }
 
@@ -137,9 +155,9 @@ public class TurretController : MonoBehaviour
             if (distanceToEnemy < shortestDistance)
             {
                 shortestDistance = distanceToEnemy;
-                notDeepT = distanceToEnemy;
+                rotationClass.notDeepT = distanceToEnemy;
                 //average value notDeep 30f
-                if (notDeepT > notDeep)
+                if (rotationClass.notDeepT > rotationClass.notDeep)
                 {
                     nearestEnemy = enemy;
                     target = enemy.transform;
@@ -147,7 +165,7 @@ public class TurretController : MonoBehaviour
             }
         }
 
-        if (nearestEnemy != null && shortestDistance <= GizmosRange)
+        if (nearestEnemy != null && shortestDistance <= weaponClass.GizmosRange)
         {
 
             target = nearestEnemy.transform;
@@ -172,7 +190,7 @@ public class TurretController : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, GizmosRange);
+        Gizmos.DrawWireSphere(transform.position, weaponClass.GizmosRange);
     }
     void OnTriggerEnter(Collider collider)
     {
@@ -213,7 +231,7 @@ public class TurretController : MonoBehaviour
     private void AimAtTargetX()
     {
         // Hedefin taretle olan fark vektörünü hesapla
-        Vector3 directionToTarget = target.position - angleX.position;
+        Vector3 directionToTarget = target.position - rotationClass.angleX.position;
 
         // Y bileþenini sýfýrla, sadece yatay düzlemde çalýþ
         directionToTarget.y = 0;
@@ -225,7 +243,7 @@ public class TurretController : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
 
             // X ekseninde düzgün bir þekilde dönmesi için interpolasyon (lerp) kullan
-            angleX.rotation = Quaternion.Slerp(angleX.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            rotationClass.angleX.rotation = Quaternion.Slerp(rotationClass.angleX.rotation, targetRotation, Time.deltaTime * rotationClass.rotationSpeed);
         }
     }
 
@@ -250,7 +268,7 @@ public class TurretController : MonoBehaviour
         //    angleY.rotation = Quaternion.Slerp(angleY.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         //}
         // Hedefin taretle olan fark vektörünü hesapla
-        Vector3 directionToTarget = target.position - angleY.position;
+        Vector3 directionToTarget = target.position - rotationClass.angleY.position;
 
         // Eðer directionToTarget sýfýr vektörü deðilse
         if (directionToTarget.sqrMagnitude > 0.001f)
@@ -259,7 +277,7 @@ public class TurretController : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
 
             // Y ekseninde düzgün bir þekilde dönmesi için interpolasyon (lerp) kullan
-            angleY.rotation = Quaternion.Slerp(angleY.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            rotationClass.angleY.rotation = Quaternion.Slerp(rotationClass.angleY.rotation, targetRotation, Time.deltaTime * rotationClass.rotationSpeed);
         }
     }
     #endregion
@@ -268,31 +286,31 @@ public class TurretController : MonoBehaviour
     #region BulletPool
     public void FireBulletFromPool(int barrelIndex)
     {
-        if (bullets.Count > 0)
+        if (bulletClass.bullets.Count > 0)
         {
             Debug.Log("+++++++ BulletPool= ");
-            GameObject bullet = bullets[0];
+            GameObject bullet = bulletClass.bullets[0];
             bullet.transform.SetParent(null);
-            bullets.RemoveAt(0);
+            bulletClass.bullets.RemoveAt(0);
             bullet.SetActive(true);
             gunShot.Invoke();
             // Mermiyi namlunun pozisyonuna ve rotasyonuna ayarla
-            bullet.transform.position = barrels[barrelIndex].position;
-            bullet.transform.rotation = barrels[barrelIndex].rotation;
+            bullet.transform.position = weaponClass.barrels[barrelIndex].position;
+            bullet.transform.rotation = weaponClass.barrels[barrelIndex].rotation;
 
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             rb.velocity = Vector3.zero; // Eski hýzýný sýfýrla
             rb.angularVelocity = Vector3.zero; // Eski dönme hýzýný sýfýrla
-            rb.AddForce(barrels[barrelIndex].forward * shotForce);
+            rb.AddForce(weaponClass.barrels[barrelIndex].forward * weaponClass.shotForce);
               
         }
         else
         {
             Debug.Log("+++++++ BulletPool= ");
             // Eðer obje havuzunda mermi yoksa yeni bir mermi oluþtur
-            GameObject newBullet = Instantiate(bulletPrefab, barrels[barrelIndex].position, barrels[barrelIndex].rotation);
+            GameObject newBullet = Instantiate(bulletClass.bulletPrefab, weaponClass.barrels[barrelIndex].position, weaponClass.barrels[barrelIndex].rotation);
             Rigidbody rb = newBullet.GetComponent<Rigidbody>();
-            rb.AddForce(barrels[barrelIndex].forward * shotForce);
+            rb.AddForce(weaponClass.barrels[barrelIndex].forward * weaponClass.shotForce);
             gunShot.Invoke();
               
         }       
@@ -305,11 +323,11 @@ public class TurretController : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
 
         bullet.SetActive(false);
-        bullet.transform.SetParent(barrels[0]);
+        bullet.transform.SetParent(weaponClass.barrels[0]);
         bullet.transform.localPosition = Vector3.zero;
-        bullet.transform.localRotation = Quaternion.identity; 
+        bullet.transform.localRotation = Quaternion.identity;
 
-        bullets.Add(bullet);
+        bulletClass.bullets.Add(bullet);
     }
 
     #endregion
@@ -317,7 +335,7 @@ public class TurretController : MonoBehaviour
     #region Fire Funcs
     void Firing()
     {
-        if (!uiState) Fire(barrels.Count, FireType.Bullet);
+        if (!uiState) Fire(weaponClass.barrels.Count, FireType.Bullet);
     }
 
     public void Fire(int barrelCount, FireType fireType)
@@ -357,15 +375,15 @@ public class TurretController : MonoBehaviour
         switch (fireType)
         {
             case FireType.Bullet:
-                if (barrelTimer == 0)
+                if (weaponClass.barrelTimer == 0)
                 {
                     FireBulletFromPool(0);
                 }
-                barrelTimer += barrelTimerRate;
-                if (barrelTimer >= barrelTimerLine)
+                weaponClass.barrelTimer += weaponClass.barrelTimerRate;
+                if (weaponClass.barrelTimer >= weaponClass.barrelTimerLine)
                 {
                     FireBulletFromPool(1);
-                    barrelTimer = 0;
+                    weaponClass.barrelTimer = 0;
                 }
                 break;
             case FireType.Laser:
@@ -379,17 +397,17 @@ public class TurretController : MonoBehaviour
         switch (fireType)
         {
             case FireType.Bullet:
-            if (barrelTimer == 0)
+            if (weaponClass.barrelTimer == 0)
             {
                 FireBulletFromPool(0);
                 FireBulletFromPool(1);
             }
-            barrelTimer += barrelTimerRate;
-            if (barrelTimer >= barrelTimerLine)
+            weaponClass.barrelTimer += weaponClass.barrelTimerRate;
+            if (weaponClass.barrelTimer >= weaponClass.barrelTimerLine)
             {
                 FireBulletFromPool(2);
                 FireBulletFromPool(3);
-                barrelTimer = 0;
+                weaponClass.barrelTimer = 0;
             }
             break;
             case FireType.Laser:

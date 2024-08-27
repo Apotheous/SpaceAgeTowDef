@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8270078141599321775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 870031625407828010}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &870031625407828010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8270078141599321775}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.9523947e-17, z: 0.17800003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4072871255451744168}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9126872759984892300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7564762951168702095}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7564762951168702095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9126872759984892300}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.178}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4072871255451744174}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4072871255452134700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54,7 +116,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 400002, guid: d148bd46a5a4c4e4d96a7c02442100fc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7564762951168702095}
+    - targetCorrespondingSourceObject: {fileID: 400004, guid: d148bd46a5a4c4e4d96a7c02442100fc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 870031625407828010}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100010, guid: d148bd46a5a4c4e4d96a7c02442100fc, type: 3}
       insertIndex: -1
@@ -66,6 +134,16 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: -4022232536533837457}
   m_SourcePrefab: {fileID: 100100000, guid: d148bd46a5a4c4e4d96a7c02442100fc, type: 3}
+--- !u!4 &4072871255451744168 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400004, guid: d148bd46a5a4c4e4d96a7c02442100fc, type: 3}
+  m_PrefabInstance: {fileID: 4072871255452134700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4072871255451744174 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400002, guid: d148bd46a5a4c4e4d96a7c02442100fc, type: 3}
+  m_PrefabInstance: {fileID: 4072871255452134700}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4072871255452035974 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100010, guid: d148bd46a5a4c4e4d96a7c02442100fc, type: 3}
@@ -86,34 +164,35 @@ MonoBehaviour:
   towerBuildManager: {fileID: 0}
   mybuilder: {fileID: 0}
   uiState: 0
-  barrels: []
-  bulletPrefab: {fileID: 0}
-  shotForce: 0
-  bulletPool: []
-  enemyUnitList: []
-  targetGamObject: {fileID: 0}
-  target: {fileID: 0}
   angleX: {fileID: 0}
   angleY: {fileID: 0}
   rotationSpeed: 5
-  bullets: []
-  visionRange: 0
-  firingRange: 0
-  dist: 0
-  onVision: 0
-  onTarget: 0
-  Timer: 0
-  fireRate: 0
-  GizmosRange: 0
   gunShot:
     m_PersistentCalls:
       m_Calls: []
-  barrelTimer: 0
-  barrelTimerRate: 0
-  barrelTimerLine: 0
   notDeep: 0
   notDeepT: 0
   BarrelHeightAllowance: 0
+  weaponClass:
+    barrels:
+    - {fileID: 7564762951168702095}
+    - {fileID: 870031625407828010}
+    shotForce: 150
+    visionRange: 100
+    firingRange: 90
+    dist: 0
+    onVision: 0
+    onTarget: 0
+    Timer: 0
+    fireRate: 1
+    GizmosRange: 100
+    barrelTimer: 0
+    barrelTimerRate: 0.05
+    barrelTimerLine: 0.1
+  bulletClass:
+    bullets: []
+    bulletPool: []
+    bulletPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
 --- !u!65 &1410357442724418916
 BoxCollider:
   m_ObjectHideFlags: 0

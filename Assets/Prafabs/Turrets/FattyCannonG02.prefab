@@ -5227,26 +5227,6 @@ MonoBehaviour:
   towerBuildManager: {fileID: 0}
   mybuilder: {fileID: 0}
   uiState: 1
-  barrels:
-  - {fileID: 4703932692914808}
-  bulletPrefab: {fileID: 1627521441993660, guid: 12ea0a574b594264685afffd52fff036, type: 3}
-  shotForce: 150
-  bulletPool: []
-  enemyUnitList: []
-  targetGamObject: {fileID: 0}
-  target: {fileID: 0}
-  angleX: {fileID: 4722236510932744}
-  angleY: {fileID: 4597034265451690}
-  rotationSpeed: 5
-  bullets: []
-  visionRange: 100
-  firingRange: 90
-  dist: 0
-  onVision: 0
-  onTarget: 0
-  Timer: 0
-  fireRate: 0.1
-  GizmosRange: 100
   gunShot:
     m_PersistentCalls:
       m_Calls:
@@ -5262,12 +5242,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  barrelTimer: 0
-  barrelTimerRate: 0.05
-  barrelTimerLine: 0.1
   notDeep: 0
   notDeepT: 0
   BarrelHeightAllowance: 0
+  weaponClass:
+    barrels:
+    - {fileID: 4703932692914808}
+    shotForce: 150
+    visionRange: 100
+    firingRange: 90
+    dist: 0
+    onVision: 0
+    onTarget: 0
+    Timer: 0
+    fireRate: 1
+    GizmosRange: 100
+    barrelTimer: 0
+    barrelTimerRate: 0.05
+    barrelTimerLine: 0.1
+  bulletClass:
+    bullets: []
+    bulletPool: []
+    bulletPrefab: {fileID: 1627521441993660, guid: 12ea0a574b594264685afffd52fff036, type: 3}
+  rotationClass:
+    angleX: {fileID: 4722236510932744}
+    angleY: {fileID: 4597034265451690}
+    rotationSpeed: 5
 --- !u!1 &1931211189434318
 GameObject:
   m_ObjectHideFlags: 0

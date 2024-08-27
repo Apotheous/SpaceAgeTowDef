@@ -86,34 +86,33 @@ MonoBehaviour:
   towerBuildManager: {fileID: 0}
   mybuilder: {fileID: 0}
   uiState: 0
-  barrels: []
-  bulletPrefab: {fileID: 0}
-  shotForce: 0
-  bulletPool: []
-  enemyUnitList: []
-  targetGamObject: {fileID: 0}
-  target: {fileID: 0}
   angleX: {fileID: 0}
   angleY: {fileID: 0}
   rotationSpeed: 5
-  bullets: []
-  visionRange: 0
-  firingRange: 0
-  dist: 0
-  onVision: 0
-  onTarget: 0
-  Timer: 0
-  fireRate: 0
-  GizmosRange: 0
   gunShot:
     m_PersistentCalls:
       m_Calls: []
-  barrelTimer: 0
-  barrelTimerRate: 0
-  barrelTimerLine: 0
   notDeep: 0
   notDeepT: 0
   BarrelHeightAllowance: 0
+  weaponClass:
+    barrels: []
+    shotForce: 150
+    visionRange: 100
+    firingRange: 90
+    dist: 0
+    onVision: 0
+    onTarget: 0
+    Timer: 0
+    fireRate: 1
+    GizmosRange: 100
+    barrelTimer: 0
+    barrelTimerRate: 0.05
+    barrelTimerLine: 0.1
+  bulletClass:
+    bullets: []
+    bulletPool: []
+    bulletPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
 --- !u!65 &4683066169946957035
 BoxCollider:
   m_ObjectHideFlags: 0
