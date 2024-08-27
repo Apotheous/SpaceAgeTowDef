@@ -152,7 +152,7 @@ MonoBehaviour:
   - {fileID: 3655709411467216203}
   - {fileID: 578439236279709501}
   bulletPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
-  shotForce: 10000
+  shotForce: 400
   bulletPool: []
   enemyUnitList: []
   targetGamObject: {fileID: 0}
