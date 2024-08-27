@@ -242,6 +242,11 @@ MonoBehaviour:
   scrollSpeed: 5
   minY: 10
   maxY: 80
+--- !u!1 &106109505 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3772371179787574477, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+  m_PrefabInstance: {fileID: 2750637355889370785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &203462278
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +481,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579285191}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &688999143 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1133998690222735901, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+  m_PrefabInstance: {fileID: 2750637355889370785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &822182606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,6 +1199,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &2142719205 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2207419222564514395, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
+  m_PrefabInstance: {fileID: 2750637355889370785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2750637355889370785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1312,15 +1327,15 @@ PrefabInstance:
     - target: {fileID: 6353273124530480161, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
       propertyPath: playerTowers.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 106109505}
     - target: {fileID: 6353273124530480161, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
       propertyPath: playerTowers.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2142719205}
     - target: {fileID: 6353273124530480161, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
       propertyPath: playerTowers.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 688999143}
     - target: {fileID: 6353273124530480161, guid: 8e47c99822b390e4aa116d036108bf57, type: 3}
       propertyPath: playerTowers.Array.data[3]
       value: 

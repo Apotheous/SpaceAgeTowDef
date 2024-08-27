@@ -6,10 +6,12 @@ public class ReturnPool : MonoBehaviour
 {
     public float lifetime = 5f; // Merminin ömrü (saniye)
     private float lifeTimer;
+    private string myTurretName;
 
     private void OnEnable()
     {
         lifeTimer = lifetime;
+        TurretController.Instance.gameObject.name = myTurretName;
     }
 
     private void Update()
@@ -18,8 +20,14 @@ public class ReturnPool : MonoBehaviour
 
         if (lifeTimer <= 0f)
         {
-            // Obje havuzuna geri döndür
-            TurretController.Instance.ReturnBulletToPool(this.gameObject);
+            if (TurretController.Instance.name == myTurretName)
+            {
+                TurretController.Instance.ReturnBulletToPool(this.gameObject);
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }
