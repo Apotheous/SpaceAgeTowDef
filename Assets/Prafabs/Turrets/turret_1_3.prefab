@@ -1091,9 +1091,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  notDeep: 0
-  notDeepT: 0
-  BarrelHeightAllowance: 0
   weaponClass:
     barrels:
     - {fileID: 129374353992112638}
@@ -1107,7 +1104,7 @@ MonoBehaviour:
     onVision: 0
     onTarget: 0
     Timer: 0
-    fireRate: 1
+    fireRate: 0.2
     GizmosRange: 100
     barrelTimer: 0
     barrelTimerRate: 0.05
@@ -1120,6 +1117,9 @@ MonoBehaviour:
     angleX: {fileID: 662840410129687976}
     angleY: {fileID: 6716924970612499864}
     rotationSpeed: 5
+    notDeep: 0
+    notDeepT: 0
+    BarrelHeightAllowance: 0
 --- !u!65 &-3122521703503781168
 BoxCollider:
   m_ObjectHideFlags: 0
