@@ -5224,27 +5224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c66bdbff2061e44ad0b6de1bf6f851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerBuildManager: {fileID: 0}
-  mybuilder: {fileID: 0}
   uiState: 1
-  gunShot:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5141624246770967775}
-        m_TargetAssemblyTypeName: TurretgunShoot, Assembly-CSharp
-        m_MethodName: GunShootingSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  notDeep: 0
-  notDeepT: 0
-  BarrelHeightAllowance: 0
   weaponClass:
     barrels:
     - {fileID: 4703932692914808}
@@ -5268,6 +5248,32 @@ MonoBehaviour:
     angleX: {fileID: 4722236510932744}
     angleY: {fileID: 4597034265451690}
     rotationSpeed: 5
+    notDeep: 0
+    notDeepT: 0
+    BarrelHeightAllowance: 0
+  laserClass:
+    useLaser: 0
+    damageOverTime: 30
+    slowAmount: 0.5
+    lineRenderer: {fileID: 0}
+    impactEffect: {fileID: 0}
+    impactLight: {fileID: 0}
+  gunShot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5141624246770967775}
+        m_TargetAssemblyTypeName: TurretgunShoot, Assembly-CSharp
+        m_MethodName: GunShootingSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  selectedFireType: 0
 --- !u!1 &1931211189434318
 GameObject:
   m_ObjectHideFlags: 0

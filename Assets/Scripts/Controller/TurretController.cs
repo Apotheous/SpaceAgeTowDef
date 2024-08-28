@@ -8,6 +8,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class TurretController : MonoBehaviour
 {
+
     public static TurretController Instance { get; private set; }
 
     [HideInInspector]
@@ -66,12 +67,31 @@ public class TurretController : MonoBehaviour
         public float notDeepT;
         public float BarrelHeightAllowance;
     }
-    
+
+
+    [System.Serializable]
+    public class LaserClass
+    {
+        [Header("Use Laser")]
+        public bool useLaser = false;
+
+        public int damageOverTime = 30;
+        public float slowAmount = .5f;
+
+        public LineRenderer lineRenderer;
+        public ParticleSystem impactEffect;
+        public Light impactLight;
+
+    }
+
     public WeaponClass weaponClass;
     public BulletClass bulletClass;
     public RotationClass rotationClass;
+    public LaserClass laserClass;
 
     public UnityEvent gunShot;
+
+    public FireType selectedFireType;
 
     private void Awake()
     {
@@ -167,6 +187,27 @@ public class TurretController : MonoBehaviour
         {
             target = null;
         }
+    }
+    void Laser()
+    {
+        //targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);
+        //targetEnemy.Slow(slowAmount);
+
+        if (!laserClass.lineRenderer.enabled)
+        {
+            laserClass.lineRenderer.enabled = true;
+            laserClass.impactEffect.Play();
+            laserClass.impactLight.enabled = true;
+        }
+
+        laserClass.lineRenderer.SetPosition(0, weaponClass.barrels[0].position);
+        laserClass.lineRenderer.SetPosition(1, target.position);
+
+        Vector3 dir = weaponClass.barrels[0].position - target.position;
+
+        laserClass.impactEffect.transform.position = target.position + dir.normalized;
+
+        laserClass.impactEffect.transform.rotation = Quaternion.LookRotation(dir);
     }
     void OnMouseDown()
     {
@@ -325,7 +366,7 @@ public class TurretController : MonoBehaviour
     #region Fire Funcs
     void Firing()
     {
-        if (!uiState) Fire(weaponClass.barrels.Count, FireType.Bullet);
+        if (!uiState) Fire(weaponClass.barrels.Count, selectedFireType);
     }
 
     public void Fire(int barrelCount, FireType fireType)
@@ -410,7 +451,7 @@ public class TurretController : MonoBehaviour
     {
         for (int i = 0; i < numberOfBarrels; i++)
         {
-            // Lazer ateþleme iþlemi
+            Laser();
             Debug.Log(numberOfBarrels + " namludan lazer ateþleniyor");
             // Burada her bir namlu için lazer beam oluþturulabilir.
         }
