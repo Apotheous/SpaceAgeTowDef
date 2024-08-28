@@ -10,18 +10,26 @@ public class TurretController : MonoBehaviour
 {
     public static TurretController Instance { get; private set; }
 
-    [HideInInspector]
+    private EnemyMainBase enemyMain;
     private TurretModel turretModel;
-    [HideInInspector]
-    private TowerBuildManager towerBuildManager;
-    [HideInInspector]
-    private Transform mybuilder;
+    public TowerBuildManager towerBuildManager;
+    public Transform mybuilder;
 
     GameObject currentTurret;
-
+    int previusCount;
     public bool uiState;
 
-    private Transform target;
+    private Transform target;    // Düþman hedef
+
+
+
+    public UnityEvent gunShot;
+
+    [System.Serializable]
+    public class MainObjs
+    {
+
+    }
 
     [System.Serializable]
     public class WeaponClass
@@ -71,7 +79,7 @@ public class TurretController : MonoBehaviour
     public BulletClass bulletClass;
     public RotationClass rotationClass;
 
-    public UnityEvent gunShot;
+
 
     private void Awake()
     {
@@ -211,6 +219,8 @@ public class TurretController : MonoBehaviour
         Debug.Log("Cost: " + turretModel.Cost);
 
         mybuilder = TowerBuildManager.builderTransform;
+        previusCount = mybuilder.childCount;
+
     }
 
     #endregion
