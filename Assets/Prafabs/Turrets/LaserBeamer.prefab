@@ -5137,7 +5137,7 @@ MonoBehaviour:
     onVision: 0
     onTarget: 0
     Timer: 0
-    fireRate: 1
+    fireRate: 0.1
     GizmosRange: 100
     barrelTimer: 0
     barrelTimerRate: 0.05
@@ -5149,7 +5149,7 @@ MonoBehaviour:
   rotationClass:
     angleX: {fileID: 4843503667625813516}
     angleY: {fileID: 7303910739625553769}
-    rotationSpeed: 5
+    rotationSpeed: 3
     notDeep: 0
     notDeepT: 0
     BarrelHeightAllowance: 0
@@ -5176,6 +5176,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   selectedFireType: 1
+  enemyGroupTag: Enemy
 --- !u!65 &1751021911029641293
 BoxCollider:
   m_ObjectHideFlags: 0

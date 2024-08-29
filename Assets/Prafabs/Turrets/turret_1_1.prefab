@@ -49,9 +49,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c66bdbff2061e44ad0b6de1bf6f851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerBuildManager: {fileID: 0}
-  mybuilder: {fileID: 0}
   uiState: 1
+  weaponClass:
+    barrels:
+    - {fileID: 601828285349771225}
+    - {fileID: 6502391737226124981}
+    - {fileID: 1552574119833565033}
+    - {fileID: 2433651244285965319}
+    shotForce: 150
+    visionRange: 100
+    firingRange: 90
+    dist: 0
+    onVision: 0
+    onTarget: 0
+    Timer: 0
+    fireRate: 0.1
+    GizmosRange: 100
+    barrelTimer: 0
+    barrelTimerRate: 0.05
+    barrelTimerLine: 0.1
+  bulletClass:
+    bullets: []
+    bulletPool: []
+    bulletPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
+  rotationClass:
+    angleX: {fileID: 8393500895467326827}
+    angleY: {fileID: 1730184487858298847}
+    rotationSpeed: 3
+    notDeep: 0
+    notDeepT: 0
+    BarrelHeightAllowance: 0
+  laserClass:
+    useLaser: 0
+    damageOverTime: 30
+    slowAmount: 0.5
+    lineRenderer: {fileID: 0}
+    impactEffect: {fileID: 0}
+    impactLight: {fileID: 0}
   gunShot:
     m_PersistentCalls:
       m_Calls:
@@ -67,35 +101,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  notDeep: 0
-  notDeepT: 0
-  BarrelHeightAllowance: 0
-  weaponClass:
-    barrels:
-    - {fileID: 601828285349771225}
-    - {fileID: 6502391737226124981}
-    - {fileID: 1552574119833565033}
-    - {fileID: 2433651244285965319}
-    shotForce: 150
-    visionRange: 100
-    firingRange: 90
-    dist: 0
-    onVision: 0
-    onTarget: 0
-    Timer: 0
-    fireRate: 1
-    GizmosRange: 100
-    barrelTimer: 0
-    barrelTimerRate: 0.05
-    barrelTimerLine: 0.1
-  bulletClass:
-    bullets: []
-    bulletPool: []
-    bulletPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
-  rotationClass:
-    angleX: {fileID: 8393500895467326827}
-    angleY: {fileID: 1730184487858298847}
-    rotationSpeed: 5
+  selectedFireType: 0
+  enemyGroupTag: Enemy
 --- !u!65 &-4030641887060758650
 BoxCollider:
   m_ObjectHideFlags: 0

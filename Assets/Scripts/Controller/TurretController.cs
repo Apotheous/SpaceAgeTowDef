@@ -8,7 +8,6 @@ using static UnityEngine.GraphicsBuffer;
 
 public class TurretController : MonoBehaviour
 {
-
     public static TurretController Instance { get; private set; }
 
     [HideInInspector]
@@ -92,6 +91,7 @@ public class TurretController : MonoBehaviour
     public UnityEvent gunShot;
 
     public FireType selectedFireType;
+    public string enemyGroupTag;
 
     private void Awake()
     {
@@ -133,32 +133,26 @@ public class TurretController : MonoBehaviour
 
     private void Information()
     {
-        
-        if (target!=null)
+        if (target != null)
         {
             weaponClass.dist = Vector3.Distance(transform.position, target.position);
-            if (weaponClass.dist < weaponClass.visionRange)
+
+            weaponClass.onVision = weaponClass.dist < weaponClass.visionRange;
+            weaponClass.onTarget = false;
+
+            RaycastHit hit;
+            if (Physics.Raycast(weaponClass.barrels[0].position, weaponClass.barrels[0].forward, out hit))
             {
-                weaponClass.onVision = true;
-            }
-            else
-            {
-                weaponClass.onVision = false;
-            }
-            if (weaponClass.dist < weaponClass.firingRange)
-            {
-                weaponClass.onTarget = true;
-            }
-            else
-            {
-                weaponClass.onTarget = false;
+                if (hit.transform != null && hit.transform.tag == enemyGroupTag)
+                {
+                    weaponClass.onTarget = true;
+                }
             }
         }
-
     }
     void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyGroupTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
         foreach (GameObject enemy in enemies)
@@ -225,6 +219,8 @@ public class TurretController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, weaponClass.GizmosRange);
     }
+    // Gizmos ile Scene penceresinde Ray'i görselleþtirmek için
+
     void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.GetComponent<TowerMan>() != null)
@@ -319,7 +315,6 @@ public class TurretController : MonoBehaviour
     {
         if (bulletClass.bullets.Count > 0)
         {
-            Debug.Log("+++++++ BulletPool= ");
             GameObject bullet = bulletClass.bullets[0];
             bullet.transform.SetParent(null);
             bulletClass.bullets.RemoveAt(0);
@@ -337,7 +332,6 @@ public class TurretController : MonoBehaviour
         }
         else
         {
-            Debug.Log("+++++++ BulletPool= ");
             // Eðer obje havuzunda mermi yoksa yeni bir mermi oluþtur
             GameObject newBullet = Instantiate(bulletClass.bulletPrefab, weaponClass.barrels[barrelIndex].position, weaponClass.barrels[barrelIndex].rotation);
             Rigidbody rb = newBullet.GetComponent<Rigidbody>();
