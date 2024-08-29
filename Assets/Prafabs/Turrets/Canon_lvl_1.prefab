@@ -311,19 +311,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c66bdbff2061e44ad0b6de1bf6f851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedFireType: 0
+  enemyGroupTag: Enemy
   uiState: 1
+  target: {fileID: 0}
   weaponClass:
     barrels:
     - {fileID: 6992603170567003391}
     shotForce: 150
-    visionRange: 100
-    firingRange: 90
+    visionRange: 15
+    firingRange: 10
     dist: 0
     onVision: 0
     onTarget: 0
     Timer: 0
     fireRate: 0.1
-    GizmosRange: 100
     barrelTimer: 0
     barrelTimerRate: 0.05
     barrelTimerLine: 0.1
@@ -360,8 +362,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  selectedFireType: 0
-  enemyGroupTag: Enemy
 --- !u!54 &7907823175401752645
 Rigidbody:
   m_ObjectHideFlags: 0

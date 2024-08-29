@@ -17,11 +17,14 @@ public class TurretController : MonoBehaviour
     [HideInInspector]
     private Transform mybuilder;
 
+    public FireType selectedFireType;
+    public string enemyGroupTag;
+
     GameObject currentTurret;
 
     public bool uiState;
 
-    private Transform target;
+    public Transform target;
 
     [System.Serializable]
     public class WeaponClass
@@ -38,7 +41,7 @@ public class TurretController : MonoBehaviour
 
         public float Timer;
         public float fireRate;
-        public int GizmosRange;
+
 
         public float barrelTimer;
         public float barrelTimerRate;
@@ -90,8 +93,7 @@ public class TurretController : MonoBehaviour
 
     public UnityEvent gunShot;
 
-    public FireType selectedFireType;
-    public string enemyGroupTag;
+
 
     private void Awake()
     {
@@ -111,6 +113,18 @@ public class TurretController : MonoBehaviour
         if (weaponClass.onTarget)
         {
             HandleFiring(weaponClass.fireRate, Firing);
+        }
+        else
+        {
+            if (laserClass.useLaser)
+            {
+                if (laserClass.lineRenderer.enabled)
+                {
+                    laserClass.lineRenderer.enabled = false;
+                    laserClass.impactEffect.Stop();
+                    laserClass.impactLight.enabled = false;
+                }
+            }
         }
 
         if (target != null && weaponClass.onVision)
@@ -139,16 +153,45 @@ public class TurretController : MonoBehaviour
 
             weaponClass.onVision = weaponClass.dist < weaponClass.visionRange;
             weaponClass.onTarget = false;
-
             RaycastHit hit;
             if (Physics.Raycast(weaponClass.barrels[0].position, weaponClass.barrels[0].forward, out hit))
             {
+                
                 if (hit.transform != null && hit.transform.tag == enemyGroupTag)
                 {
                     weaponClass.onTarget = true;
                 }
             }
         }
+        #region OldInformation
+        /*
+        private void Information()
+        {
+
+            if (target != null)
+            {
+                weaponClass.dist = Vector3.Distance(transform.position, target.position);
+                if (weaponClass.dist < weaponClass.visionRange)
+                {
+                    weaponClass.onVision = true;
+                }
+                else
+                {
+                    weaponClass.onVision = false;
+                }
+                if (weaponClass.dist < weaponClass.firingRange)
+                {
+                    weaponClass.onTarget = true;
+                }
+                else
+                {
+                    weaponClass.onTarget = false;
+                }
+            }
+
+        }
+        */
+        #endregion
     }
     void UpdateTarget()
     {
@@ -171,7 +214,7 @@ public class TurretController : MonoBehaviour
             }
         }
 
-        if (nearestEnemy != null && shortestDistance <= weaponClass.GizmosRange)
+        if (nearestEnemy != null && shortestDistance <= weaponClass.visionRange)
         {
 
             target = nearestEnemy.transform;
@@ -182,27 +225,7 @@ public class TurretController : MonoBehaviour
             target = null;
         }
     }
-    void Laser()
-    {
-        //targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);
-        //targetEnemy.Slow(slowAmount);
 
-        if (!laserClass.lineRenderer.enabled)
-        {
-            laserClass.lineRenderer.enabled = true;
-            laserClass.impactEffect.Play();
-            laserClass.impactLight.enabled = true;
-        }
-
-        laserClass.lineRenderer.SetPosition(0, weaponClass.barrels[0].position);
-        laserClass.lineRenderer.SetPosition(1, target.position);
-
-        Vector3 dir = weaponClass.barrels[0].position - target.position;
-
-        laserClass.impactEffect.transform.position = target.position + dir.normalized;
-
-        laserClass.impactEffect.transform.rotation = Quaternion.LookRotation(dir);
-    }
     void OnMouseDown()
     {
         if (uiState == true)
@@ -216,10 +239,9 @@ public class TurretController : MonoBehaviour
     }
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, weaponClass.GizmosRange);
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, weaponClass.visionRange);
     }
-    // Gizmos ile Scene penceresinde Ray'i görselleþtirmek için
 
     void OnTriggerEnter(Collider collider)
     {
@@ -247,7 +269,18 @@ public class TurretController : MonoBehaviour
         Debug.Log("Health: " + turretModel.Health);
         Debug.Log("Cost: " + turretModel.Cost);
 
+
         mybuilder = TowerBuildManager.builderTransform;
+
+        if (laserClass.useLaser)
+        {
+            if (laserClass.lineRenderer.enabled)
+            {
+                laserClass.lineRenderer.enabled = false;
+                laserClass.impactEffect.Stop();
+                laserClass.impactLight.enabled = false;
+            }
+        }
     }
 
     #endregion
@@ -310,52 +343,7 @@ public class TurretController : MonoBehaviour
     #endregion
 
 
-    #region BulletPool
-    public void FireBulletFromPool(int barrelIndex)
-    {
-        if (bulletClass.bullets.Count > 0)
-        {
-            GameObject bullet = bulletClass.bullets[0];
-            bullet.transform.SetParent(null);
-            bulletClass.bullets.RemoveAt(0);
-            bullet.SetActive(true);
-            gunShot.Invoke();
-            // Mermiyi namlunun pozisyonuna ve rotasyonuna ayarla
-            bullet.transform.position = weaponClass.barrels[barrelIndex].position;
-            bullet.transform.rotation = weaponClass.barrels[barrelIndex].rotation;
 
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            rb.velocity = Vector3.zero; // Eski hýzýný sýfýrla
-            rb.angularVelocity = Vector3.zero; // Eski dönme hýzýný sýfýrla
-            rb.AddForce(weaponClass.barrels[barrelIndex].forward * weaponClass.shotForce);
-              
-        }
-        else
-        {
-            // Eðer obje havuzunda mermi yoksa yeni bir mermi oluþtur
-            GameObject newBullet = Instantiate(bulletClass.bulletPrefab, weaponClass.barrels[barrelIndex].position, weaponClass.barrels[barrelIndex].rotation);
-            Rigidbody rb = newBullet.GetComponent<Rigidbody>();
-            rb.AddForce(weaponClass.barrels[barrelIndex].forward * weaponClass.shotForce);
-            gunShot.Invoke();
-              
-        }       
-    }
-
-    public void ReturnBulletToPool(GameObject bullet)
-    {
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-
-        bullet.SetActive(false);
-        bullet.transform.SetParent(weaponClass.barrels[0]);
-        bullet.transform.localPosition = Vector3.zero;
-        bullet.transform.localRotation = Quaternion.identity;
-
-        bulletClass.bullets.Add(bullet);
-    }
-
-    #endregion
 
     #region Fire Funcs
     void Firing()
@@ -446,12 +434,77 @@ public class TurretController : MonoBehaviour
         for (int i = 0; i < numberOfBarrels; i++)
         {
             Laser();
-            Debug.Log(numberOfBarrels + " namludan lazer ateþleniyor");
-            // Burada her bir namlu için lazer beam oluþturulabilir.
         }
     }
     #endregion
+    #region BulletPool
+    void Laser()
+    {
+        //targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);
+        //targetEnemy.Slow(slowAmount);
 
+        if (!laserClass.lineRenderer.enabled)
+        {
+            laserClass.lineRenderer.enabled = true;
+            laserClass.impactEffect.Play();
+            laserClass.impactLight.enabled = true;
+        }
+
+        laserClass.lineRenderer.SetPosition(0, weaponClass.barrels[0].position);
+        laserClass.lineRenderer.SetPosition(1, target.position);
+
+        Vector3 dir = weaponClass.barrels[0].position - target.position;
+
+        laserClass.impactEffect.transform.position = target.position + dir.normalized;
+
+        laserClass.impactEffect.transform.rotation = Quaternion.LookRotation(dir);
+    }
+    public void FireBulletFromPool(int barrelIndex)
+    {
+
+        if (bulletClass.bullets.Count > 0)
+        {
+            GameObject bullet = bulletClass.bullets[0];
+            bullet.transform.SetParent(null);
+            bulletClass.bullets.RemoveAt(0);
+            bullet.SetActive(true);
+            gunShot.Invoke();
+            // Mermiyi namlunun pozisyonuna ve rotasyonuna ayarla
+            bullet.transform.position = weaponClass.barrels[barrelIndex].position;
+            bullet.transform.rotation = weaponClass.barrels[barrelIndex].rotation;
+
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero; // Eski hýzýný sýfýrla
+            rb.angularVelocity = Vector3.zero; // Eski dönme hýzýný sýfýrla
+            rb.AddForce(weaponClass.barrels[barrelIndex].forward * weaponClass.shotForce);
+
+        }
+        else
+        {
+            // Eðer obje havuzunda mermi yoksa yeni bir mermi oluþtur
+            GameObject newBullet = Instantiate(bulletClass.bulletPrefab, weaponClass.barrels[barrelIndex].position, weaponClass.barrels[barrelIndex].rotation);
+            Rigidbody rb = newBullet.GetComponent<Rigidbody>();
+            rb.AddForce(weaponClass.barrels[barrelIndex].forward * weaponClass.shotForce);
+            gunShot.Invoke();
+
+        }
+    }
+
+    public void ReturnBulletToPool(GameObject bullet)
+    {
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        bullet.SetActive(false);
+        bullet.transform.SetParent(weaponClass.barrels[0]);
+        bullet.transform.localPosition = Vector3.zero;
+        bullet.transform.localRotation = Quaternion.identity;
+
+        bulletClass.bullets.Add(bullet);
+    }
+
+    #endregion
 }
 
 public enum FireType
