@@ -1,34 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Bullet : MonoBehaviour
 {
     public string enemyGroupTag;
     private Transform target;
-
+    private Rigidbody rb;
     public float speed = 70f;
 
-    public int damage = 50;
+    public float damage = 50;
 
     public float explosionRadius = 0f;
     public GameObject impactEffect;
+    
+    private void Start()
+    {
+        rb = gameObject.GetComponent<Rigidbody>();
+    }
 
     public void OnCollisionEnter(Collision collider)
     {
-        Debug.Log("Bullet Contact");
+
+        
         if (collider.transform.tag == enemyGroupTag)
         {
-            Debug.Log("Bullet Contact  1");
             target = collider.gameObject.transform;
             target.gameObject.GetComponent<EnemyUnit>();
 
             HitTarget();
         }
+        else
+        {
+            damage = 0;
+        }
     }
     void HitTarget()
     {
-        Debug.Log("Bullet Contact  2");
         if (explosionRadius > 0f)
         {
             Explode();
@@ -58,6 +68,7 @@ public class Bullet : MonoBehaviour
         if (e != null)
         {
             e.TakeDamage(damage);
+            damage = 0;
         }
     }
 

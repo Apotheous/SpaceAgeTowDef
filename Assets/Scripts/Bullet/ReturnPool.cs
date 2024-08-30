@@ -23,10 +23,12 @@ public class ReturnPool : MonoBehaviour
             if (TurretController.Instance.name == myTurretName)
             {
                 TurretController.Instance.ReturnBulletToPool(this.gameObject);
+                Debug.Log("Bullet Tarete Döndü");
             }
             else
             {
                 Destroy(this.gameObject);
+                Debug.Log("Bullet Destroy Edildi");
             }
         }
     }
