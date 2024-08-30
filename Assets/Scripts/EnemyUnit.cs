@@ -35,6 +35,6 @@ public class EnemyUnit : MonoBehaviour
     void Update()
     {
         // Objenin ileri doðru (z ekseni boyunca) hareket etmesini saðla
-        transform.Translate(-Vector3.forward * moveSpeed * Time.deltaTime);
+        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
     }
 }

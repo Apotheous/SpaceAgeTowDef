@@ -335,7 +335,7 @@ MonoBehaviour:
   weaponClass:
     barrels:
     - {fileID: 4411725851834284}
-    shotForce: 250
+    shotForce: 350
     visionRange: 200
     firingRange: 200
     dist: 0

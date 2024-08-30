@@ -207,7 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyGroupTag: Enemy
   speed: 70
-  damage: 1
+  damage: 10
   explosionRadius: 0
   impactEffect: {fileID: 0}
 --- !u!1 &8614579772117169149
