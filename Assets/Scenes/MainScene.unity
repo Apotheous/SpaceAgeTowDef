@@ -514,7 +514,7 @@ MonoBehaviour:
   myUnits: {fileID: 1089654663557432098, guid: fa2dc93095ada4941b64975f93282cd8, type: 3}
   mySpawnPoint: {fileID: 2090669564}
   Timer: 0
-  spawnRate: 15
+  spawnRate: 1
 --- !u!65 &579285194
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -827,7 +827,7 @@ MonoBehaviour:
   myUnits: {fileID: 1089654663557432098, guid: fa2dc93095ada4941b64975f93282cd8, type: 3}
   mySpawnPoint: {fileID: 203462279}
   Timer: 0
-  spawnRate: 10
+  spawnRate: 1
 --- !u!1 &1032999504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,7 +1147,7 @@ MonoBehaviour:
   myUnits: {fileID: 1089654663557432098, guid: fa2dc93095ada4941b64975f93282cd8, type: 3}
   mySpawnPoint: {fileID: 2017076388}
   Timer: 0
-  spawnRate: 5
+  spawnRate: 1
 --- !u!65 &1987858254
 BoxCollider:
   m_ObjectHideFlags: 0

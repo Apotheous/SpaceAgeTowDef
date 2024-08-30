@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4485476488557288}
   - component: {fileID: 1293856043900274170}
   - component: {fileID: -1284615842610164800}
+  - component: {fileID: -4520396623612988926}
   m_Layer: 0
   m_Name: Bullet00
   m_TagString: Untagged
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d6f1718bd72df44a6a09bfcf923228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 15
+  lifetime: 5
 --- !u!54 &-1284615842610164800
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -74,6 +75,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-4520396623612988926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627521441993660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da1e9c1d370a2c14892842eb2db9b5d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyGroupTag: Enemy
+  speed: 70
+  damage: 2
+  explosionRadius: 10
+  impactEffect: {fileID: 0}
 --- !u!1 &1819444565037150
 GameObject:
   m_ObjectHideFlags: 0

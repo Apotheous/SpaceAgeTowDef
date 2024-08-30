@@ -5134,8 +5134,8 @@ MonoBehaviour:
     barrels:
     - {fileID: 4000013440857102}
     shotForce: 150
-    visionRange: 15
-    firingRange: 10
+    visionRange: 50
+    firingRange: 50
     dist: 0
     onVision: 0
     onTarget: 0

@@ -60,8 +60,8 @@ MonoBehaviour:
     - {fileID: 1552574119833565033}
     - {fileID: 2433651244285965319}
     shotForce: 150
-    visionRange: 15
-    firingRange: 10
+    visionRange: 50
+    firingRange: 50
     dist: 0
     onVision: 0
     onTarget: 0
