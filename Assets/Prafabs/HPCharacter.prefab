@@ -2199,9 +2199,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feac89017e76bc741a0cbcbfdaf56bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   moveSpeed: 2
   startHealth: 100
   healthBar: {fileID: 5970601836994691390}
+  animator: {fileID: 0}
 --- !u!114 &-2948183627906230787
 MonoBehaviour:
   m_ObjectHideFlags: 0

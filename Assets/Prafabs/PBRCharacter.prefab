@@ -2800,9 +2800,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feac89017e76bc741a0cbcbfdaf56bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  enemyGroupTag: 
+  target: {fileID: 0}
+  myWeapon:
+    GizmosRange: 100
+  rotationClass:
+    angleX: {fileID: 0}
+    angleY: {fileID: 0}
+    rotationSpeed: 5
+    notDeep: 0
+    notDeepT: 0
+    BarrelHeightAllowance: 0
   moveSpeed: 2
   startHealth: 100
   healthBar: {fileID: 2786649414531162897}
+  animator: {fileID: 0}
 --- !u!114 &-1686754310914469081
 MonoBehaviour:
   m_ObjectHideFlags: 0

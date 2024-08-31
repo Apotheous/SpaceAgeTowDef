@@ -57,6 +57,7 @@ public class TurretController : MonoBehaviour
         public List<GameObject> bulletPool = new List<GameObject>();//--????
         public GameObject bulletPrefab;
     }
+
     [System.Serializable]
     public class RotationClass
     {
