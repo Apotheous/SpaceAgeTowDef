@@ -2689,7 +2689,6 @@ GameObject:
   - component: {fileID: 6919723371566081542}
   - component: {fileID: 618909467141966268}
   - component: {fileID: -1686754310914469081}
-  - component: {fileID: 2045706042571441877}
   m_Layer: 0
   m_Name: PBRCharacter
   m_TagString: Enemy
@@ -2829,21 +2828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d877096188498543a6d522cf59322b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2045706042571441877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2836004475591695743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21e84b98f6e4f37479655f3193cd6a1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToLookAt: {fileID: 0}
-  headWeight: 1.5
-  bodyWeight: 1.2
 --- !u!1001 &7960505356495838244
 PrefabInstance:
   m_ObjectHideFlags: 0
