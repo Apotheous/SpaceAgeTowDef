@@ -1768,6 +1768,7 @@ GameObject:
   - component: {fileID: 6412387858550203105}
   - component: {fileID: 29340417488149878}
   - component: {fileID: -5564368933959845825}
+  - component: {fileID: 3473630569215210924}
   m_Layer: 0
   m_Name: PolyartCharacter
   m_TagString: Enemy
@@ -1880,6 +1881,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  enemyGroupTag: 
+  target: {fileID: 0}
+  myWeapon:
+    GizmosRange: 0
+  rotationClass:
+    angleX: {fileID: 0}
+    angleY: {fileID: 0}
+    rotationSpeed: 5
+    notDeep: 0
+    notDeepT: 0
+    BarrelHeightAllowance: 0
   moveSpeed: 2
   startHealth: 100
   healthBar: {fileID: 5835323410337610293}
@@ -1896,6 +1908,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d877096188498543a6d522cf59322b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3473630569215210924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072444061591711186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e84b98f6e4f37479655f3193cd6a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToLookAt: {fileID: 0}
+  headWeight: 1.5
+  bodyWeight: 1.2
 --- !u!1 &7072444061591711188
 GameObject:
   m_ObjectHideFlags: 0
