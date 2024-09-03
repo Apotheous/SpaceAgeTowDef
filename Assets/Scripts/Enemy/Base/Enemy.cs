@@ -5,10 +5,10 @@ using UnityEngine.UI;
 using static TurretController;
 using static UnityEngine.GraphicsBuffer;
 
-public class EnemyUnit : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
 
-    public Rigidbody rb;
+    private Rigidbody rb;
     public string enemyGroupTag;
     public Transform target;
 
@@ -16,7 +16,6 @@ public class EnemyUnit : MonoBehaviour
     public class MyWeapon
     {
         public float GizmosRange;
-
     }
     public MyWeapon myWeapon;
 
@@ -44,7 +43,7 @@ public class EnemyUnit : MonoBehaviour
     [Header("Unity Stuff")]
     public Image healthBar;
 
-    public Animator animator;
+    private Animator animator;
 
     //Animation States
     const string ENEMY_IDLE = "idleGuard";
@@ -60,28 +59,16 @@ public class EnemyUnit : MonoBehaviour
 
     private string currentState;
 
+    [field: SerializeField] public float MaxHealth { get; set; }
+    public float CurrentHealth { get; set; }
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        health = startHealth;
+        CurrentHealth = MaxHealth;
 
     }
-    public void TakeDamage(float amount)
-    {
-        health -= amount;
-        healthBar.fillAmount = health / startHealth;
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
-
-    private void Die()
-    {
-        Destroy(this.gameObject);
-    }
-
     void Update()
     {
         // Objenin ileri doðru (z ekseni boyunca) hareket etmesini saðla
@@ -153,5 +140,23 @@ public class EnemyUnit : MonoBehaviour
             target = null;
         }
     }
+
+
     #endregion
+    public void Damage(float damageAmount)
+    {
+        CurrentHealth -= damageAmount;
+        healthBar.fillAmount = CurrentHealth / MaxHealth;
+        if (CurrentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(this.gameObject);
+    }
+
+
 }

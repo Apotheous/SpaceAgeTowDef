@@ -59,7 +59,7 @@ MonoBehaviour:
     - {fileID: 6502391737226124981}
     - {fileID: 1552574119833565033}
     - {fileID: 2433651244285965319}
-    shotForce: 350
+    shotForce: 500
     visionRange: 200
     firingRange: 200
     dist: 0

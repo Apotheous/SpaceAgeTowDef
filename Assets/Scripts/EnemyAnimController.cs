@@ -7,13 +7,13 @@ public class EnemyAnimController : MonoBehaviour
 {
     public Animator animator;
     public Rigidbody rb;
-    public EnemyUnit unit;
+    public Enemy unit;
     private string currentState;
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        unit = GetComponent<EnemyUnit>();
+        unit = GetComponent<Enemy>();
     }
     void ChangeAnimationState(string newState)
     {

@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
         if (collider.transform.tag == enemyGroupTag)
         {
             target = collider.gameObject.transform;
-            target.gameObject.GetComponent<EnemyUnit>();
+            target.gameObject.GetComponent<Enemy>();
 
             HitTarget();
         }
@@ -63,11 +63,11 @@ public class Bullet : MonoBehaviour
 
     void Damage(Transform enemy)
     {
-        EnemyUnit e = enemy.GetComponent<EnemyUnit>();
+        Enemy e = enemy.GetComponent<Enemy>();
 
         if (e != null)
         {
-            e.TakeDamage(damage);
+            e.Damage(damage);
             damage = 0;
         }
     }
