@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IEnemyMoveable : MonoBehaviour
+public interface IEnemyMoveable 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Rigidbody rb { get;set;}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    bool IsMovingForward {  get; set; }
+
+    void MoveEnemy(GameObject enemyObject, float MoveSpeed);
+
+    void CheckForForwardOrBackFacing(Vector3 velocity);
 }

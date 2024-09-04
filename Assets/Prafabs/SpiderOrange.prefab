@@ -163,7 +163,6 @@ GameObject:
   - component: {fileID: 1610001991022538784}
   - component: {fileID: 5195949080852959057}
   - component: {fileID: 5349887845840152369}
-  - component: {fileID: 735307261492062366}
   m_Layer: 0
   m_Name: moveCube3
   m_TagString: Untagged
@@ -236,18 +235,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &735307261492062366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1441366359414144054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79724a31fac720c48883f8b0baa78206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1681822099340322437
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +308,6 @@ GameObject:
   - component: {fileID: 2902081360031910340}
   - component: {fileID: 5763285255673361472}
   - component: {fileID: 4172806162431296968}
-  - component: {fileID: 3549597724152859662}
   m_Layer: 0
   m_Name: moveCube4
   m_TagString: Untagged
@@ -394,18 +380,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3549597724152859662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2396617533169301271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79724a31fac720c48883f8b0baa78206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2576975266684815326
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,7 +827,6 @@ GameObject:
   - component: {fileID: 8350284027070184078}
   - component: {fileID: 151285158161514706}
   - component: {fileID: 2511224415456313618}
-  - component: {fileID: 5410803744560125942}
   m_Layer: 0
   m_Name: moveCube2
   m_TagString: Untagged
@@ -926,18 +899,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5410803744560125942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4508512233986442030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79724a31fac720c48883f8b0baa78206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4827471259915519318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,10 +1189,9 @@ GameObject:
   - component: {fileID: 7406699119267194927}
   - component: {fileID: 4486843907659834175}
   - component: {fileID: 6294977071781041503}
-  - component: {fileID: 8440646073117167138}
   - component: {fileID: 4294896582400325038}
   - component: {fileID: 6474546574685532169}
-  - component: {fileID: -620608591308615119}
+  - component: {fileID: 2199686147951654712}
   m_Layer: 0
   m_Name: SpiderOrange
   m_TagString: Enemy
@@ -1266,7 +1226,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6184637841116627165}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 5d67c81cdf5717340b0943f1f80dd628, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 1
@@ -1297,22 +1257,6 @@ MonoBehaviour:
   - m_Rig: {fileID: 0}
     m_Active: 1
   m_Effectors: []
---- !u!114 &8440646073117167138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6184637841116627165}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c57167571f1b6f4c83689a8a8e3ec2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cntroller: {fileID: 6474546574685532169}
-  cam: {fileID: 0}
-  speed: 1000
-  turnSmoothTime: 0.1
 --- !u!135 &4294896582400325038
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1361,7 +1305,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &-620608591308615119
+--- !u!114 &2199686147951654712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1370,7 +1314,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6184637841116627165}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a500165a95f7c1c4db6564ee2369e023, type: 3}
+  m_Script: {fileID: 11500000, guid: 55acaaee4d2c5704bbea9a15cc5555a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGroupTag: Player
@@ -1385,8 +1329,10 @@ MonoBehaviour:
     notDeepT: 0
     BarrelHeightAllowance: 0
   moveSpeed: 2
-  startHealth: 0
   healthBar: {fileID: 7190323971656892004}
+  RandomMovementrange: 5
+  randomMovementSpeed: 1
+  bulletPrefab: {fileID: -512269121213639117, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
   <MaxHealth>k__BackingField: 50
 --- !u!1 &6224872067652631065
 GameObject:
@@ -1824,7 +1770,6 @@ GameObject:
   - component: {fileID: 7966361904861054949}
   - component: {fileID: 3655387831142111032}
   - component: {fileID: 1768909162784660697}
-  - component: {fileID: 663162265383353240}
   m_Layer: 0
   m_Name: moveCube1
   m_TagString: Untagged
@@ -1897,18 +1842,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &663162265383353240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7644704097801793525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79724a31fac720c48883f8b0baa78206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7720118983850519125
 GameObject:
   m_ObjectHideFlags: 0

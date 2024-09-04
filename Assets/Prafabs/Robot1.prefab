@@ -1468,10 +1468,10 @@ GameObject:
   - component: {fileID: 95259621755087314}
   - component: {fileID: 5319846327906807265}
   - component: {fileID: 8322508189911253934}
-  - component: {fileID: 9067401196057405734}
   - component: {fileID: 3921232640483069151}
   - component: {fileID: 5450729471911283928}
   - component: {fileID: 112920197542108239}
+  - component: {fileID: 5500336113452203952}
   m_Layer: 0
   m_Name: Robot1
   m_TagString: Enemy
@@ -1610,34 +1610,6 @@ MonoBehaviour:
   - m_Rig: {fileID: 5833976112155250856}
     m_Active: 1
   m_Effectors: []
---- !u!114 &9067401196057405734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765116360898588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feac89017e76bc741a0cbcbfdaf56bd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  enemyGroupTag: 
-  target: {fileID: 0}
-  myWeapon:
-    GizmosRange: 0
-  rotationClass:
-    angleX: {fileID: 0}
-    angleY: {fileID: 0}
-    rotationSpeed: 5
-    notDeep: 0
-    notDeepT: 0
-    BarrelHeightAllowance: 0
-  moveSpeed: 2
-  startHealth: 100
-  healthBar: {fileID: 1210367689486337180}
-  animator: {fileID: 95259621755087314}
 --- !u!65 &3921232640483069151
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1698,6 +1670,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d877096188498543a6d522cf59322b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5500336113452203952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765116360898588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a500165a95f7c1c4db6564ee2369e023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyGroupTag: Player
+  target: {fileID: 0}
+  myWeapon:
+    GizmosRange: 0
+  rotationClass:
+    angleX: {fileID: 0}
+    angleY: {fileID: 0}
+    rotationSpeed: 5
+    notDeep: 0
+    notDeepT: 0
+    BarrelHeightAllowance: 0
+  moveSpeed: 0
+  healthBar: {fileID: 1210367689486337180}
+  <MaxHealth>k__BackingField: 100
 --- !u!1 &1769269502818274
 GameObject:
   m_ObjectHideFlags: 0
