@@ -37,6 +37,8 @@ public class EnemyAttackState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+        Debug.Log("GPT Yapýyor Bu sporu");
+
         //enemy.MoveEnemy(0);
         //if (_timer >_timeBetweenShots)
         //{

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,8 +9,10 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckable
 {
-
-    private Rigidbody rb;
+   
+    public float movementDirection;
+    
+    public Rigidbody rb;
     public string enemyGroupTag;
     public Transform target;
 
@@ -17,6 +20,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     public class MyWeapon
     {
         public float GizmosRange;
+        public float attackRange;
     }
     public MyWeapon myWeapon;
 
@@ -34,26 +38,26 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
     public RotationClass rotationClass;
 
+
     public float moveSpeed;
 
 
-
-     [Header("Unity Stuff")]
+    [Header("Unity Stuff")]
     public Image healthBar;
 
     private Animator animator;
 
-    //Animation States
-    const string ENEMY_IDLE = "idleGuard";
-    const string ENEMY_WALK_FRONT = "walkFront";
-    const string ENEMY_WALK_BACK = "walkBack";
-    const string ENEMY_SHOOT_AUTO = "shootAuto";
-    const string ENEMY_RUN_GUARD = "runGuard";
+    [System.Serializable]
+    public class AnimatoinClass
+    {
+        //Animation States
+        public string ENEMY_IDLE = "IdleCube";
+        public string ENEMY_WALK_FRONT = "WalkCube";
+        public string ENEMY_WALK_BACK = "WalkBackCube";
+        public string ENEMY_SHOOT_AUTO = "AttackCube";
 
-    //
-    const string ENEMY_RELOAD = "reload";
-    const string ENEMY_JUMP = "jump";
-    const string ENEMY_SHOOT_SİNGLE = "shootSingle";
+    }
+    public AnimatoinClass animatoinClass;
 
     private string currentState;
 
@@ -94,14 +98,30 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         rb = GetComponent<Rigidbody>();
         CurrentHealth = MaxHealth;
         StateMachine.Initialize(IdleState);
-        Debug.Log("+++++++Object Name = "+gameObject.name);
+
         InvokeRepeating("UpdateTargetWithGizmos", 0f, 0.5f);
     }
     private void Update()
     {
-        MoveEnemy(gameObject, moveSpeed);
+       
+        //MoveEnemy(gameObject, moveSpeed);
+
         WalkDirectionControl();
-        StateMachine.CurrentEnemyState.FrameUpdate();
+
+        //StateMachine.CurrentEnemyState.FrameUpdate();
+        //// Mevcut duruma bağlı olarak her kare güncellenir
+        //StateMachine.CurrentEnemyState.FrameUpdate();
+
+        //// Eğer düşman hedefe yakınsa ve saldırı menzilindeyse, saldırı durumuna geç
+        //if (Vector3.Distance(transform.position, target.position) < myWeapon.attackRange)
+        //{
+        //    StateMachine.ChangeState(AttackState);
+        //}
+        //// Eğer düşman hedefi görüyorsa ve menzile girdiyse kovala
+        //else if (Vector3.Distance(transform.position, target.position) < myWeapon.GizmosRange)
+        //{
+        //    StateMachine.ChangeState(ChaseState);
+        //}
     }
 
     private void FixedUpdate()
@@ -109,36 +129,40 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         StateMachine.CurrentEnemyState.PhysicsUpdate();
     }
 
-    void WalkDirectionControl()
-    {
-        if (rb != null)
-        {
-            if (moveSpeed > 0)
-            {
-                ChangeAnimationState(ENEMY_WALK_FRONT);
-            }
-            if (moveSpeed < 0)
-            {
-                ChangeAnimationState(ENEMY_WALK_BACK);
-            }
-            if (moveSpeed == 0)
-            {
-                ChangeAnimationState(ENEMY_IDLE);
-            }
-        }
-    }
-    void ChangeAnimationState(string newState)
+
+    public void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;
         animator.Play(newState);
         currentState = newState;
     }
 
+    #region RbInformation
+
+    void WalkDirectionControl()
+    {
+        if (rb != null)
+        {
+            //if (moveSpeed > 0)
+            //{
+            //    ChangeAnimationState(animatoinClass.ENEMY_WALK_FRONT);
+            //}
+            //if (moveSpeed < 0)
+            //{
+            //    ChangeAnimationState(animatoinClass.ENEMY_WALK_BACK);
+            //}
+            //if (moveSpeed == 0)
+            //{
+            //    ChangeAnimationState(animatoinClass.ENEMY_IDLE);
+            //}
+        }
+    }
+    #endregion
+
     #region SelectionTarget
 
     void UpdateTargetWithGizmos()
     {
-        Debug.Log("+++++++ScannedObject++++++++ ");
         // Gizmos menzili içinde bulunan düşmanları tarar
         Collider[] colliders = Physics.OverlapSphere(transform.position, myWeapon.GizmosRange);
         float shortestDistance = Mathf.Infinity;
@@ -191,16 +215,20 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         Destroy(this.gameObject);
     }
 
-    public void MoveEnemy(GameObject e, float moveSpeed)
-    {
-        Debug.Log("MoveEnemy entry "+e.name + "asdas " + moveSpeed);
-        e=gameObject;
-        transform.Translate(e.transform.forward * moveSpeed * Time.deltaTime);
-    }
+    //public void MoveEnemyTowardsTarget(float targetPosition, float moveSpeed)
+    //{
+    //    // Hedefe olan yönü bul
+    //    Vector3 direction = (targetPosition - transform.position).normalized;
+
+    //    // Düşmanı bu yöne doğru hareket ettir
+    //    transform.Translate(direction * moveSpeed * Time.deltaTime);
+    //    //e=gameObject;
+    //    //transform.Translate(e.transform.forward * moveSpeed * Time.deltaTime);
+    //}
 
     public void CheckForForwardOrBackFacing(Vector3 velocity)
     {
-        if (IsMovingForward && moveSpeed<0)
+        if (IsMovingForward && moveSpeed < 0)
         {
             IsMovingForward = !IsMovingForward;
         }     
@@ -208,7 +236,6 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         {
             IsMovingForward = !IsMovingForward;
         }
-
     }
 
     #region Animation Triggers
@@ -217,6 +244,14 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     {
         StateMachine.CurrentEnemyState.AnimationTriggerEvent(triggerType);
     }
+
+    public enum AnimationTriggerType
+    {
+        EnemyDamaged,
+        PlayFootstepSound
+    }
+    #endregion
+
     #region Distance Checks
     public void SetAggroStatus(bool aggroStatus)
     {
@@ -227,13 +262,22 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     {
         IsWithinStrikeingDistance = isWithinStrikeingDistance;
     }
-    #endregion
 
-
-    public enum AnimationTriggerType
+    public void MoveEnemyTowardsTarget(GameObject enemyObject, float MoveSpeed)
     {
-        EnemyDamaged,
-        PlayFootstepSound
+        if (target == null)
+        {
+            Debug.LogWarning("Hedef pozisyon null!");
+            transform.Translate(gameObject.transform.forward*moveSpeed * Time.deltaTime);
+            return;
+        }
+        Vector3 direction = (target.position - transform.position).normalized;
+
+        transform.Translate(direction * moveSpeed * Time.deltaTime);
+
+  
     }
+
+
     #endregion
 }

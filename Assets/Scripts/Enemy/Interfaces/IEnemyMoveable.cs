@@ -8,7 +8,7 @@ public interface IEnemyMoveable
 
     bool IsMovingForward {  get; set; }
 
-    void MoveEnemy(GameObject enemyObject, float MoveSpeed);
+    void MoveEnemyTowardsTarget(GameObject enemyObject, float MoveSpeed);
 
     void CheckForForwardOrBackFacing(Vector3 velocity);
 }
