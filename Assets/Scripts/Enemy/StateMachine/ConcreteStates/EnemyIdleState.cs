@@ -48,15 +48,11 @@ public class EnemyIdleState : EnemyState
         {
             enemy.MoveEnemyTowardsTarget(enemy.gameObject, enemy.moveSpeed);
         }
-
-        
-        if ((enemy.transform.position - _targetPos).sqrMagnitude < 0.01f)
+        else if ((enemy.transform.position - _targetPos).sqrMagnitude < 0.01f)
         {
             _targetPos = GetRandomPointInCircle();
         }
-
-        
-        if (enemy.moveSpeed > 0)
+        else
         {
             enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_WALK_FRONT);
         }

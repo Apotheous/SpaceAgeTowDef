@@ -108,20 +108,32 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
         WalkDirectionControl();
 
-        //StateMachine.CurrentEnemyState.FrameUpdate();
+        StateMachine.CurrentEnemyState.FrameUpdate();
         //// Mevcut duruma bağlı olarak her kare güncellenir
-        //StateMachine.CurrentEnemyState.FrameUpdate();
+        // StateMachine.CurrentEnemyState.FrameUpdate();
+        if (target == null)
+        {
+            // Eğer target yoksa saldırı veya kovalama durumuna geçme
+            Debug.LogWarning("Target is null, not switching to Chase or Attack State.");
+            return;
+        }
+
 
         //// Eğer düşman hedefe yakınsa ve saldırı menzilindeyse, saldırı durumuna geç
-        //if (Vector3.Distance(transform.position, target.position) < myWeapon.attackRange)
-        //{
-        //    StateMachine.ChangeState(AttackState);
-        //}
-        //// Eğer düşman hedefi görüyorsa ve menzile girdiyse kovala
-        //else if (Vector3.Distance(transform.position, target.position) < myWeapon.GizmosRange)
-        //{
-        //    StateMachine.ChangeState(ChaseState);
-        //}
+        if (Vector3.Distance(transform.position, target.position) < myWeapon.attackRange)
+        {
+            StateMachine.ChangeState(AttackState);
+            
+        }
+        // Eğer düşman hedefi görüyorsa ve menzile girdiyse kovala
+        else if (Vector3.Distance(transform.position, target.position) < myWeapon.GizmosRange)
+        {
+            StateMachine.ChangeState(ChaseState);
+            
+        } else
+        {
+            return;
+        }
     }
 
     private void FixedUpdate()
@@ -275,7 +287,6 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
         transform.Translate(direction * moveSpeed * Time.deltaTime);
 
-  
     }
 
 
