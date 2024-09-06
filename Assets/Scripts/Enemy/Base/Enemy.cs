@@ -123,7 +123,8 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         if (Vector3.Distance(transform.position, target.position) < myWeapon.attackRange)
         {
             StateMachine.ChangeState(AttackState);
-            
+           // ChangeAnimationState(animatoinClass.ENEMY_SHOOT_AUTO);
+
         }
         // Eğer düşman hedefi görüyorsa ve menzile girdiyse kovala
         else if (Vector3.Distance(transform.position, target.position) < myWeapon.GizmosRange)

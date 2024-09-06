@@ -27,11 +27,13 @@ public class EnemyAttackState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
+        enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_SHOOT_AUTO);
     }
 
     public override void ExitState()
     {
         base.ExitState();
+
     }
 
     public override void FrameUpdate()
