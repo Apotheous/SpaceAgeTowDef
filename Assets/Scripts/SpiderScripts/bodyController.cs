@@ -22,6 +22,8 @@ public class bodyController : MonoBehaviour
 
     public Enemy baseObj;
     public GameObject spider;
+    public GameObject explosiveEffect;
+
     public GameObject[] legTargets;
     public GameObject[] legCubes;
 
@@ -72,6 +74,7 @@ public class bodyController : MonoBehaviour
         if (baseObj.CurrentHealth <= 0)
         {
             gameObject.GetComponent<bodyController>().enabled = false;
+            explosiveEffect.SetActive(true);
         }
     }
 

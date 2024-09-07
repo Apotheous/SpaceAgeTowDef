@@ -327,7 +327,7 @@ MonoBehaviour:
     onVision: 0
     onTarget: 0
     Timer: 0
-    fireRate: 0.54
+    fireRate: 0.15
     barrelTimer: 0
     barrelTimerRate: 0.05
     barrelTimerLine: 0.1

@@ -1144,7 +1144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1247685655
 Transform:
   m_ObjectHideFlags: 0
@@ -1404,75 +1404,6 @@ Transform:
   - {fileID: 99855525}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1892874974
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2199686147951654712, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
-      propertyPath: moveSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2199686147951654712, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
-      propertyPath: myWeapon.GizmosRange
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 2199686147951654712, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
-      propertyPath: myWeapon.attackRange
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6184637841116627165, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
-      propertyPath: m_Name
-      value: SpiderOrange
-      objectReference: {fileID: 0}
-    - target: {fileID: 7406699119267194927, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.1601086
-      objectReference: {fileID: 0}
-    - target: {fileID: 7406699119267194927, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7406699119267194927, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 20.123165
-      objectReference: {fileID: 0}
-    - target: {fileID: 7406699119267194927, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9741365
-      objectReference: {fileID: 0}
-    - target: {fileID: 7406699119267194927, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7406699119267194927, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.22596064
-      objectReference: {fileID: 0}
-    - target: {fileID: 7406699119267194927, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7406699119267194927, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7406699119267194927, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -26.119
-      objectReference: {fileID: 0}
-    - target: {fileID: 7406699119267194927, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
 --- !u!1 &1951980977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1909,7 +1840,6 @@ SceneRoots:
   - {fileID: 1323935904}
   - {fileID: 26765655}
   - {fileID: 1247685655}
-  - {fileID: 1892874974}
   - {fileID: 1570294199}
   - {fileID: 814001326}
   - {fileID: 982691585}
