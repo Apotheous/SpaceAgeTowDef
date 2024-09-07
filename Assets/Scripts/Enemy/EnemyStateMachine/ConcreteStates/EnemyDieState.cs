@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyDieState : EnemyState
@@ -16,6 +17,8 @@ public class EnemyDieState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
+        enemy.GetComponent<BoxCollider>().enabled = false;
+        enemy.GetComponent<Rigidbody>().isKinematic = true;
         enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_DIE);
     }
 

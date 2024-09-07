@@ -11,7 +11,7 @@ public class TurretController : MonoBehaviour
     public static TurretController Instance { get; private set; }
 
     [HideInInspector]
-    private TurretModel turretModel;
+    public TurretModel turretModel;
     [HideInInspector]
     private TowerBuildManager towerBuildManager;
     [HideInInspector]

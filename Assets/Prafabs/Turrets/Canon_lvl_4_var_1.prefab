@@ -152,8 +152,8 @@ MonoBehaviour:
     - {fileID: 4130683124114648580}
     - {fileID: 948738555778246247}
     shotForce: 500
-    visionRange: 200
-    firingRange: 200
+    visionRange: 100
+    firingRange: 40
     dist: 0
     onVision: 0
     onTarget: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
     rotationSpeed: 3
     notDeep: 0
     notDeepT: 0
-    BarrelHeightAllowance: 0
+    BarrelHeightAllowance: 3.5
   laserClass:
     useLaser: 0
     damageOverTime: 30

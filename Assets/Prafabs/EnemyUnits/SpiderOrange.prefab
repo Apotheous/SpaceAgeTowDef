@@ -947,7 +947,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4689637211112168489}
-  - component: {fileID: 4689637211110174381}
   m_Layer: 0
   m_Name: Old-timer bomb prefab
   m_TagString: Untagged
@@ -974,28 +973,6 @@ Transform:
   - {fileID: 4689637211112168493}
   m_Father: {fileID: 1492197046730649177}
   m_LocalEulerAnglesHint: {x: 270, y: 26.119, z: 0}
---- !u!64 &4689637211110174381
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4689637211112259593}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: d6d6a960df51c5446a739eb62d37348b, type: 3}
 --- !u!1 &4689637211112259597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,9 +1429,9 @@ GameObject:
   - component: {fileID: 7406699119267194927}
   - component: {fileID: 4486843907659834175}
   - component: {fileID: 6294977071781041503}
-  - component: {fileID: 4294896582400325038}
   - component: {fileID: 6474546574685532169}
   - component: {fileID: 2199686147951654712}
+  - component: {fileID: 8000765379805403146}
   m_Layer: 0
   m_Name: SpiderOrange
   m_TagString: Enemy
@@ -1520,27 +1497,6 @@ MonoBehaviour:
   - m_Rig: {fileID: 0}
     m_Active: 1
   m_Effectors: []
---- !u!135 &4294896582400325038
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6184637841116627165}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.1
-  m_Center: {x: 0, y: 0.12, z: 0}
 --- !u!54 &6474546574685532169
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1606,6 +1562,27 @@ MonoBehaviour:
   randomMovementSpeed: 1
   bulletPrefab: {fileID: -512269121213639117, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
   <MaxHealth>k__BackingField: 50
+--- !u!65 &8000765379805403146
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184637841116627165}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.19529772, y: 0.17861974, z: 0.18695924}
+  m_Center: {x: 0.006254196, y: 0.14801525, z: -0.0020846545}
 --- !u!1 &6224872067652631065
 GameObject:
   m_ObjectHideFlags: 0

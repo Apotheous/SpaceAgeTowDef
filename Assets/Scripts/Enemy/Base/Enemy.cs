@@ -82,7 +82,6 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     public float CurrentHealth { get; set; }
     Rigidbody IEnemyMoveable.rb { get; set; }
     public bool IsMovingForward { get; set; } = true;
-
     public bool IsAggroed { get; set; }
     public bool IsWithinStrikeingDistance { get; set; }
 
@@ -229,7 +228,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     public void Die()
     {
         StateMachine.ChangeState(DieState);
-        Destroy(this.gameObject, 3f);
+        Destroy(this.gameObject, 2.5f);
     }
 
     //public void MoveEnemyTowardsTarget(float targetPosition, float moveSpeed)
