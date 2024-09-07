@@ -20,6 +20,7 @@ public class bodyController : MonoBehaviour
     [Header("GameObject Assignment")]
     [Space(10)]
 
+    public Enemy baseObj;
     public GameObject spider;
     public GameObject[] legTargets;
     public GameObject[] legCubes;
@@ -44,12 +45,9 @@ public class bodyController : MonoBehaviour
     public float BodySmoothness = 8;
     public float OverStepMultiplier = 4;
 
-
-
-
-
     void Start()
     {
+        baseObj.GetComponent<Enemy>();
         lastBodyUp = transform.up;
 
         legPositions = new Vector3[legTargets.Length];
@@ -69,6 +67,13 @@ public class bodyController : MonoBehaviour
         rotateBody();
     }
 
+    private void Update()
+    {
+        if (baseObj.CurrentHealth <= 0)
+        {
+            gameObject.GetComponent<bodyController>().enabled = false;
+        }
+    }
 
     void FixedUpdate()
     {

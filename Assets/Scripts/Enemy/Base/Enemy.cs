@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         public string ENEMY_WALK_FRONT = "WalkCube";
         public string ENEMY_WALK_BACK = "WalkBackCube";
         public string ENEMY_SHOOT_AUTO = "AttackCube";
+        public string ENEMY_DIE = "EnemyDie";
 
     }
     public AnimatoinClass animatoinClass;
@@ -66,6 +67,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     public EnemyIdleState IdleState { get; set; }
     public EnemyChaseState ChaseState { get; set;}
     public EnemyAttackState AttackState { get; set; }
+    public EnemyDieState DieState { get; set; }
 
     #endregion
 
@@ -91,6 +93,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         IdleState = new EnemyIdleState(this, StateMachine);
         ChaseState = new EnemyChaseState(this, StateMachine);
         AttackState = new EnemyAttackState(this, StateMachine);
+        DieState = new EnemyDieState(this, StateMachine);
     }
     private void Start()
     {
@@ -225,7 +228,8 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
     public void Die()
     {
-        Destroy(this.gameObject);
+        StateMachine.ChangeState(DieState);
+        Destroy(this.gameObject, 3f);
     }
 
     //public void MoveEnemyTowardsTarget(float targetPosition, float moveSpeed)

@@ -191,7 +191,8 @@ MonoBehaviour:
   enemyGroupTag: Player
   target: {fileID: 0}
   myWeapon:
-    GizmosRange: 5
+    GizmosRange: 50
+    attackRange: 40
   rotationClass:
     angleX: {fileID: 0}
     angleY: {fileID: 0}
@@ -199,13 +200,14 @@ MonoBehaviour:
     notDeep: 0
     notDeepT: 0
     BarrelHeightAllowance: 0
-  moveSpeed: 5
+  moveSpeed: 0
   healthBar: {fileID: 1923721251517233073}
-  ENEMY_IDLE: IdleCube
-  ENEMY_WALK_FRONT: WalkCube
-  ENEMY_WALK_BACK: WalkBackCube
-  ENEMY_SHOOT_AUTO: AttackCube
-  RandomMovementrange: 5.43
+  animatoinClass:
+    ENEMY_IDLE: IdleCube
+    ENEMY_WALK_FRONT: WalkCube
+    ENEMY_WALK_BACK: WalkBackCube
+    ENEMY_SHOOT_AUTO: AttackCube
+  RandomMovementrange: 10
   randomMovementSpeed: 1
   bulletPrefab: {fileID: -512269121213639117, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
   <MaxHealth>k__BackingField: 50
@@ -224,7 +226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6813103635986054744
 Transform:
   m_ObjectHideFlags: 0

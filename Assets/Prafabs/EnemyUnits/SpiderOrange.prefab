@@ -1267,7 +1267,7 @@ Animator:
   m_GameObject: {fileID: 6184637841116627165}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5d67c81cdf5717340b0943f1f80dd628, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8c4a699f820770b4c9ad119f22305e30, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1362,6 +1362,7 @@ MonoBehaviour:
   target: {fileID: 0}
   myWeapon:
     GizmosRange: 0
+    attackRange: 0
   rotationClass:
     angleX: {fileID: 0}
     angleY: {fileID: 0}
@@ -1371,10 +1372,12 @@ MonoBehaviour:
     BarrelHeightAllowance: 0
   moveSpeed: 2
   healthBar: {fileID: 7190323971656892004}
-  ENEMY_IDLE: IdleCube
-  ENEMY_WALK_FRONT: WalkCube
-  ENEMY_WALK_BACK: WalkBackCube
-  ENEMY_SHOOT_AUTO: AttackCube
+  animatoinClass:
+    ENEMY_IDLE: IdleCube
+    ENEMY_WALK_FRONT: WalkCube
+    ENEMY_WALK_BACK: WalkBackCube
+    ENEMY_SHOOT_AUTO: AttackCube
+    ENEMY_DIE: EnemyDie
   RandomMovementrange: 5
   randomMovementSpeed: 1
   bulletPrefab: {fileID: -512269121213639117, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
@@ -1530,6 +1533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f35721f5c35fba48be325e16e677457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseObj: {fileID: 2199686147951654712}
   spider: {fileID: 6184637841116627165}
   legTargets:
   - {fileID: 2576975266684815326}
