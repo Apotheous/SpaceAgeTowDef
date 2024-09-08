@@ -6,67 +6,216 @@ using UnityEngine;
 
 public class TurretModel : MonoBehaviour
 {
-    public string Name { get; set; }
-    public LevelProp Level { get; set; }
-    public float ShootingFrequency { get; set; }
-    public float Damage { get; set; }
-    public float RangeOfVision { get; set; }
-    public float FiringRange { get; set; }
-    public float Health { get; set; }
-    public int CurrentXP { get; set; } = 0;
-    public int NextLevelXP { get; set; }
-    public int Cost { get; set; }
 
-    public TurretModel(string name, LevelProp level, int currentXP)
+    public string Name;
+    public LevelProp Level;
+    public GunnerType GunnerType;
+    public float Health;
+    public int CurrentXP = 0;
+    public int NextLevelXP;
+    public int Cost;
+
+    [System.Serializable]
+    public class WeaponClass
     {
-        this.Name = name;
-        this.Level = level;
-        this.CurrentXP = currentXP;
-        SetLevelProperties(level);
+        public List<Transform> Barrels = new List<Transform>();
+        public int ShotForce;
+
+        public float RangeOfVision;
+        public float FiringRange;
+        public float Dist;
+
+        public bool OnVision;
+        public bool OnTarget;
+
+        public float Timer;
+        public float FireRate;
+        public float BarrelTimer;
+        public float BarrelTimerRate;
+        public float BarrelTimerLine;
     }
 
-    private void SetLevelProperties(LevelProp level)
+    public WeaponClass weaponClass;
+
+    [System.Serializable]
+    public class BulletClass
     {
-        switch (level)
+        public List<GameObject> Bullets = new List<GameObject>();
+        [HideInInspector]
+        public List<GameObject> BulletPool = new List<GameObject>();//--????
+        public GameObject BulletPrefab;
+    }
+    public BulletClass bulletClass;
+
+    [System.Serializable]
+    public class RotationClass
+    {
+        public Transform AngleX;    // X ekseninde dönen parça
+        public Transform AngleY;    // Y ekseninde dönen parça
+        public float RotationSpeed; // Dönme hýzý
+
+        public float NotDeep;
+        public float NotDeepT;
+        public float BarrelHeightAllowance;
+    }
+    public RotationClass rotationClass;
+
+    [System.Serializable]
+    public class LaserClass
+    {
+        [Header("Use Laser")]
+        public bool UseLaser = false;
+
+        public int DamageOverTime = 30;
+        public float ShowAmount = .5f;
+
+        public LineRenderer lineRenderer;
+        public ParticleSystem impactEffect;
+        public Light impactLight;
+
+    }
+
+    public LaserClass laserClass;
+
+    //public TurretModel(string name, LevelProp level, GunnerType gunnerType, int currentXP, bool useLaser)
+    //{
+    //    this.Name = name;
+    //    this.Level = level;
+    //    this.GunnerType = gunnerType;
+    //    this.CurrentXP = currentXP;
+    //    this.UseLaser = useLaser;
+    //    SetLevelProperties(level, gunnerType);
+    //}
+
+    private void OnValidate()
+    {
+        UpdateTurretModel();
+    }
+
+    public void UpdateTurretModel()
+    {
+        SetLevelProperties(Level, GunnerType);
+    }
+
+    public void SetLevelProperties(LevelProp level, GunnerType fireType)
+    {
+        switch (fireType)
         {
-            case LevelProp.LEVEL_ONE:
-                ShootingFrequency = 1.0f;
-                Damage = 10.0f;
-                RangeOfVision = 5.0f;
-                FiringRange = 7.0f;
-                Health = 100.0f;
-                NextLevelXP = 1000;
-                Cost = 500;
+            case GunnerType.LASER:
+                switch (level)
+                {
+                    case LevelProp.LEVEL_ONE:
+                        weaponClass.RangeOfVision = 5.0f;
+                        weaponClass.FiringRange = 7.0f;
+                        Health = 100.0f;
+                        weaponClass.ShotForce = 100;
+                        weaponClass.FireRate = 1.0f;
+                        weaponClass.BarrelTimer = 0;
+                        weaponClass.BarrelTimerRate = 0.5f;
+                        weaponClass.BarrelTimerLine = 0.1f;
+                        rotationClass.RotationSpeed = 2.0f;
+                        rotationClass.BarrelHeightAllowance = 1.0f;
+                        laserClass.DamageOverTime = 30;
+                        laserClass.ShowAmount = 0.5f;
+                        NextLevelXP = 1000;
+                        Cost = 500;
+                        break;
+                    case LevelProp.LEVEL_TWO:
+                        weaponClass.RangeOfVision = 5.0f;
+                        weaponClass.FiringRange = 7.0f;
+                        Health = 100.0f;
+                        weaponClass.ShotForce = 100;
+                        weaponClass.FireRate = 1.0f;
+                        weaponClass.BarrelTimer = 0;
+                        weaponClass.BarrelTimerRate = 0.4f;
+                        weaponClass.BarrelTimerLine = 0.1f;
+                        rotationClass.RotationSpeed = 2.0f;
+                        rotationClass.BarrelHeightAllowance = 1.0f;
+                        laserClass.DamageOverTime = 30;
+                        laserClass.ShowAmount = 0.5f;
+                        NextLevelXP = 1000;
+                        Cost = 500;
+                        break;
+                    case LevelProp.LEVEL_THREE:
+                        weaponClass.RangeOfVision = 5.0f;
+                        weaponClass.FiringRange = 7.0f;
+                        Health = 100.0f;
+                        weaponClass.ShotForce = 100;
+                        weaponClass.FireRate = 1.0f;
+                        weaponClass.BarrelTimer = 0;
+                        weaponClass.BarrelTimerRate = 0.2f;
+                        weaponClass.BarrelTimerLine = 0.1f;
+                        rotationClass.RotationSpeed = 2.0f;
+                        rotationClass.BarrelHeightAllowance = 1.0f;
+                        laserClass.DamageOverTime = 30;
+                        laserClass.ShowAmount = 0.5f;
+                        NextLevelXP = 1000;
+                        Cost = 500;
+                        break;
+                }
                 break;
 
-            case LevelProp.LEVEL_TWO:
-                ShootingFrequency = 1.5f;
-                Damage = 20.0f;
-                RangeOfVision = 6.0f;
-                FiringRange = 8.0f;
-                Health = 150.0f;
-                NextLevelXP = 3000;
-                Cost = 1000;
-                break;
-
-            case LevelProp.LEVEL_THREE:
-                ShootingFrequency = 2.0f;
-                Damage = 30.0f;
-                RangeOfVision = 7.0f;
-                FiringRange = 10.0f;
-                Health = 200.0f;
-                NextLevelXP = 5000;
-                Cost = 2000;
+            case GunnerType.GUNNER:
+                switch (level)
+                {
+                    case LevelProp.LEVEL_ONE:
+                        weaponClass.RangeOfVision = 40.0f;
+                        weaponClass.FiringRange = 30.0f;
+                        Health = 100.0f;
+                        weaponClass.ShotForce = 500;
+                        weaponClass.FireRate = 0.15f;
+                        weaponClass.BarrelTimerRate = 0.05f;
+                        rotationClass.RotationSpeed = 3.0f;
+                        rotationClass.BarrelHeightAllowance = 3.5f;
+                        laserClass.DamageOverTime = 30;
+                        laserClass.ShowAmount = 0.5f;
+                        NextLevelXP = 1000;
+                        Cost = 500;
+                        break;
+                    case LevelProp.LEVEL_TWO:
+                        weaponClass.RangeOfVision = 50.0f;
+                        weaponClass.FiringRange = 40.0f;
+                        Health = 100.0f;
+                        weaponClass.ShotForce = 300;
+                        weaponClass.FireRate = 0.5f;
+                        weaponClass.BarrelTimerRate = 0.1f;
+                        rotationClass.RotationSpeed = 2.0f;
+                        rotationClass.BarrelHeightAllowance = 1.0f;
+                        laserClass.DamageOverTime = 30;
+                        laserClass.ShowAmount = 0.5f;
+                        NextLevelXP = 1000;
+                        Cost = 500;
+                        break;
+                    case LevelProp.LEVEL_THREE:
+                        weaponClass.RangeOfVision = 70.0f;
+                        weaponClass.FiringRange = 60.0f;
+                        Health = 100.0f;
+                        weaponClass.ShotForce = 400;
+                        weaponClass.FireRate = 0.2f;
+                        weaponClass.BarrelTimerRate = 0.1f;
+                        rotationClass.RotationSpeed = 2.0f;
+                        rotationClass.BarrelHeightAllowance = 1.0f;
+                        laserClass.DamageOverTime = 30;
+                        laserClass.ShowAmount = 0.5f;
+                        NextLevelXP = 1000;
+                        Cost = 500;
+                        break;
+                }
                 break;
         }
     }
-
-
 }
-    
+
 public enum LevelProp
 {
     LEVEL_ONE, LEVEL_TWO, LEVEL_THREE
 }
+
+public enum GunnerType
+{
+    LASER, GUNNER
+}
+
+
 
 

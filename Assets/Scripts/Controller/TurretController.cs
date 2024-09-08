@@ -96,7 +96,7 @@ public class TurretController : MonoBehaviour
 
 
 
-    private void Awake()
+    private void Awake() // alýndý ==================================
     {
         Instance = this;
     }
@@ -105,7 +105,7 @@ public class TurretController : MonoBehaviour
     {
         TurretModelStart();
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
-    }
+    } // alýndý ==================================
 
     private void Update()
     {
@@ -193,7 +193,7 @@ public class TurretController : MonoBehaviour
         }
         */
         #endregion
-    }
+    }//----------
     void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyGroupTag);
@@ -259,17 +259,8 @@ public class TurretController : MonoBehaviour
     #region StartFoncs
     private void TurretModelStart()
     {
-        turretModel = new TurretModel(gameObject.name, LevelProp.LEVEL_ONE, 0);
 
-        Debug.Log("Turret Name: " + gameObject.name);
-        Debug.Log("Level: " + turretModel.Level);
-        Debug.Log("Shooting Frequency: " + turretModel.ShootingFrequency);
-        Debug.Log("Damage: " + turretModel.Damage);
-        Debug.Log("Range of Vision: " + turretModel.RangeOfVision);
-        Debug.Log("Firing Range: " + turretModel.FiringRange);
-        Debug.Log("Health: " + turretModel.Health);
-        Debug.Log("Cost: " + turretModel.Cost);
-
+   
 
         mybuilder = TowerBuildManager.builderTransform;
 
@@ -342,9 +333,6 @@ public class TurretController : MonoBehaviour
         }
     }
     #endregion
-
-
-
 
     #region Fire Funcs
     void Firing()

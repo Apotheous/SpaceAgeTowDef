@@ -139,7 +139,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &3244527038300073001
 MonoBehaviour:
@@ -187,12 +187,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementDirection: 0
-  rb: {fileID: 0}
+  rb: {fileID: 5979322540751033515}
   enemyGroupTag: Player
   target: {fileID: 0}
   myWeapon:
+    enemy_Gnnr_Type: 0
     GizmosRange: 50
     attackRange: 40
+    ammoPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
   rotationClass:
     angleX: {fileID: 0}
     angleY: {fileID: 0}
@@ -207,9 +209,9 @@ MonoBehaviour:
     ENEMY_WALK_FRONT: WalkCube
     ENEMY_WALK_BACK: WalkBackCube
     ENEMY_SHOOT_AUTO: AttackCube
+    ENEMY_DIE: EnemyDie
   RandomMovementrange: 10
   randomMovementSpeed: 1
-  bulletPrefab: {fileID: -512269121213639117, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
   <MaxHealth>k__BackingField: 50
 --- !u!1 &3996125833660989451
 GameObject:

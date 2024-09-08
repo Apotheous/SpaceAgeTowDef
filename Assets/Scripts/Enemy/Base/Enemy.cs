@@ -19,9 +19,17 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     [System.Serializable]
     public class MyWeapon
     {
+        public EnemyGunnerType enemy_Gnnr_Type;
+        
         public float GizmosRange;
         public float attackRange;
+        
+
+        public GameObject ammoPrefab;
+        public float explosionRadius;
+        public float damage;
     }
+
     public MyWeapon myWeapon;
 
     [System.Serializable]
@@ -74,7 +82,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     #region Idle Veriables
     public float RandomMovementrange = 5f;
     public float randomMovementSpeed = 1f;
-    public Rigidbody bulletPrefab;
+    
 
     #endregion
 
@@ -295,4 +303,11 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
 
     #endregion
+}
+
+public enum EnemyGunnerType
+{
+    Bullet,
+    Laser,
+    Bomb
 }

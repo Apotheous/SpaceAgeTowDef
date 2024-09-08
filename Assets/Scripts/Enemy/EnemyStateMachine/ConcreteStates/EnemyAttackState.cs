@@ -28,6 +28,7 @@ public class EnemyAttackState : EnemyState
     {
         base.EnterState();
         enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_SHOOT_AUTO);
+        EnemyFireType(enemy.myWeapon.enemy_Gnnr_Type);
     }
 
     public override void ExitState()
@@ -68,5 +69,66 @@ public class EnemyAttackState : EnemyState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+    }
+
+    private void BulletFiring()
+    {
+        Debug.Log("Bullet Firing = ");
+
+    }
+    private void BombExplosive()
+    {
+        Debug.Log("Bomb Exp = ");
+        enemy.myWeapon.ammoPrefab.SetActive(true);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, myWeapon.explosionRadius);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.tag == enemyGroupTag)
+            {
+                DamageExplosive(collider.transform);
+            }
+        }
+    }  
+
+    private void DamageExplosive(Transform enemy)
+    {
+        TryModelController e = enemy.GetComponent<TryModelController>();
+
+        if (e != null)
+        {
+            e.Damage(myWeapon.damage);
+            myWeapon.damage = 0;
+        }
+    }
+
+    private void LaserFiring()
+    {
+        Debug.Log("Laser Firing = ");
+
+    }
+    public void EnemyFireType(EnemyGunnerType enmyGnrType)
+    {
+        switch (enmyGnrType)
+        {
+            case EnemyGunnerType.Bullet:
+                Debug.Log("Enemy Firing = " + EnemyGunnerType.Bullet);
+                BulletFiring();
+                break;
+            case EnemyGunnerType.Laser:
+                Debug.Log("Enemy Firing = " + EnemyGunnerType.Laser);
+                LaserFiring();
+                break;
+            case EnemyGunnerType.Bomb:
+                Debug.Log("Enemy Firing = " + EnemyGunnerType.Bomb);
+                BombExplosive();
+                Die();
+                break;  
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, myWeapon.explosionRadius);
     }
 }

@@ -1537,12 +1537,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementDirection: 0
-  rb: {fileID: 0}
+  rb: {fileID: 6474546574685532169}
   enemyGroupTag: Player
   target: {fileID: 0}
   myWeapon:
-    GizmosRange: 0
-    attackRange: 0
+    enemy_Gnnr_Type: 2
+    GizmosRange: 10
+    attackRange: 5
+    ammoPrefab: {fileID: 72838962517599747}
+    explosionRadius: 0
+    damage: 0
   rotationClass:
     angleX: {fileID: 0}
     angleY: {fileID: 0}
@@ -1560,7 +1564,6 @@ MonoBehaviour:
     ENEMY_DIE: EnemyDie
   RandomMovementrange: 5
   randomMovementSpeed: 1
-  bulletPrefab: {fileID: -512269121213639117, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
   <MaxHealth>k__BackingField: 50
 --- !u!65 &8000765379805403146
 BoxCollider:
@@ -2761,31 +2764,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7982398440680021180, guid: 3187f8a3712c57d489c8f633d705b15c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.000032726668
       objectReference: {fileID: 0}
     - target: {fileID: 7982398440680021180, guid: 3187f8a3712c57d489c8f633d705b15c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.0000121342
       objectReference: {fileID: 0}
     - target: {fileID: 7982398440680021180, guid: 3187f8a3712c57d489c8f633d705b15c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.000017646824
       objectReference: {fileID: 0}
     - target: {fileID: 7982398440680021180, guid: 3187f8a3712c57d489c8f633d705b15c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.6888182
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7982398440680021180, guid: 3187f8a3712c57d489c8f633d705b15c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.68881816
+      value: 0.000000026077032
       objectReference: {fileID: 0}
     - target: {fileID: 7982398440680021180, guid: 3187f8a3712c57d489c8f633d705b15c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.15977988
+      value: 0.000000029802322
       objectReference: {fileID: 0}
     - target: {fileID: 7982398440680021180, guid: 3187f8a3712c57d489c8f633d705b15c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.15977982
+      value: 0.000000029802322
       objectReference: {fileID: 0}
     - target: {fileID: 7982398440680021180, guid: 3187f8a3712c57d489c8f633d705b15c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2804,6 +2807,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3187f8a3712c57d489c8f633d705b15c, type: 3}
+--- !u!1 &72838962517599747 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3574076452323253213, guid: 3187f8a3712c57d489c8f633d705b15c, type: 3}
+  m_PrefabInstance: {fileID: 3502513249784151518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6799380080149061986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7982398440680021180, guid: 3187f8a3712c57d489c8f633d705b15c, type: 3}

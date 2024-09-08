@@ -311,6 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c66bdbff2061e44ad0b6de1bf6f851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turretModel: {fileID: 0}
   selectedFireType: 0
   enemyGroupTag: Enemy
   uiState: 1
