@@ -20,6 +20,7 @@ public class EnemyDieState : EnemyState
         enemy.GetComponent<BoxCollider>().enabled = false;
         enemy.GetComponent<Rigidbody>().isKinematic = true;
         enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_DIE);
+        Destroy(enemy.gameObject,2.5f);
     }
 
     public override void ExitState()

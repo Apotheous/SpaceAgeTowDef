@@ -990,7 +990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4689637211112168493
 Transform:
   m_ObjectHideFlags: 0
@@ -1429,9 +1429,9 @@ GameObject:
   - component: {fileID: 7406699119267194927}
   - component: {fileID: 4486843907659834175}
   - component: {fileID: 6294977071781041503}
-  - component: {fileID: 6474546574685532169}
   - component: {fileID: 2199686147951654712}
   - component: {fileID: 8000765379805403146}
+  - component: {fileID: -8385112847535330042}
   m_Layer: 0
   m_Name: SpiderOrange
   m_TagString: Enemy
@@ -1497,33 +1497,6 @@ MonoBehaviour:
   - m_Rig: {fileID: 0}
     m_Active: 1
   m_Effectors: []
---- !u!54 &6474546574685532169
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6184637841116627165}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!114 &2199686147951654712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,16 +1510,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementDirection: 0
-  rb: {fileID: 6474546574685532169}
+  rb: {fileID: -8385112847535330042}
   enemyGroupTag: Player
   target: {fileID: 0}
   myWeapon:
     enemy_Gnnr_Type: 2
     GizmosRange: 10
-    attackRange: 5
+    attackRange: 1
     ammoPrefab: {fileID: 72838962517599747}
-    explosionRadius: 0
-    damage: 0
+    explosionRadius: 5
+    damage: 10
   rotationClass:
     angleX: {fileID: 0}
     angleY: {fileID: 0}
@@ -1554,7 +1527,7 @@ MonoBehaviour:
     notDeep: 0
     notDeepT: 0
     BarrelHeightAllowance: 0
-  moveSpeed: 2
+  moveSpeed: 8
   healthBar: {fileID: 7190323971656892004}
   animatoinClass:
     ENEMY_IDLE: IdleCube
@@ -1586,6 +1559,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.19529772, y: 0.17861974, z: 0.18695924}
   m_Center: {x: 0.006254196, y: 0.14801525, z: -0.0020846545}
+--- !u!54 &-8385112847535330042
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184637841116627165}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &6224872067652631065
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,12 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 
-public class TryModelController : TurretModel
+public class TryModelController : TurretModel,IDamageable
 {
     public static TryModelController Instance { get; private set; }
+    public float MaxHealth { get ; set ; }
+    public float CurrentHealth { get ; set ; }
+
     [HideInInspector]
     private TowerBuildManager towerBuildManager;
     [HideInInspector]
@@ -21,6 +25,9 @@ public class TryModelController : TurretModel
 
     GameObject currentTurret;
 
+    [Header("Unity Stuff")]
+    public Image healthBar;
+
     public bool UiState;
 
     private void Awake()
@@ -31,6 +38,8 @@ public class TryModelController : TurretModel
     {
         TurretModelStart();
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        MaxHealth = Health;
+        CurrentHealth = MaxHealth;
     }
 
     private void Update()
@@ -132,7 +141,7 @@ public class TryModelController : TurretModel
             currentTurret = Instantiate(gameObject, TowerBuildManager.builderTransform);
             mybuilder.GetComponent<TowerBuildManager>().currentTurret = currentTurret;
             mybuilder.GetComponent<TowerBuildManager>().planeClose();
-            currentTurret.GetComponent<TurretController>().uiState = false;
+            currentTurret.GetComponent<TryModelController>().UiState = false;
         }
     }
     void OnDrawGizmosSelected()
@@ -153,11 +162,27 @@ public class TryModelController : TurretModel
             Debug.Log("+++++" + collider.name);
         }
     }
-
-    public void Damage(float damage)
+    #region IDamageable
+    public void Damage(float damageAmount)
     {
-
+        CurrentHealth -= damageAmount;
+        healthBar.fillAmount = CurrentHealth / MaxHealth;
+        if (CurrentHealth <= 0)
+        {
+            Debug.Log("Turret+-+- Damage");
+            Die();
+        }
     }
+
+    public void Die()
+    {
+        Debug.Log("Turret+-+- die");
+        //StateMachine.ChangeState(DieState);
+        Destroy(this.gameObject, 2.5f);
+    }
+
+    #endregion
+
 
     #region Fire Funcs
     void Firing()
@@ -374,6 +399,7 @@ public class TryModelController : TurretModel
             }
         }
     }
+
 
     #endregion
 }

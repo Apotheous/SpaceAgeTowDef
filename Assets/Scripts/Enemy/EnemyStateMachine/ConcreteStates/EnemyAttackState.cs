@@ -40,7 +40,6 @@ public class EnemyAttackState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        Debug.Log("GPT Yapýyor Bu sporu");
 
         //enemy.MoveEnemy(0);
         //if (_timer >_timeBetweenShots)
@@ -73,37 +72,37 @@ public class EnemyAttackState : EnemyState
 
     private void BulletFiring()
     {
-        Debug.Log("Bullet Firing = ");
 
     }
     private void BombExplosive()
     {
-        Debug.Log("Bomb Exp = ");
+        Debug.Log("Spider bomb = ");
         enemy.myWeapon.ammoPrefab.SetActive(true);
-        Collider[] colliders = Physics.OverlapSphere(transform.position, myWeapon.explosionRadius);
+        Collider[] colliders = Physics.OverlapSphere(enemy.transform.position, enemy.myWeapon.explosionRadius);
         foreach (Collider collider in colliders)
         {
-            if (collider.tag == enemyGroupTag)
+            if (collider.tag == enemy.enemyGroupTag && collider.GetComponent<TryModelController>())
             {
                 DamageExplosive(collider.transform);
+                Debug.Log("Spider bomb = " + collider.name);
             }
         }
     }  
 
-    private void DamageExplosive(Transform enemy)
+    private void DamageExplosive(Transform enemyObj)
     {
-        TryModelController e = enemy.GetComponent<TryModelController>();
+        TryModelController e = enemyObj.GetComponent<TryModelController>();
 
         if (e != null)
         {
-            e.Damage(myWeapon.damage);
-            myWeapon.damage = 0;
+            e.Damage(enemy.myWeapon.damage);
+            enemy.Die();
+            enemy.myWeapon.damage = 0;
         }
     }
 
     private void LaserFiring()
     {
-        Debug.Log("Laser Firing = ");
 
     }
     public void EnemyFireType(EnemyGunnerType enmyGnrType)
@@ -111,17 +110,17 @@ public class EnemyAttackState : EnemyState
         switch (enmyGnrType)
         {
             case EnemyGunnerType.Bullet:
-                Debug.Log("Enemy Firing = " + EnemyGunnerType.Bullet);
+
                 BulletFiring();
                 break;
             case EnemyGunnerType.Laser:
-                Debug.Log("Enemy Firing = " + EnemyGunnerType.Laser);
+
                 LaserFiring();
                 break;
             case EnemyGunnerType.Bomb:
-                Debug.Log("Enemy Firing = " + EnemyGunnerType.Bomb);
+
                 BombExplosive();
-                Die();
+                
                 break;  
         }
     }

@@ -163,8 +163,9 @@ public class TurretModel : MonoBehaviour
                         weaponClass.FiringRange = 30.0f;
                         Health = 100.0f;
                         weaponClass.ShotForce = 500;
-                        weaponClass.FireRate = 0.15f;
-                        weaponClass.BarrelTimerRate = 0.05f;
+                        weaponClass.FireRate = 500f;
+                        weaponClass.BarrelTimerRate = 0.5f;
+                        weaponClass.BarrelTimerLine = 2f;
                         rotationClass.RotationSpeed = 3.0f;
                         rotationClass.BarrelHeightAllowance = 3.5f;
                         laserClass.DamageOverTime = 30;
@@ -178,7 +179,8 @@ public class TurretModel : MonoBehaviour
                         Health = 100.0f;
                         weaponClass.ShotForce = 300;
                         weaponClass.FireRate = 0.5f;
-                        weaponClass.BarrelTimerRate = 0.1f;
+                        weaponClass.BarrelTimerRate = 0.5f;
+                        weaponClass.BarrelTimerLine = 0.1f;
                         rotationClass.RotationSpeed = 2.0f;
                         rotationClass.BarrelHeightAllowance = 1.0f;
                         laserClass.DamageOverTime = 30;
@@ -192,7 +194,8 @@ public class TurretModel : MonoBehaviour
                         Health = 100.0f;
                         weaponClass.ShotForce = 400;
                         weaponClass.FireRate = 0.2f;
-                        weaponClass.BarrelTimerRate = 0.1f;
+                        weaponClass.BarrelTimerRate = 1f;
+                        weaponClass.BarrelTimerLine = 2f;
                         rotationClass.RotationSpeed = 2.0f;
                         rotationClass.BarrelHeightAllowance = 1.0f;
                         laserClass.DamageOverTime = 30;

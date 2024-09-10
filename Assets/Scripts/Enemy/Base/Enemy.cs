@@ -236,7 +236,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     public void Die()
     {
         StateMachine.ChangeState(DieState);
-        Destroy(this.gameObject, 2.5f);
+        
     }
 
     //public void MoveEnemyTowardsTarget(float targetPosition, float moveSpeed)

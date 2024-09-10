@@ -24,7 +24,6 @@ public class EnemyIdleState : EnemyState
         enemy.moveSpeed = 2f;
         _targetPos = GetRandomPointInCircle();
         enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_WALK_FRONT);
-        Debug.Log("++++++-----------EnterState");
     }
 
     private Vector3 GetRandomPointInCircle()
@@ -36,13 +35,11 @@ public class EnemyIdleState : EnemyState
     public override void ExitState()
     {
         base.ExitState();
-        Debug.Log("++++++-----------ExitState");
     }
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        Debug.Log("++++++-----------FrameUpdate");
         
         if (enemy.moveSpeed > 0)
         {
@@ -62,6 +59,5 @@ public class EnemyIdleState : EnemyState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        Debug.Log("++++++-----------PhysicUpdate");
     }
 }

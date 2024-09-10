@@ -11,7 +11,7 @@ public class ReturnPool : MonoBehaviour
     private void OnEnable()
     {
         lifeTimer = lifetime;
-        TurretController.Instance.gameObject.name = myTurretName;
+        TryModelController.Instance.gameObject.name = myTurretName;
     }
 
     private void Update()
@@ -20,9 +20,9 @@ public class ReturnPool : MonoBehaviour
 
         if (lifeTimer <= 0f)
         {
-            if (TurretController.Instance.name == myTurretName)
+            if (TryModelController.Instance.name == myTurretName)
             {
-                TurretController.Instance.ReturnBulletToPool(this.gameObject);
+                TryModelController.Instance.ReturnBulletToPool(this.gameObject);
                 Debug.Log("Bullet Tarete Döndü");
             }
             else
