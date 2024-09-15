@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 
 
-public class TryModelController : TurretModel,IDamageable
+public class TryModelController : TurretModel, IDamageable, IClickable
 {
     public static TryModelController Instance { get; private set; }
     public float MaxHealth { get ; set ; }
@@ -133,17 +133,17 @@ public class TryModelController : TurretModel,IDamageable
             target = null;
         }
     }
-    void OnMouseDown()
-    {
-        if (UiState == true)
-        {
-            mybuilder.GetComponent<TowerBuildManager>().DestroyCurrentTurret();
-            currentTurret = Instantiate(gameObject, TowerBuildManager.builderTransform);
-            mybuilder.GetComponent<TowerBuildManager>().currentTurret = currentTurret;
-            mybuilder.GetComponent<TowerBuildManager>().planeClose();
-            currentTurret.GetComponent<TryModelController>().UiState = false;
-        }
-    }
+    //void OnMouseDown()
+    //{
+    //    if (UiState == true)
+    //    {
+    //        mybuilder.GetComponent<TowerBuildManager>().DestroyCurrentTurret();
+    //        currentTurret = Instantiate(gameObject, TowerBuildManager.builderTransform);
+    //        mybuilder.GetComponent<TowerBuildManager>().currentTurret = currentTurret;
+    //        mybuilder.GetComponent<TowerBuildManager>().planeClose();
+    //        currentTurret.GetComponent<TryModelController>().UiState = false;
+    //    }
+    //}
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -400,6 +400,18 @@ public class TryModelController : TurretModel,IDamageable
         }
     }
 
+
+    public void ICilkable()
+    {
+        if (UiState == true)
+        {
+            mybuilder.GetComponent<TowerBuildManager>().DestroyCurrentTurret();
+            currentTurret = Instantiate(gameObject, TowerBuildManager.builderTransform);
+            mybuilder.GetComponent<TowerBuildManager>().currentTurret = currentTurret;
+            mybuilder.GetComponent<TowerBuildManager>().planeClose();
+            currentTurret.GetComponent<TryModelController>().UiState = false;
+        }
+    }
 
     #endregion
 }

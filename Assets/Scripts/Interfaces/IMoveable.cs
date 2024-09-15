@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IEnemyMoveable 
+public interface IMoveable 
 {
     Rigidbody rb { get;set;}
 

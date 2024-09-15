@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class TowerBuildManager : MonoBehaviour
+public class TowerBuildManager : MonoBehaviour, IClickable
 {
     // PUBLIC VARIABLES
     public GameObject MyTower;
@@ -33,14 +33,6 @@ public class TowerBuildManager : MonoBehaviour
             gridPlanes[i].SetActive(isActivePlanes);
         }
     }
-    void OnMouseDown()
-    {
-
-        planeOpen();
-        // Kule týklandýðýnda GameManager'daki metodu çaðýr
-        GameManager.Instance.OnTowerClicked(gameObject);
-
-    }
 
     public void planeClose()
     {
@@ -64,4 +56,10 @@ public class TowerBuildManager : MonoBehaviour
         Destroy(currentTurret); 
     }
 
+    public void ICilkable()
+    {
+        planeOpen();
+        // Kule týklandýðýnda GameManager'daki metodu çaðýr
+        GameManager.Instance.OnTowerClicked(gameObject);
+    }
 }

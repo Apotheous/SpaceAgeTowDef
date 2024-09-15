@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using static TurretController;
 using static UnityEngine.GraphicsBuffer;
 
-public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckable
+public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 {
    
     public float movementDirection;
@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
     [field: SerializeField] public float MaxHealth { get; set; }
     public float CurrentHealth { get; set; }
-    Rigidbody IEnemyMoveable.rb { get; set; }
+    Rigidbody IMoveable.rb { get; set; }
     public bool IsMovingForward { get; set; } = true;
     public bool IsAggroed { get; set; }
     public bool IsWithinStrikeingDistance { get; set; }
