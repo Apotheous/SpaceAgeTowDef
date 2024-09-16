@@ -9,6 +9,7 @@ using UnityEngine.Events;
 public class TryModelController : TurretModel, IDamageable, IClickable
 {
     public static TryModelController Instance { get; private set; }
+    public Transform target;
     public float MaxHealth { get ; set ; }
     public float CurrentHealth { get ; set ; }
 
@@ -21,7 +22,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     public string enemyGroupTag;
 
     public UnityEvent gunShot;
-    public Transform target;
+
 
     GameObject currentTurret;
 
@@ -75,17 +76,22 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     {
         if (target != null)
         {
+            
             weaponClass.Dist = Vector3.Distance(transform.position, target.position);
 
             weaponClass.OnVision = weaponClass.Dist < weaponClass.RangeOfVision;
             weaponClass.OnTarget = false;
             RaycastHit hit;
-            if (Physics.Raycast(weaponClass.Barrels[0].position, weaponClass.Barrels[0].forward, out hit))
+            if (Physics.Raycast(weaponClass.Barrels[0].position, weaponClass.Barrels[0].forward, out hit, weaponClass.RangeOfVision))
             {
-
+                
                 if (hit.transform != null && hit.transform.tag == enemyGroupTag)
                 {
-                    weaponClass.OnTarget = true;
+                    if (weaponClass.Dist < weaponClass.FiringRange)
+                    {
+                        weaponClass.OnTarget = true;
+                    }
+                    
                 }
             }
         }
@@ -122,7 +128,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
             }
         }
 
-        if (nearestEnemy != null && shortestDistance <= weaponClass.RangeOfVision)
+        if (nearestEnemy != null && shortestDistance <= weaponClass.FiringRange)
         {
 
             target = nearestEnemy.transform;
@@ -133,17 +139,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
             target = null;
         }
     }
-    //void OnMouseDown()
-    //{
-    //    if (UiState == true)
-    //    {
-    //        mybuilder.GetComponent<TowerBuildManager>().DestroyCurrentTurret();
-    //        currentTurret = Instantiate(gameObject, TowerBuildManager.builderTransform);
-    //        mybuilder.GetComponent<TowerBuildManager>().currentTurret = currentTurret;
-    //        mybuilder.GetComponent<TowerBuildManager>().planeClose();
-    //        currentTurret.GetComponent<TryModelController>().UiState = false;
-    //    }
-    //}
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -349,36 +345,26 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     #region Trackingtarget
     private void AimAtTargetX()
     {
-        // Hedefin taretle olan fark vektörünü hesapla
         Vector3 directionToTarget = target.position - rotationClass.AngleX.position;
 
-        // Y bileþenini sýfýrla, sadece yatay düzlemde çalýþ
         directionToTarget.y = 0;
 
-        // Eðer directionToTarget sýfýr vektörü deðilse
         if (directionToTarget.sqrMagnitude > 0.001f)
         {
-            // Hedefe yönelmek için gereken rotasyonu hesapla
             Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
 
-            // X ekseninde düzgün bir þekilde dönmesi için interpolasyon (lerp) kullan
             rotationClass.AngleX.rotation = Quaternion.Slerp(rotationClass.AngleX.rotation, targetRotation, Time.deltaTime * rotationClass.RotationSpeed);
         }
     }
 
     private void AimAtTargetY()
     {
-
-        // Hedefin taretle olan fark vektörünü hesapla
         Vector3 directionToTarget = target.position - rotationClass.AngleY.position;
 
-        // Eðer directionToTarget sýfýr vektörü deðilse
         if (directionToTarget.sqrMagnitude > 0.001f)
         {
-            // Hedefe yönelmek için gereken rotasyonu hesapla
             Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
 
-            // Y ekseninde düzgün bir þekilde dönmesi için interpolasyon (lerp) kullan
             rotationClass.AngleY.rotation = Quaternion.Slerp(rotationClass.AngleY.rotation, targetRotation, Time.deltaTime * rotationClass.RotationSpeed);
         }
     }

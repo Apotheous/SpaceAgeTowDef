@@ -182,11 +182,11 @@ GameObject:
   - component: {fileID: 23000011206435812}
   - component: {fileID: 95000013199790468}
   - component: {fileID: 3556800101462753375}
-  - component: {fileID: 1379804528630260755}
   - component: {fileID: -3864039065064739442}
+  - component: {fileID: -4448266152918858151}
   m_Layer: 0
   m_Name: Canon_lvl_2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,6 +206,7 @@ Transform:
   m_Children:
   - {fileID: 3546343132875572924}
   - {fileID: 4000012307128758}
+  - {fileID: 2855640730977375026}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33000012798234764
@@ -300,70 +301,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5942931, y: 0.86488, z: 0.5927341}
   m_Center: {x: 0, y: 0.42280847, z: 0.0042273286}
---- !u!114 &1379804528630260755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000013227101710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c66bdbff2061e44ad0b6de1bf6f851, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedFireType: 0
-  enemyGroupTag: Enemy
-  uiState: 1
-  target: {fileID: 0}
-  weaponClass:
-    barrels:
-    - {fileID: 939578371727991287}
-    - {fileID: 5813221353695688521}
-    shotForce: 500
-    visionRange: 100
-    firingRange: 40
-    dist: 0
-    onVision: 0
-    onTarget: 0
-    Timer: 0
-    fireRate: 0.15
-    barrelTimer: 0
-    barrelTimerRate: 0.05
-    barrelTimerLine: 0.1
-  bulletClass:
-    bullets: []
-    bulletPool: []
-    bulletPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
-  rotationClass:
-    angleX: {fileID: 4000013053745136}
-    angleY: {fileID: 4000012307128758}
-    rotationSpeed: 3
-    notDeep: 0
-    notDeepT: 0
-    BarrelHeightAllowance: 3.5
-  laserClass:
-    useLaser: 0
-    damageOverTime: 30
-    slowAmount: 0.5
-    lineRenderer: {fileID: 0}
-    impactEffect: {fileID: 0}
-    impactLight: {fileID: 0}
-  gunShot:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3525683396398881497}
-        m_TargetAssemblyTypeName: TurretgunShoot, Assembly-CSharp
-        m_MethodName: GunShootingSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!54 &-3864039065064739442
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -391,6 +328,78 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-4448266152918858151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013227101710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1995aea4d023f4ea297a9786baba44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  Level: 0
+  GunnerType: 1
+  Health: 100
+  CurrentXP: 0
+  NextLevelXP: 1000
+  Cost: 500
+  weaponClass:
+    Barrels:
+    - {fileID: 939578371727991287}
+    - {fileID: 5813221353695688521}
+    ShotForce: 500
+    RangeOfVision: 40
+    FiringRange: 30
+    Dist: 0
+    OnVision: 0
+    OnTarget: 0
+    Timer: 0
+    FireRate: 500
+    BarrelTimer: 0
+    BarrelTimerRate: 0.5
+    BarrelTimerLine: 2
+  bulletClass:
+    Bullets: []
+    BulletPool: []
+    BulletPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
+  rotationClass:
+    AngleX: {fileID: 4000013053745136}
+    AngleY: {fileID: 4000012307128758}
+    RotationSpeed: 3
+    NotDeep: 0
+    NotDeepT: 0
+    BarrelHeightAllowance: 3.5
+  laserClass:
+    UseLaser: 0
+    DamageOverTime: 30
+    ShowAmount: 0.5
+    lineRenderer: {fileID: 0}
+    impactEffect: {fileID: 0}
+    impactLight: {fileID: 0}
+  selectedFireType: 0
+  enemyGroupTag: Enemy
+  gunShot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3525683396398881497}
+        m_TargetAssemblyTypeName: TurretgunShoot, Assembly-CSharp
+        m_MethodName: GunShootingSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  target: {fileID: 0}
+  healthBar: {fileID: 2828007697929774342}
+  UiState: 1
 --- !u!1 &3559367689844869331
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,3 +604,116 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000012415272414}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8064352184235842099
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4000013053745136}
+    m_Modifications:
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 49.2585
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.033
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398822561866459088, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+      propertyPath: m_Name
+      value: Canvas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+--- !u!114 &2828007697929774342 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5248188425565732661, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+  m_PrefabInstance: {fileID: 8064352184235842099}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &2855640730977375026 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5209278872126671105, guid: 93bc703fdd75b33498ed919f07a9e0e8, type: 3}
+  m_PrefabInstance: {fileID: 8064352184235842099}
+  m_PrefabAsset: {fileID: 0}

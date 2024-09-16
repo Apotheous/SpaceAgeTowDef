@@ -151,7 +151,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2567730423825773427}
-  - component: {fileID: 8450802917023562385}
   - component: {fileID: 2332040487149060004}
   - component: {fileID: 7607344540170705564}
   - component: {fileID: 1984458606012889261}
@@ -181,73 +180,6 @@ Transform:
   - {fileID: 4076516847505997088}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8450802917023562385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96676193128157195}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c66bdbff2061e44ad0b6de1bf6f851, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turretModel: {fileID: 0}
-  selectedFireType: 0
-  enemyGroupTag: Enemy
-  uiState: 1
-  target: {fileID: 0}
-  weaponClass:
-    barrels:
-    - {fileID: 396893910854513755}
-    - {fileID: 697670582593372080}
-    - {fileID: 800517241917592740}
-    - {fileID: 3776398494113739697}
-    shotForce: 500
-    visionRange: 100
-    firingRange: 40
-    dist: 0
-    onVision: 0
-    onTarget: 0
-    Timer: 0
-    fireRate: 0.15
-    barrelTimer: 0
-    barrelTimerRate: 0.05
-    barrelTimerLine: 0.1
-  bulletClass:
-    bullets: []
-    bulletPool: []
-    bulletPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
-  rotationClass:
-    angleX: {fileID: 1650587800153874970}
-    angleY: {fileID: 2900063763463750077}
-    rotationSpeed: 3
-    notDeep: 0
-    notDeepT: 0
-    BarrelHeightAllowance: 3.5
-  laserClass:
-    useLaser: 0
-    damageOverTime: 30
-    slowAmount: 0.5
-    lineRenderer: {fileID: 0}
-    impactEffect: {fileID: 0}
-    impactLight: {fileID: 0}
-  gunShot:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 266019331700861843}
-        m_TargetAssemblyTypeName: TurretgunShoot, Assembly-CSharp
-        m_MethodName: GunShootingSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!65 &2332040487149060004
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -339,7 +271,7 @@ MonoBehaviour:
   rotationClass:
     AngleX: {fileID: 1650587800153874970}
     AngleY: {fileID: 2900063763463750077}
-    RotationSpeed: 2
+    RotationSpeed: 3
     NotDeep: 0
     NotDeepT: 0
     BarrelHeightAllowance: 1

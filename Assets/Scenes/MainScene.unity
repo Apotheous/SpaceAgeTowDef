@@ -516,7 +516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &579285192
 Transform:
   m_ObjectHideFlags: 0
@@ -1039,7 +1039,7 @@ MonoBehaviour:
   myUnits: {fileID: 1089654663557432098, guid: fa2dc93095ada4941b64975f93282cd8, type: 3}
   mySpawnPoint: {fileID: 203462279}
   Timer: 0
-  spawnRate: 5
+  spawnRate: 20
 --- !u!1 &982691584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,11 +1274,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1984458606012889261, guid: e475b54d2930e1a48ad24c8ccfd2a259, type: 3}
       propertyPath: weaponClass.FireRate
-      value: 500
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1984458606012889261, guid: e475b54d2930e1a48ad24c8ccfd2a259, type: 3}
       propertyPath: weaponClass.ShotForce
-      value: 500
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 1984458606012889261, guid: e475b54d2930e1a48ad24c8ccfd2a259, type: 3}
       propertyPath: weaponClass.FiringRange
@@ -1290,7 +1290,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1984458606012889261, guid: e475b54d2930e1a48ad24c8ccfd2a259, type: 3}
       propertyPath: rotationClass.RotationSpeed
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1984458606012889261, guid: e475b54d2930e1a48ad24c8ccfd2a259, type: 3}
+      propertyPath: weaponClass.BarrelTimerLine
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1984458606012889261, guid: e475b54d2930e1a48ad24c8ccfd2a259, type: 3}
       propertyPath: weaponClass.BarrelTimerRate
@@ -1298,7 +1302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1984458606012889261, guid: e475b54d2930e1a48ad24c8ccfd2a259, type: 3}
       propertyPath: rotationClass.BarrelHeightAllowance
-      value: 3.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2567730423825773427, guid: e475b54d2930e1a48ad24c8ccfd2a259, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1678,7 +1682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1987858252
 Transform:
   m_ObjectHideFlags: 0

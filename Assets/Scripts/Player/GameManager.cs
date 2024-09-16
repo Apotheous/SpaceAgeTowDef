@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
             Instance = this;
         else
-            Destroy(gameObject); // Eðer baþka bir instance varsa, bu objeyi yok et
+            Destroy(gameObject); 
     }
 
     public void OnTowerClicked(GameObject tower)
@@ -21,15 +21,13 @@ public class GameManager : MonoBehaviour
         {
             if (tower.name != item.name)
             {
-                item.GetComponent<TowerBuildManager>().planeClose(); // item'in planeClose metodunu çaðýr
-                Debug.Log(item.name); // item'in adýný yazdýr
+                item.GetComponent<TowerBuildManager>().planeClose(); 
+                Debug.Log(item.name); 
             }
             else
             {
-                Debug.Log(tower.name); // Týklanan kuleyi yazdýr
+                Debug.Log(tower.name); 
             }
         }
     }
-
-    // Diðer oyun yönetimi ile ilgili metotlar...
 }

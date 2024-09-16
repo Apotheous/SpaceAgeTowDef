@@ -162,12 +162,12 @@ public class TurretModel : MonoBehaviour
                         weaponClass.RangeOfVision = 40.0f;
                         weaponClass.FiringRange = 30.0f;
                         Health = 100.0f;
-                        weaponClass.ShotForce = 500;
-                        weaponClass.FireRate = 500f;
+                        weaponClass.ShotForce = 250;
+                        weaponClass.FireRate = 0.2f;
                         weaponClass.BarrelTimerRate = 0.5f;
-                        weaponClass.BarrelTimerLine = 2f;
-                        rotationClass.RotationSpeed = 3.0f;
-                        rotationClass.BarrelHeightAllowance = 3.5f;
+                        weaponClass.BarrelTimerLine = 3f;
+                        rotationClass.RotationSpeed = 1.0f;
+                        rotationClass.BarrelHeightAllowance = 1.0f;
                         laserClass.DamageOverTime = 30;
                         laserClass.ShowAmount = 0.5f;
                         NextLevelXP = 1000;
@@ -178,8 +178,8 @@ public class TurretModel : MonoBehaviour
                         weaponClass.FiringRange = 40.0f;
                         Health = 100.0f;
                         weaponClass.ShotForce = 300;
-                        weaponClass.FireRate = 0.5f;
-                        weaponClass.BarrelTimerRate = 0.5f;
+                        weaponClass.FireRate = 0.2f;
+                        weaponClass.BarrelTimerRate = 2f;
                         weaponClass.BarrelTimerLine = 0.1f;
                         rotationClass.RotationSpeed = 2.0f;
                         rotationClass.BarrelHeightAllowance = 1.0f;
@@ -196,7 +196,7 @@ public class TurretModel : MonoBehaviour
                         weaponClass.FireRate = 0.2f;
                         weaponClass.BarrelTimerRate = 1f;
                         weaponClass.BarrelTimerLine = 2f;
-                        rotationClass.RotationSpeed = 2.0f;
+                        rotationClass.RotationSpeed = 3.0f;
                         rotationClass.BarrelHeightAllowance = 1.0f;
                         laserClass.DamageOverTime = 30;
                         laserClass.ShowAmount = 0.5f;

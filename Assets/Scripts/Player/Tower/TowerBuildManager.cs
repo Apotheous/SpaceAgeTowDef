@@ -29,7 +29,15 @@ public class TowerBuildManager : MonoBehaviour, IClickable
         for (int i = 0; i < gridPlanes.Count; i++)
         {
             Instantiate(craftObjects[i], gridPlanes[i].transform);
-            craftObjects[i].GetComponent<TurretController>().uiState = true;
+            //if (craftObjects[i].GetComponent<TurretController>().enabled==true)
+            //{
+            //    craftObjects[i].GetComponent<TurretController>().uiState = true;
+            //}
+            if (craftObjects[i].GetComponent<TryModelController>()!=null)
+            {
+                craftObjects[i].GetComponent<TryModelController>().UiState = true;
+            }
+            
             gridPlanes[i].SetActive(isActivePlanes);
         }
     }
