@@ -128,7 +128,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
             }
         }
 
-        if (nearestEnemy != null && shortestDistance <= weaponClass.FiringRange)
+        if (nearestEnemy != null && shortestDistance <= weaponClass.RangeOfVision)
         {
 
             target = nearestEnemy.transform;
