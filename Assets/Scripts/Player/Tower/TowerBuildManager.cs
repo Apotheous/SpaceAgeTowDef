@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class TowerBuildManager : MonoBehaviour, IClickable
 {
+    public GameManager GameManager;
+
     // PUBLIC VARIABLES
     public GameObject MyTower;
     public GameObject currentTurret;
@@ -18,6 +20,7 @@ public class TowerBuildManager : MonoBehaviour, IClickable
 
     private void Start()
     {
+        
         gridPlanesCount = gridPlanes.Count;
         gameObject.name = MyTower.name + "_Builder";
     }
@@ -29,10 +32,6 @@ public class TowerBuildManager : MonoBehaviour, IClickable
         for (int i = 0; i < gridPlanes.Count; i++)
         {
             Instantiate(craftObjects[i], gridPlanes[i].transform);
-            //if (craftObjects[i].GetComponent<TurretController>().enabled==true)
-            //{
-            //    craftObjects[i].GetComponent<TurretController>().uiState = true;
-            //}
             if (craftObjects[i].GetComponent<TryModelController>()!=null)
             {
                 craftObjects[i].GetComponent<TryModelController>().UiState = true;
@@ -67,7 +66,10 @@ public class TowerBuildManager : MonoBehaviour, IClickable
     public void ICilkable()
     {
         planeOpen();
+        Debug.Log("sdasdasd" + MyTower.name);
         // Kule týklandýðýnda GameManager'daki metodu çaðýr
-        GameManager.Instance.OnTowerClicked(gameObject);
+        
+
+        GameManager.OnTowerClicked(gameObject);
     }
 }

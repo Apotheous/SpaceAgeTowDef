@@ -91,7 +91,6 @@ public class TryModelController : TurretModel, IDamageable, IClickable
                     {
                         weaponClass.OnTarget = true;
                     }
-                    
                 }
             }
         }

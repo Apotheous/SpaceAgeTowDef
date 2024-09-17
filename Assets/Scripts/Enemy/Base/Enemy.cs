@@ -114,8 +114,6 @@ public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private void Update()
     {
        
-        //MoveEnemy(gameObject, moveSpeed);
-
         WalkDirectionControl();
 
         StateMachine.CurrentEnemyState.FrameUpdate();
@@ -236,19 +234,7 @@ public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public void Die()
     {
         StateMachine.ChangeState(DieState);
-        
     }
-
-    //public void MoveEnemyTowardsTarget(float targetPosition, float moveSpeed)
-    //{
-    //    // Hedefe olan yönü bul
-    //    Vector3 direction = (targetPosition - transform.position).normalized;
-
-    //    // Düşmanı bu yöne doğru hareket ettir
-    //    transform.Translate(direction * moveSpeed * Time.deltaTime);
-    //    //e=gameObject;
-    //    //transform.Translate(e.transform.forward * moveSpeed * Time.deltaTime);
-    //}
 
     public void CheckForForwardOrBackFacing(Vector3 velocity)
     {
