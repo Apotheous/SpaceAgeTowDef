@@ -108,6 +108,7 @@ public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         rb = GetComponent<Rigidbody>();
         CurrentHealth = MaxHealth;
         StateMachine.Initialize(IdleState);
+        //TryModelController.Instance.enemies.Add(gameObject);
 
         InvokeRepeating("UpdateTargetWithGizmos", 0f, 0.5f);
     }

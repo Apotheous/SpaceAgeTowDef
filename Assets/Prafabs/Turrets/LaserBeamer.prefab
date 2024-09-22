@@ -5159,8 +5159,8 @@ MonoBehaviour:
     Barrels:
     - {fileID: 4000013440857102}
     ShotForce: 100
-    RangeOfVision: 5
-    FiringRange: 7
+    RangeOfVision: 50
+    FiringRange: 70
     Dist: 0
     OnVision: 0
     OnTarget: 0
@@ -5181,12 +5181,13 @@ MonoBehaviour:
     NotDeepT: 0
     BarrelHeightAllowance: 1
   laserClass:
-    UseLaser: 0
+    UseLaser: 1
     DamageOverTime: 30
     ShowAmount: 0.5
-    lineRenderer: {fileID: 0}
-    impactEffect: {fileID: 0}
-    impactLight: {fileID: 0}
+    lineRenderer: {fileID: 120000012026282110}
+    impactEffect: {fileID: 198000014294947900}
+    impactLight: {fileID: 108000012254394918}
+  target: {fileID: 0}
   selectedFireType: 0
   enemyGroupTag: Enemy
   gunShot:
@@ -5204,9 +5205,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  target: {fileID: 0}
   healthBar: {fileID: 6676562975725697097}
   UiState: 1
+  enemies: []
 --- !u!1 &1000013637573146
 GameObject:
   m_ObjectHideFlags: 0
@@ -5528,7 +5529,7 @@ ParticleSystem:
         m_RotationOrder: 0
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -5581,7 +5582,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:

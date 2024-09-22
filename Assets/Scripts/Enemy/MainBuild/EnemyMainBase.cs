@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMainBase : MonoBehaviour
 {
-    public static EnemyMainBase instance;
+    public static EnemyMainBase instanse;
     public List<GameObject> myUnitList = new List<GameObject>();
     public GameObject myUnits;
     public Transform mySpawnPoint;
@@ -13,7 +13,10 @@ public class EnemyMainBase : MonoBehaviour
     public float spawnRate;
     private void Awake()
     {
-        instance = this;
+        if (instanse == null)
+            instanse = this;
+        else
+            Destroy(gameObject);
     }
     private void Update()
     {
@@ -23,6 +26,7 @@ public class EnemyMainBase : MonoBehaviour
         {
             GameObject myUnit= Instantiate(myUnits,mySpawnPoint);
             myUnitList.Add(myUnit);
+
             Timer = 0f;
         }
     }

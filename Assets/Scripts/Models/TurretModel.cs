@@ -105,8 +105,8 @@ public class TurretModel : MonoBehaviour
                 switch (level)
                 {
                     case LevelProp.LEVEL_ONE:
-                        weaponClass.RangeOfVision = 5.0f;
-                        weaponClass.FiringRange = 7.0f;
+                        weaponClass.RangeOfVision = 50.0f;
+                        weaponClass.FiringRange = 70.0f;
                         Health = 100.0f;
                         weaponClass.ShotForce = 100;
                         weaponClass.FireRate = 1.0f;

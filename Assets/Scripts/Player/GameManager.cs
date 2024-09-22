@@ -5,22 +5,26 @@ using static UnityEditor.Progress;
 
 public class GameManager : MonoBehaviour
 {
-    //public static GameManager Instance;
-    public List<GameObject> playerTowers= new List<GameObject>();
+    public static GameManager instanse;
 
-    //private void Awake()
-    //{
-    //    if (Instance == null)
-    //        Instance = this;
-    //    else
-    //        Destroy(gameObject);
-    //}
+    public List<GameObject> my_Towers = new List<GameObject>();
+
+    public List<GameObject> my_Towers_Builders = new List<GameObject>();
+    
+
+    private void Awake()
+    {
+        if (instanse == null)
+            instanse = this;
+        else
+            Destroy(gameObject);
+    }
 
     public void OnTowerClicked(GameObject tower)
     {
         Debug.Log("+-+-++--++ = " + tower.name);
 
-        foreach (var item in playerTowers)
+        foreach (var item in my_Towers_Builders)
         {
             if (tower.name != item.name)
             {

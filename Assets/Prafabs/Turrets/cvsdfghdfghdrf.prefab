@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Level: 2
+  Level: 0
   GunnerType: 1
   Health: 100
   CurrentXP: 0
@@ -253,17 +253,17 @@ MonoBehaviour:
     - {fileID: 697670582593372080}
     - {fileID: 800517241917592740}
     - {fileID: 3776398494113739697}
-    ShotForce: 400
-    RangeOfVision: 70
-    FiringRange: 60
+    ShotForce: 250
+    RangeOfVision: 40
+    FiringRange: 30
     Dist: 0
     OnVision: 0
     OnTarget: 0
     Timer: 0
     FireRate: 0.2
     BarrelTimer: 0
-    BarrelTimerRate: 1
-    BarrelTimerLine: 2
+    BarrelTimerRate: 0.5
+    BarrelTimerLine: 3
   bulletClass:
     Bullets: []
     BulletPool: []
@@ -271,7 +271,7 @@ MonoBehaviour:
   rotationClass:
     AngleX: {fileID: 1650587800153874970}
     AngleY: {fileID: 2900063763463750077}
-    RotationSpeed: 3
+    RotationSpeed: 1
     NotDeep: 0
     NotDeepT: 0
     BarrelHeightAllowance: 1
@@ -282,6 +282,7 @@ MonoBehaviour:
     lineRenderer: {fileID: 0}
     impactEffect: {fileID: 0}
     impactLight: {fileID: 0}
+  target: {fileID: 0}
   selectedFireType: 0
   enemyGroupTag: Enemy
   gunShot:
@@ -299,7 +300,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  target: {fileID: 0}
   healthBar: {fileID: 4038865064501627668}
   UiState: 1
 --- !u!1 &1936283023299192221

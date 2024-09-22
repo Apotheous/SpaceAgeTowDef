@@ -11,7 +11,7 @@ public class ReturnPool : MonoBehaviour
     private void OnEnable()
     {
         lifeTimer = lifetime;
-        TryModelController.Instance.gameObject.name = myTurretName;
+        //TryModelController.Instance.gameObject.name = myTurretName;
     }
 
     private void Update()
@@ -20,16 +20,16 @@ public class ReturnPool : MonoBehaviour
 
         if (lifeTimer <= 0f)
         {
-            if (TryModelController.Instance.name == myTurretName)
-            {
-                TryModelController.Instance.ReturnBulletToPool(this.gameObject);
-                Debug.Log("Bullet Tarete Döndü");
-            }
-            else
-            {
-                Destroy(this.gameObject);
-                Debug.Log("Bullet Destroy Edildi");
-            }
+            //if (TryModelController.Instance.name == myTurretName)
+            //{
+            //    TryModelController.Instance.ReturnBulletToPool(this.gameObject);
+            //    Debug.Log("Bullet Tarete Döndü");
+            //}
+            //else
+            //{
+            //    Destroy(this.gameObject);
+            //    Debug.Log("Bullet Destroy Edildi");
+            //}
         }
     }
 }

@@ -29,7 +29,7 @@ public class EnemyChaseState : EnemyState
 
     public override void FrameUpdate()
     {
-        // base.FrameUpdate();
+        base.FrameUpdate();
         // Hedefe doðru hareket et
         if (enemy.target == null)
         {

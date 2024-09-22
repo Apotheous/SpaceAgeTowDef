@@ -21,6 +21,9 @@ public class EnemyDieState : EnemyState
         enemy.GetComponent<Rigidbody>().isKinematic = true;
         enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_DIE);
         Destroy(enemy.gameObject,2.5f);
+        //TryModelController.Instance.enemies.Remove(enemy.gameObject);
+        EnemyMainBase.instanse.myUnitList.Remove(enemy.gameObject);
+        enemy.moveSpeed = 0;
     }
 
     public override void ExitState()

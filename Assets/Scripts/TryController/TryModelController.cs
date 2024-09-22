@@ -8,7 +8,7 @@ using UnityEngine.Events;
 
 public class TryModelController : TurretModel, IDamageable, IClickable
 {
-    public static TryModelController Instance { get; private set; }
+    //public static TryModelController Instance { get; private set; }
     public Transform target;
     public float MaxHealth { get ; set ; }
     public float CurrentHealth { get ; set ; }
@@ -31,14 +31,32 @@ public class TryModelController : TurretModel, IDamageable, IClickable
 
     public bool UiState;
 
+
+    //public List<GameObject> enemies;
+
+    GameObject nearestEnemy;
+
     private void Awake()
     {
-        Instance = this;
+        //Instance = this;
     }
     void Start()
     {
+        //if (Instance == null)
+        //{
+        //    Instance = this;
+        //}
+        //else if (Instance!=nul)
+        //{
+
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
         TurretModelStart();
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        //InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        
         MaxHealth = Health;
         CurrentHealth = MaxHealth;
     }
@@ -46,7 +64,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     private void Update()
     {
         Information();
-
+        UpdateTarget();
         if (weaponClass.OnTarget)
         {
             HandleFiring(weaponClass.FireRate, Firing);
@@ -105,13 +123,14 @@ public class TryModelController : TurretModel, IDamageable, IClickable
             weaponClass.Timer = 0f;
         }
     }
-
+    //garbage && garbage collecter
     void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyGroupTag);
+        
+        //enemies = GameObject.FindGameObjectsWithTag(enemyGroupTag);
         float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
-        foreach (GameObject enemy in enemies)
+        nearestEnemy = null;
+        foreach (GameObject enemy in EnemyMainBase.instanse.myUnitList)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy < shortestDistance)
