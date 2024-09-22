@@ -22,20 +22,11 @@ public class GameManager : MonoBehaviour
 
     public void OnTowerClicked(GameObject tower)
     {
-        Debug.Log("+-+-++--++ = " + tower.name);
-
         foreach (var item in my_Towers_Builders)
         {
             if (tower.name != item.name)
             {
                 item.GetComponent<TowerBuildManager>().planeClose();
-                Debug.Log("+-+-++--++ = " + tower.name);
-                Debug.Log("+-+-++--++ = " + item.name);
-            }
-            else
-            {
-                Debug.Log("+-+-++--++ = " + tower.name);
-                Debug.Log("+-+-++--++ = " + item.name);
             }
         }
     }

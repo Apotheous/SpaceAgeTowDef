@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -7,46 +8,33 @@ using UnityEngine.Rendering;
 public class Bullet : MonoBehaviour
 {
     public string enemyGroupTag;
-    private Transform target;
-    private Rigidbody rb;
+
     public float speed = 70f;
 
-    public float damage = 50;
+    public float my_Damage;
 
-    public float explosionRadius = 0f;
-    public GameObject impactEffect;
+    public float explosionRadius;
+
     
-    private void Start()
-    {
-        rb = gameObject.GetComponent<Rigidbody>();
-    }
-
     public void OnCollisionEnter(Collision collider)
     {
-
-        
-        if (collider.transform.tag == enemyGroupTag)
+        IDamageable damageAble = collider.transform.GetComponent<IDamageable>();
+        if (damageAble != null)
         {
-            target = collider.gameObject.transform;
-            target.gameObject.GetComponent<Enemy>();
-
-            HitTarget();
+            if (explosionRadius > 0f)
+            {
+                Explode();
+            }
+            else if (explosionRadius == 0f)
+            {
+                damageAble.Damage(my_Damage);
+            }
         }
         else
         {
-            damage = 0;
+            my_Damage = 0;
         }
-    }
-    void HitTarget()
-    {
-        if (explosionRadius > 0f)
-        {
-            Explode();
-        }
-        else
-        {
-            Damage(target);
-        }
+
     }
 
     void Explode()
@@ -67,14 +55,8 @@ public class Bullet : MonoBehaviour
 
         if (e != null)
         {
-            e.Damage(damage);
-            damage = 0;
+            e.Damage(my_Damage);
+            //my_Damage = 0;
         }
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

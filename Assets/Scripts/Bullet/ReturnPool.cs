@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class ReturnPool : MonoBehaviour
 {
-    public float lifetime = 5f; // Merminin ömrü (saniye)
+    public float lifetime = 5f;
     private float lifeTimer;
-    private string myTurretName;
+    public GameObject myTurret;
 
     private void OnEnable()
     {
         lifeTimer = lifetime;
-        //TryModelController.Instance.gameObject.name = myTurretName;
     }
 
     private void Update()
@@ -20,16 +19,10 @@ public class ReturnPool : MonoBehaviour
 
         if (lifeTimer <= 0f)
         {
-            //if (TryModelController.Instance.name == myTurretName)
-            //{
-            //    TryModelController.Instance.ReturnBulletToPool(this.gameObject);
-            //    Debug.Log("Bullet Tarete Döndü");
-            //}
-            //else
-            //{
-            //    Destroy(this.gameObject);
-            //    Debug.Log("Bullet Destroy Edildi");
-            //}
+            if (myTurret)
+            {
+                myTurret.GetComponent<TryModelController>().ReturnBulletToPool(gameObject);
+            }
         }
     }
 }

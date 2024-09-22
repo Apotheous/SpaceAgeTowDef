@@ -5188,7 +5188,7 @@ MonoBehaviour:
     impactEffect: {fileID: 198000014294947900}
     impactLight: {fileID: 108000012254394918}
   target: {fileID: 0}
-  selectedFireType: 0
+  selectedFireType: 1
   enemyGroupTag: Enemy
   gunShot:
     m_PersistentCalls:
@@ -5207,7 +5207,6 @@ MonoBehaviour:
         m_CallState: 2
   healthBar: {fileID: 6676562975725697097}
   UiState: 1
-  enemies: []
 --- !u!1 &1000013637573146
 GameObject:
   m_ObjectHideFlags: 0

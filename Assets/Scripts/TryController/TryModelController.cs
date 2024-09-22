@@ -36,6 +36,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
 
     GameObject nearestEnemy;
 
+    float Turret_Damage;
     private void Awake()
     {
         //Instance = this;
@@ -206,6 +207,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
 
     public void Fire(int barrelCount, FireType fireType)
     {
+
         switch (barrelCount)
         {
             case 1:
@@ -319,9 +321,12 @@ public class TryModelController : TurretModel, IDamageable, IClickable
         if (bulletClass.Bullets.Count > 0)
         {
             GameObject bullet = bulletClass.Bullets[0];
+
             bullet.transform.SetParent(null);
             bulletClass.Bullets.RemoveAt(0);
+            bullet.GetComponent<Bullet>().my_Damage = Turret_Damage;
             bullet.SetActive(true);
+
             gunShot.Invoke();
             // Mermiyi namlunun pozisyonuna ve rotasyonuna ayarla
             bullet.transform.position = weaponClass.Barrels[barrelIndex].position;
@@ -336,7 +341,11 @@ public class TryModelController : TurretModel, IDamageable, IClickable
         else
         {
             // Eðer obje havuzunda mermi yoksa yeni bir mermi oluþtur
+            
             GameObject newBullet = Instantiate(bulletClass.BulletPrefab, weaponClass.Barrels[barrelIndex].position, weaponClass.Barrels[barrelIndex].rotation);
+            newBullet.GetComponent<ReturnPool>().myTurret = gameObject;
+            Turret_Damage=newBullet.GetComponent<Bullet>().my_Damage;
+            
             Rigidbody rb = newBullet.GetComponent<Rigidbody>();
             rb.AddForce(weaponClass.Barrels[barrelIndex].forward * weaponClass.ShotForce);
             gunShot.Invoke();
