@@ -288,7 +288,10 @@ public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 
     }
 
-
+    public void ITriggerCheck(Collision contactObj)
+    {
+        //empty for now
+    }
     #endregion
 }
 

@@ -5,20 +5,17 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class Bullet : MonoBehaviour
+public class Bullet : BulletBase, ITriggerCheckable
 {
-    public string enemyGroupTag;
 
-    public float speed = 70f;
-
-    public float my_Damage;
-
-    public float explosionRadius;
-
-    
     public void OnCollisionEnter(Collision collider)
     {
-        IDamageable damageAble = collider.transform.GetComponent<IDamageable>();
+        ITriggerCheck(collider);
+
+    }
+    public void ITriggerCheck(Collision c)
+    {
+        IDamageable damageAble = c.transform.GetComponent<IDamageable>();
         if (damageAble != null)
         {
             if (explosionRadius > 0f)
@@ -34,7 +31,6 @@ public class Bullet : MonoBehaviour
         {
             my_Damage = 0;
         }
-
     }
 
     void Explode()
@@ -59,4 +55,6 @@ public class Bullet : MonoBehaviour
             //my_Damage = 0;
         }
     }
+
+
 }

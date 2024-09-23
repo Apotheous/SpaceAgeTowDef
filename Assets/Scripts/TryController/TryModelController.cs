@@ -8,7 +8,6 @@ using UnityEngine.Events;
 
 public class TryModelController : TurretModel, IDamageable, IClickable
 {
-    //public static TryModelController Instance { get; private set; }
     public Transform target;
     public float MaxHealth { get ; set ; }
     public float CurrentHealth { get ; set ; }
