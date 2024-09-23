@@ -295,9 +295,6 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     #region BulletPool
     void Laser()
     {
-        //targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);
-        //targetEnemy.Slow(slowAmount);
-
         if (!laserClass.lineRenderer.enabled)
         {
             laserClass.lineRenderer.enabled = true;
@@ -313,6 +310,25 @@ public class TryModelController : TurretModel, IDamageable, IClickable
         laserClass.impactEffect.transform.position = target.position + dir.normalized;
 
         laserClass.impactEffect.transform.rotation = Quaternion.LookRotation(dir);
+
+        if (target==null)
+        {
+            StopLaser();
+        }
+    }
+
+    void StopLaser()
+    {
+        if (laserClass.lineRenderer.enabled)
+        {
+            laserClass.lineRenderer.enabled = false;
+            laserClass.impactEffect.Stop();
+            laserClass.impactLight.enabled = false;
+
+            // ImpactEffect'in pozisyonunu ve rotasyonunu baþlangýç haline getirmek için
+            laserClass.impactEffect.transform.position = Vector3.zero;
+            laserClass.impactEffect.transform.rotation = Quaternion.identity;
+        }
     }
     public void FireBulletFromPool(int barrelIndex)
     {
