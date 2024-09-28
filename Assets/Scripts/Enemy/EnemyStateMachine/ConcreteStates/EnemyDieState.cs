@@ -20,7 +20,7 @@ public class EnemyDieState : EnemyState
         enemy.GetComponent<BoxCollider>().enabled = false;
         enemy.GetComponent<Rigidbody>().isKinematic = true;
         enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_DIE);
-        Destroy(enemy.gameObject,2.5f);
+        Destroy(enemy.gameObject,0.5f);
         //TryModelController.Instance.enemies.Remove(enemy.gameObject);
         EnemyMainBase.instanse.myUnitList.Remove(enemy.gameObject);
         enemy.moveSpeed = 0;

@@ -90,7 +90,7 @@ public class Bullet : BulletBase, ITriggerCheckable
     {
         float laserTimer;
         laserTimer = + 0.01f*Time.deltaTime;
-        if (laserTimer==0.05f)
+        if (laserTimer==0.02f)
         {
             Damage(c.transform);
         }

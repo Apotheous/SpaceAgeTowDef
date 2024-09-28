@@ -1107,10 +1107,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myUnitList: []
-  myUnits: {fileID: 1089654663557432098, guid: fa2dc93095ada4941b64975f93282cd8, type: 3}
+  myUnits: {fileID: 6184637841116627165, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
   mySpawnPoint: {fileID: 203462279}
   Timer: 0
-  spawnRate: 5
+  spawnRate: 56.85
 --- !u!1 &982691584
 GameObject:
   m_ObjectHideFlags: 0

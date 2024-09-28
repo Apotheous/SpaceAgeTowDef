@@ -36,26 +36,12 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     GameObject nearestEnemy;
 
     float Turret_Damage;
-    private void Awake()
-    {
-        //Instance = this;
-    }
+
+
     void Start()
     {
-        //if (Instance == null)
-        //{
-        //    Instance = this;
-        //}
-        //else if (Instance!=nul)
-        //{
-
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
+ 
         TurretModelStart();
-        //InvokeRepeating("UpdateTarget", 0f, 0.5f);
         
         MaxHealth = Health;
         CurrentHealth = MaxHealth;
@@ -219,7 +205,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
                 FireFourBarrels(fireType);
                 break;
             default:
-                Debug.LogError(" Desteklenmeyen namlu sayýsý: " + barrelCount);
+                Debug.LogError("Desteklenmeyen namlu sayýsý: " + barrelCount);
                 break;
         }
     }

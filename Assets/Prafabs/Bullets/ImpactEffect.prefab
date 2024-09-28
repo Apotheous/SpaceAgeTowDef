@@ -9772,7 +9772,7 @@ MonoBehaviour:
   Type: 1
   enemyGroupTag: Enemy
   speed: 70
-  my_Damage: 2
+  my_Damage: 1
   explosionRadius: 0
 --- !u!135 &8843659115390442644
 SphereCollider:

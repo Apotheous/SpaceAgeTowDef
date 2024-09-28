@@ -204,7 +204,7 @@ MonoBehaviour:
     notDeep: 0
     notDeepT: 0
     BarrelHeightAllowance: 0
-  moveSpeed: 0
+  moveSpeed: 5
   healthBar: {fileID: 1923721251517233073}
   animatoinClass:
     ENEMY_IDLE: IdleCube
