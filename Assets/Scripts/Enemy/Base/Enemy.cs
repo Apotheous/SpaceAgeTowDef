@@ -289,7 +289,7 @@ public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         {
             Debug.LogWarning("Hedef pozisyon null!");
             transform.Translate(gameObject.transform.forward * moveSpeed * Time.deltaTime);
-            //return;
+            return;
         }
         Vector3 direction = (target.position - transform.position).normalized;
 
