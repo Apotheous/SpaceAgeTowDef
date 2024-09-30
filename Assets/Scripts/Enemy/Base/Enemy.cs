@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     #endregion
 
     [field: SerializeField] public float MaxHealth { get; set; }
-    public float CurrentHealth { get; set; }
+    [field: SerializeField] public float CurrentHealth { get; set; }
     Rigidbody IMoveable.rb { get; set; }
     public bool IsMovingForward { get; set; } = true;
     public bool IsAggroed { get; set; }
@@ -111,6 +111,9 @@ public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         //TryModelController.Instance.enemies.Add(gameObject);
 
         InvokeRepeating("UpdateTargetWithGizmos", 0f, 0.5f);
+
+        Debug.Log("EnemyStarted");
+        healthBar.fillAmount = CurrentHealth / MaxHealth;
     }
     private void Update()
     {
@@ -124,26 +127,32 @@ public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         {
             // Eğer target yoksa saldırı veya kovalama durumuna geçme
             Debug.LogWarning("Target is null, not switching to Chase or Attack State.");
+            StateMachine.ChangeState(IdleState);
             return;
         }
-
-
-        //// Eğer düşman hedefe yakınsa ve saldırı menzilindeyse, saldırı durumuna geç
-        if (Vector3.Distance(transform.position, target.position) < myWeapon.attackRange)
+        else
         {
-            StateMachine.ChangeState(AttackState);
-           // ChangeAnimationState(animatoinClass.ENEMY_SHOOT_AUTO);
+            //// Eğer düşman hedefe yakınsa ve saldırı menzilindeyse, saldırı durumuna geç
+            if (Vector3.Distance(transform.position, target.position) < myWeapon.attackRange)
+            {
+                StateMachine.ChangeState(AttackState);
+                // ChangeAnimationState(animatoinClass.ENEMY_SHOOT_AUTO);
 
+            }
+            // Eğer düşman hedefi görüyorsa ve menzile girdiyse kovala
+            else if (Vector3.Distance(transform.position, target.position) < myWeapon.GizmosRange)
+            {
+                StateMachine.ChangeState(ChaseState);
+
+            }
+            else
+            {
+                return;
+            }
         }
-        // Eğer düşman hedefi görüyorsa ve menzile girdiyse kovala
-        else if (Vector3.Distance(transform.position, target.position) < myWeapon.GizmosRange)
-        {
-            StateMachine.ChangeState(ChaseState);
-            
-        } else
-        {
-            return;
-        }
+
+
+        
     }
 
     private void FixedUpdate()
@@ -279,8 +288,8 @@ public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         if (target == null)
         {
             Debug.LogWarning("Hedef pozisyon null!");
-            transform.Translate(gameObject.transform.forward*moveSpeed * Time.deltaTime);
-            return;
+            transform.Translate(gameObject.transform.forward * moveSpeed * Time.deltaTime);
+            //return;
         }
         Vector3 direction = (target.position - transform.position).normalized;
 

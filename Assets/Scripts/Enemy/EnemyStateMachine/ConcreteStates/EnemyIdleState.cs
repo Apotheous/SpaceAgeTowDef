@@ -21,9 +21,11 @@ public class EnemyIdleState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
+        Debug.Log("IdleStateEnemy");
         enemy.moveSpeed = 2f;
         _targetPos = GetRandomPointInCircle();
         enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_WALK_FRONT);
+        
     }
 
     private Vector3 GetRandomPointInCircle()
@@ -40,7 +42,7 @@ public class EnemyIdleState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        
+        Debug.Log("IdleStateEnemy");
         if (enemy.moveSpeed > 0)
         {
             enemy.MoveEnemyTowardsTarget(enemy.gameObject, enemy.moveSpeed);

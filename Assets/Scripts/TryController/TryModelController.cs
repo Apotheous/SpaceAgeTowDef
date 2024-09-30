@@ -116,7 +116,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
         //enemies = GameObject.FindGameObjectsWithTag(enemyGroupTag);
         float shortestDistance = Mathf.Infinity;
         nearestEnemy = null;
-        foreach (GameObject enemy in EnemyMainBase.instanse.myUnitList)
+        foreach (GameObject enemy in EnemyMainBase.instance.myUnitList)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy < shortestDistance)

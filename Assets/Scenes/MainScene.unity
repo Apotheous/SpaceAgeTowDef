@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: ded1ea5f5b7840e49992bd2070bd7f47, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -456,7 +456,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 355df6a6fb29cf7489070d07afe63fb6, type: 3}
---- !u!1 &149906761
+--- !u!1 &178708882
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -464,29 +464,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 149906762}
+  - component: {fileID: 178708883}
+  - component: {fileID: 178708884}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Object_Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &149906762
+--- !u!4 &178708883
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 149906761}
+  m_GameObject: {fileID: 178708882}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2828345, y: 2.944314, z: 36.44525}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.13999999, y: 3.02, z: 78.170006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 925383170}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &178708884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178708882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c401025bf469be40b27db732bd642fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolObjects:
+  - {fileID: 11400000, guid: 664e46e02c3e2904eae1f649b93e8155, type: 2}
+  isObjectUnderParent: 1
+  initPoolSize: 1
 --- !u!1 &203462278
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 203462279}
   m_Layer: 0
-  m_Name: MySpawnPoint
+  m_Name: Spawn_Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1001,7 +1018,7 @@ GameObject:
   - component: {fileID: 925383171}
   - component: {fileID: 925383174}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Enemy_Base_Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1020,6 +1037,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 178708883}
   - {fileID: 203462279}
   m_Father: {fileID: 1247685655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1110,7 +1128,8 @@ MonoBehaviour:
   myUnits: {fileID: 6184637841116627165, guid: 2b3aae1fb7c272545b773e69f045a82b, type: 3}
   mySpawnPoint: {fileID: 203462279}
   Timer: 0
-  spawnRate: 56.85
+  spawnRate: 1
+  obj_Pool: {fileID: 178708884}
 --- !u!1 &982691584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,7 +1478,7 @@ Transform:
   m_GameObject: {fileID: 1247685654}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.59, y: 1.64, z: -35}
+  m_LocalPosition: {x: -1.59, y: 1.64, z: 1.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2092,4 +2111,3 @@ SceneRoots:
   - {fileID: 1223741646}
   - {fileID: 766163796}
   - {fileID: 755966370}
-  - {fileID: 149906762}

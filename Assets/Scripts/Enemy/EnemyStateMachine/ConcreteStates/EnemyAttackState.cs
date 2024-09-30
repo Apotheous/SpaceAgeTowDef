@@ -27,6 +27,7 @@ public class EnemyAttackState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
+        Debug.Log("AttackStateEnemy");
         enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_SHOOT_AUTO);
         EnemyFireType(enemy.myWeapon.enemy_Gnnr_Type);
     }
@@ -40,7 +41,7 @@ public class EnemyAttackState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-
+        Debug.Log("AttackStateEnemy");
         //enemy.MoveEnemy(0);
         //if (_timer >_timeBetweenShots)
         //{

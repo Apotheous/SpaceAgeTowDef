@@ -20,6 +20,8 @@ public class EnemyChaseState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
+        Debug.Log("ChaseStateEnemy");
+        //enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_DIE);
     }
 
     public override void ExitState()
@@ -30,14 +32,22 @@ public class EnemyChaseState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+        Debug.Log("ChaseStateEnemy");
         // Hedefe doðru hareket et
-        if (enemy.target == null)
+        //if (enemy.target == null)
+        //{
+        //    StateMachine.ChangeState(enemy.IdleState);
+        //    return;
+        //}
+        //else
+        //{
+        if (enemy.target)
         {
-            StateMachine.ChangeState(enemy.IdleState);
-            return;
+            enemy.MoveEnemyTowardsTarget(enemy.target.gameObject, enemy.moveSpeed);
         }
-       
-        enemy.MoveEnemyTowardsTarget(enemy.target.gameObject, enemy.moveSpeed);
+        //}
+
+
     }
 
     public override void PhysicsUpdate()

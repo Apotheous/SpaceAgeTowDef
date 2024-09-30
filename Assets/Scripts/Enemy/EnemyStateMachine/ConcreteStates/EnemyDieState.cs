@@ -17,18 +17,27 @@ public class EnemyDieState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
+        Debug.Log("DieStateEnemy");
         enemy.GetComponent<BoxCollider>().enabled = false;
         enemy.GetComponent<Rigidbody>().isKinematic = true;
         enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_DIE);
-        Destroy(enemy.gameObject,0.5f);
+        //Destroy(enemy.gameObject, 0.5f);
+        enemy.gameObject.SetActive(false);
+        enemy.transform.SetParent(EnemyMainBase.instance.obj_Pool.transform);
+
         //TryModelController.Instance.enemies.Remove(enemy.gameObject);
-        EnemyMainBase.instanse.myUnitList.Remove(enemy.gameObject);
+        EnemyMainBase.instance.myUnitList.Remove(enemy.gameObject);
         enemy.moveSpeed = 0;
     }
 
     public override void ExitState()
     {
         base.ExitState();
+        enemy.GetComponent<BoxCollider>().enabled = true;
+        enemy.GetComponent<Rigidbody>().isKinematic = false;
+        enemy.gameObject.SetActive(true);
+        enemy.CurrentHealth = enemy.MaxHealth;
+        enemy.moveSpeed = 2;
     }
 
     public override void FrameUpdate()

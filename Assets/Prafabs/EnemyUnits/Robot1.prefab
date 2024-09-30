@@ -1472,13 +1472,14 @@ GameObject:
   - component: {fileID: 5450729471911283928}
   - component: {fileID: 112920197542108239}
   - component: {fileID: 1790594470683840183}
+  - component: {fileID: -5759930854271028319}
   m_Layer: 0
   m_Name: Robot1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4287198627233576
 Transform:
   m_ObjectHideFlags: 0
@@ -1488,7 +1489,7 @@ Transform:
   m_GameObject: {fileID: 1765116360898588}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1000, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1691,6 +1692,8 @@ MonoBehaviour:
     GizmosRange: 20
     attackRange: 10
     ammoPrefab: {fileID: 1627521441993660, guid: 12ea0a574b594264685afffd52fff036, type: 3}
+    explosionRadius: 0
+    damage: 0
   rotationClass:
     angleX: {fileID: 0}
     angleY: {fileID: 0}
@@ -1709,6 +1712,18 @@ MonoBehaviour:
   RandomMovementrange: 5
   randomMovementSpeed: 1
   <MaxHealth>k__BackingField: 100
+--- !u!114 &-5759930854271028319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765116360898588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6bd428d641ce642850bca66e5a8f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1769269502818274
 GameObject:
   m_ObjectHideFlags: 0
