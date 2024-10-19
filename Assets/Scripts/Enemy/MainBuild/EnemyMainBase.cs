@@ -9,7 +9,8 @@ public class EnemyMainBase : MonoBehaviour
     public static EnemyMainBase instance;
     public List<GameObject> myUnitList = new List<GameObject>();
     public GameObject myUnits;
-    public Transform mySpawnPoint;
+    public Transform[] mySpawnPoint;
+    public int mySpawnPointIndex;
 
     public float Timer;
     public float spawnRate;
@@ -45,33 +46,41 @@ public class EnemyMainBase : MonoBehaviour
 
     private void GetPoolObject()
     {
-        if (poolIndex >= obj_Pool.transform.childCount)
-        {
-            poolIndex = 0; // Pool'daki son objeye gelindiyse baþa dön
-        }
+        //for (int i = 0; i < mySpawnPoint.Length; i++)
+        //{
 
-        // Pool'dan sýradaki enemy objesini alýyoruz
-        GameObject myUnit = obj_Pool.transform.GetChild(poolIndex).gameObject;
+            if (poolIndex >= obj_Pool.transform.childCount)
+            {
+                poolIndex = 0; // Pool'daki son objeye gelindiyse baþa dön
+            }
 
-        if (!myUnit.activeInHierarchy)
-        {
-            // Spawn point'e taþýr ve aktif hale getirir
-            myUnit.transform.position = mySpawnPoint.position;
-            myUnit.SetActive(true);
-            myUnitList.Add(myUnit);
+            // Pool'dan sýradaki enemy objesini alýyoruz
+            GameObject myUnit = obj_Pool.transform.GetChild(poolIndex).gameObject;
 
+            if (!myUnit.activeInHierarchy)
+            {
+                // Spawn point'e taþýr ve aktif hale getirir
+                myUnit.transform.position = mySpawnPoint[mySpawnPointIndex].position;
+                myUnit.SetActive(true);
+                myUnitList.Add(myUnit);
 
-            //myUnit.GetComponent<BoxCollider>().enabled = true;
-            //myUnit.GetComponent<Rigidbody>().isKinematic = false;
-            //myUnit.GetComponent<Enemy>().CurrentHealth = 50;
-            //myUnit.GetComponent<Enemy>().moveSpeed = 2;
-            
+                //myUnit.GetComponent<BoxCollider>().enabled = true;
+                //myUnit.GetComponent<Rigidbody>().isKinematic = false;
+                //myUnit.GetComponent<Enemy>().CurrentHealth = 50;
+                //myUnit.GetComponent<Enemy>().moveSpeed = 2;
 
-            Debug.Log(myUnit.GetComponent<Enemy>().CurrentHealth);
+                Debug.Log(myUnit.GetComponent<Enemy>().CurrentHealth);
 
+                poolIndex++; // Sýradaki pool elemanýna geç
+                mySpawnPointIndex++;
+                if (mySpawnPointIndex>=mySpawnPoint.Length)
+                {
+                    mySpawnPointIndex = 0;
+                }
+            }
 
-            poolIndex++; // Sýradaki pool elemanýna geç
-        }
+        //}
+        
     }
 
 
@@ -81,7 +90,7 @@ public class EnemyMainBase : MonoBehaviour
 
         if (Timer >= spawnRate)
         {
-            GameObject myUnit = Instantiate(myUnits, mySpawnPoint);
+            GameObject myUnit = Instantiate(myUnits, mySpawnPoint[0]);
             myUnitList.Add(myUnit);
 
             Timer = 0f;

@@ -182,17 +182,17 @@ MonoBehaviour:
     Barrels:
     - {fileID: 4130683124114648580}
     - {fileID: 948738555778246247}
-    ShotForce: 500
+    ShotForce: 250
     RangeOfVision: 40
     FiringRange: 30
     Dist: 0
     OnVision: 0
     OnTarget: 0
     Timer: 0
-    FireRate: 500
+    FireRate: 0.2
     BarrelTimer: 0
     BarrelTimerRate: 0.5
-    BarrelTimerLine: 2
+    BarrelTimerLine: 3
   bulletClass:
     Bullets: []
     BulletPool: []
@@ -200,10 +200,10 @@ MonoBehaviour:
   rotationClass:
     AngleX: {fileID: 4000013112085094}
     AngleY: {fileID: 4000010063192764}
-    RotationSpeed: 3
+    RotationSpeed: 1
     NotDeep: 0
     NotDeepT: 0
-    BarrelHeightAllowance: 3.5
+    BarrelHeightAllowance: 1
   laserClass:
     UseLaser: 0
     DamageOverTime: 30
@@ -211,6 +211,7 @@ MonoBehaviour:
     lineRenderer: {fileID: 0}
     impactEffect: {fileID: 0}
     impactLight: {fileID: 0}
+  target: {fileID: 0}
   selectedFireType: 0
   enemyGroupTag: Enemy
   gunShot:
@@ -228,7 +229,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  target: {fileID: 0}
   healthBar: {fileID: 4953691668756605707}
   UiState: 1
 --- !u!1 &1000011939376292
