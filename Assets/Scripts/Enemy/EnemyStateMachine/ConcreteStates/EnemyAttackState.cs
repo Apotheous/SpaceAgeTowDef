@@ -12,7 +12,7 @@ public class EnemyAttackState : EnemyState
     private float _exitTimer;
     private float _timeTillExit;
     private float _distancetoCountExit = 3f;
-    private float bulletSpeed;
+    private float bulletSpeed = 10f;
 
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
@@ -28,7 +28,21 @@ public class EnemyAttackState : EnemyState
     {
         base.EnterState();
         Debug.Log("AttackStateEnemy");
+        enemy.targetDir = (enemy.target.position - enemy.transform.position).normalized;
+        // Hedef ile pozisyon arasýndaki farký hesaplayýn, Y eksenini sýfýrlayýn
+        Vector3 targetDir = enemy.target.position - enemy.transform.position;
+
+        // Y eksenini sýfýrlayarak sadece XZ düzleminde hesaplama yapýyoruz
+        targetDir.y = 0;
+
+        // Yön vektörünü normalize et (birim vektör yap)
+        targetDir = targetDir.normalized;
+
+        // Düþmaný hedefe doðru döndür (sadece yatay eksende)
+        enemy.transform.rotation = Quaternion.LookRotation(targetDir);
+
         enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_SHOOT_AUTO);
+
         EnemyFireType(enemy.myWeapon.enemy_Gnnr_Type);
     }
 
@@ -42,27 +56,37 @@ public class EnemyAttackState : EnemyState
     {
         base.FrameUpdate();
         Debug.Log("AttackStateEnemy");
-        //enemy.MoveEnemy(0);
-        //if (_timer >_timeBetweenShots)
-        //{
-        //    _timer = 0;
-        //    Vector3 dir = (_playerTransform.position - enemy.transform.position).normalized;
-        //    Rigidbody bullet = GameObject.Instantiate(enemy.bulletPrefab, enemy.transform.position, Quaternion.identity);
-        //   bullet.velocity = dir * bulletSpeed;
-        //}
-        //if (Vector2.Distance(_playerTransform.position, enemy.transform.position) > _distancetoCountExit) 
-        //{
-        //    _exitTimer += Time.deltaTime;
-        //    if (_exitTimer > 0)
-        //    {
-        //        enemy.StateMachine.ChangeState(enemy.ChaseState);
-        //    }
-        //}
-        //else
-        //{
-        //    _exitTimer = 0;
-        //}
-        //_timer += Time.deltaTime;
+
+        _timer += Time.deltaTime;
+        if (_timer > _timeBetweenShots)
+        {
+            _timer = 0;
+
+            // Mermiyi yarat
+            GameObject bullet = Instantiate(enemy.myWeapon.ammoPrefab, enemy.myWeapon.myBarrelT.position, Quaternion.identity);
+
+            // Mermiyi hedefe doðru yönlendir
+            Vector3 targetDir = (enemy.target.position - enemy.myWeapon.myBarrelT.position).normalized;
+
+            // Mermiyi hedefe doðru döndür
+            bullet.transform.forward = targetDir;
+
+            // Hedefe doðru kuvvet uygula
+            bullet.GetComponent<Rigidbody>().AddForce(targetDir * bulletSpeed, ForceMode.Impulse);
+        }
+
+        if (Vector2.Distance(enemy.target.position, enemy.transform.position) > _distancetoCountExit)
+        {
+            _exitTimer += Time.deltaTime;
+            if (_exitTimer > 0)
+            {
+                enemy.StateMachine.ChangeState(enemy.ChaseState);
+            }
+        }
+        else
+        {
+            _exitTimer = 0;
+        }
 
     }
 

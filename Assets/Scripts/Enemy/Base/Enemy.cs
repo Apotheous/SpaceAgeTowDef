@@ -15,10 +15,12 @@ public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public Rigidbody rb;
     public string enemyGroupTag;
     public Transform target;
+    public Vector3 targetDir;
 
     [System.Serializable]
     public class MyWeapon
     {
+        public Transform myBarrelT;
         public EnemyGunnerType enemy_Gnnr_Type;
         
         public float GizmosRange;
