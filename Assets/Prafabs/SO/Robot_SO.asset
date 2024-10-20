@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4500d2f5fc44546be8a1391ed3edea, type: 3}
   m_Name: Robot_SO
   m_EditorClassIdentifier: 
-  myPref: {fileID: 0}
+  myPref: {fileID: 7673487251499248760, guid: c98043d57e0190845b790d7b92990bee, type: 3}

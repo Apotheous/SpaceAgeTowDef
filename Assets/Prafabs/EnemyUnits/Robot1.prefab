@@ -1712,6 +1712,7 @@ MonoBehaviour:
   RandomMovementrange: 5
   randomMovementSpeed: 1
   <MaxHealth>k__BackingField: 100
+  <CurrentHealth>k__BackingField: 0
 --- !u!114 &-5759930854271028319
 MonoBehaviour:
   m_ObjectHideFlags: 0
