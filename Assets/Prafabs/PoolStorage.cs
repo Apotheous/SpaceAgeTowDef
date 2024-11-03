@@ -68,4 +68,15 @@ public class PoolStorage : MonoBehaviour
     {
         bullet.SetActive(false);
     }
+
+    public void StartReturnBulletCoroutine(GameObject bullet, float delay)
+    {
+        StartCoroutine(ReturnBulletToPoolAfterTime(bullet, delay));
+    }
+
+    private IEnumerator ReturnBulletToPoolAfterTime(GameObject bullet, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PoolStorage.Instance.ReturnToPool(bullet);
+    }
 }

@@ -74,7 +74,7 @@ public class EnemyAttackState : EnemyState
             bullet.GetComponent<Rigidbody>().AddForce(targetDir * bulletSpeed, ForceMode.Impulse);
 
             // Belirli bir süre sonra mermiyi havuza iade et
-            StartCoroutine(ReturnBulletToPoolAfterTime(bullet, 3f)); // 3 saniye sonra geri dön
+            PoolStorage.Instance.StartReturnBulletCoroutine(bullet, 3f);
         }
 
         if (Vector2.Distance(enemy.target.position, enemy.transform.position) > _distancetoCountExit)
