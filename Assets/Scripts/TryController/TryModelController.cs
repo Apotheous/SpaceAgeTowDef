@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 
 public class TryModelController : TurretModel, IDamageable, IClickable
@@ -26,7 +27,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     GameObject currentTurret;
 
     [Header("Unity Stuff")]
-    public Image healthBar;
+    public UnityEngine.UI.Image healthBar;
 
     public bool UiState;
 
@@ -80,19 +81,28 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     {
         if (target != null)
         {
-            
-            weaponClass.Dist = Vector3.Distance(transform.position, target.position);
+            Collider targetCollider = target.GetComponent<Collider>();
 
+            Vector3 targetPosition = targetCollider.bounds.center; // Collider merkezini hedef olarak kullanýr
+            weaponClass.Dist = Vector3.Distance(transform.position, targetPosition);
+
+
+            //weaponClass.Dist = Vector3.Distance(transform.position, target.position);
+            
             weaponClass.OnVision = weaponClass.Dist < weaponClass.RangeOfVision;
             weaponClass.OnTarget = false;
             RaycastHit hit;
+            Vector3 rayOrigin = weaponClass.Barrels[0].position;
+            Vector3 rayDirection = weaponClass.Barrels[0].forward * weaponClass.RangeOfVision;
             if (Physics.Raycast(weaponClass.Barrels[0].position, weaponClass.Barrels[0].forward, out hit, weaponClass.RangeOfVision))
             {
-                
+                Debug.DrawRay(rayOrigin, rayDirection, Color.blue);
                 if (hit.transform != null && hit.transform.tag == enemyGroupTag)
                 {
+                    Debug.DrawRay(rayOrigin, rayDirection, Color.green);
                     if (weaponClass.Dist < weaponClass.FiringRange)
                     {
+                        Debug.DrawRay(rayOrigin, rayDirection, Color.red);
                         weaponClass.OnTarget = true;
                     }
                 }

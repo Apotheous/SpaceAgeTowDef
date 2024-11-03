@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 120000012026282110}
   - component: {fileID: 1751021911029641293}
   - component: {fileID: -3482596070976215772}
+  - component: {fileID: 2622864135799030651}
   m_Layer: 0
   m_Name: LaserBeamer
   m_TagString: Untagged
@@ -392,6 +393,33 @@ MonoBehaviour:
         m_CallState: 2
   healthBar: {fileID: 6676562975725697097}
   UiState: 1
+--- !u!54 &2622864135799030651
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013152263656}
+  serializedVersion: 4
+  m_Mass: 50
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 122
+  m_CollisionDetection: 0
 --- !u!1 &1000014203235620
 GameObject:
   m_ObjectHideFlags: 0

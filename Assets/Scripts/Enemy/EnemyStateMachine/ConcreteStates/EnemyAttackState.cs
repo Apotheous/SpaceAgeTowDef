@@ -62,17 +62,19 @@ public class EnemyAttackState : EnemyState
         {
             _timer = 0;
 
-            // Mermiyi yarat
-            GameObject bullet = Instantiate(enemy.myWeapon.ammoPrefab, enemy.myWeapon.myBarrelT.position, Quaternion.identity);
+            // Havuzdan mermi al
+            GameObject bullet = PoolStorage.Instance.GetFromPool("bullet");
+            bullet.transform.position = enemy.myWeapon.myBarrelT.position;
 
-            // Mermiyi hedefe doðru yönlendir
+            // Hedefe yönlendir
             Vector3 targetDir = (enemy.target.position - enemy.myWeapon.myBarrelT.position).normalized;
-
-            // Mermiyi hedefe doðru döndür
             bullet.transform.forward = targetDir;
 
-            // Hedefe doðru kuvvet uygula
+            // Kuvvet uygula
             bullet.GetComponent<Rigidbody>().AddForce(targetDir * bulletSpeed, ForceMode.Impulse);
+
+            // Belirli bir süre sonra mermiyi havuza iade et
+            StartCoroutine(ReturnBulletToPoolAfterTime(bullet, 3f)); // 3 saniye sonra geri dön
         }
 
         if (Vector2.Distance(enemy.target.position, enemy.transform.position) > _distancetoCountExit)
@@ -88,6 +90,11 @@ public class EnemyAttackState : EnemyState
             _exitTimer = 0;
         }
 
+    }
+    private IEnumerator ReturnBulletToPoolAfterTime(GameObject bullet, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PoolStorage.Instance.ReturnToPool(bullet);
     }
 
     public override void PhysicsUpdate()
