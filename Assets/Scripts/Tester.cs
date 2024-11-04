@@ -17,7 +17,6 @@ public class Tester : MonoBehaviour
     {
         //HealthRegenEntStats();
         Time.timeScale = timeScale;
-        poolStorage.Debuger();
 
     }
 }

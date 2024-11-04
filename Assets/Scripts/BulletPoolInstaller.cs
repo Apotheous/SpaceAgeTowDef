@@ -6,8 +6,5 @@ public class BulletPoolInstaller : MonoInstaller
     {
         Container.Bind<PoolStorage>().FromComponentInHierarchy().AsSingle();
 
-        // EnemyAttackState Factory için baðlantý kur
-        Container.BindFactory<Enemy, EnemyStateMachine, EnemyAttackState, EnemyAttackStateFactory>()
-                 .AsSingle();
     }
 }
