@@ -62,9 +62,9 @@ public class TurretController : MonoBehaviour
     public class RotationClass
     {
 
-        public Transform angleX;    // X ekseninde dönen parça
-        public Transform angleY;    // Y ekseninde dönen parça
-        public float rotationSpeed = 5f; // Dönme hýzý
+        public Transform angleX;    // X ekseninde dï¿½nen parï¿½a
+        public Transform angleY;    // Y ekseninde dï¿½nen parï¿½a
+        public float rotationSpeed = 5f; // Dï¿½nme hï¿½zï¿½
 
         public float notDeep;
         public float notDeepT;
@@ -96,7 +96,7 @@ public class TurretController : MonoBehaviour
 
 
 
-    private void Awake() // alýndý ==================================
+    private void Awake() // alï¿½ndï¿½ ==================================
     {
         Instance = this;
     }
@@ -105,7 +105,7 @@ public class TurretController : MonoBehaviour
     {
         TurretModelStart();
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
-    } // alýndý ==================================
+    } // alï¿½ndï¿½ ==================================
 
     private void Update()
     {
@@ -282,53 +282,53 @@ public class TurretController : MonoBehaviour
     #region Trackingtarget
     private void AimAtTargetX()
     {
-        // Hedefin taretle olan fark vektörünü hesapla
+        // Hedefin taretle olan fark vektï¿½rï¿½nï¿½ hesapla
         Vector3 directionToTarget = target.position - rotationClass.angleX.position;
 
-        // Y bileþenini sýfýrla, sadece yatay düzlemde çalýþ
+        // Y bileï¿½enini sï¿½fï¿½rla, sadece yatay dï¿½zlemde ï¿½alï¿½ï¿½
         directionToTarget.y = 0;
 
-        // Eðer directionToTarget sýfýr vektörü deðilse
+        // Eï¿½er directionToTarget sï¿½fï¿½r vektï¿½rï¿½ deï¿½ilse
         if (directionToTarget.sqrMagnitude > 0.001f)
         {
-            // Hedefe yönelmek için gereken rotasyonu hesapla
+            // Hedefe yï¿½nelmek iï¿½in gereken rotasyonu hesapla
             Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
 
-            // X ekseninde düzgün bir þekilde dönmesi için interpolasyon (lerp) kullan
+            // X ekseninde dï¿½zgï¿½n bir ï¿½ekilde dï¿½nmesi iï¿½in interpolasyon (lerp) kullan
             rotationClass.angleX.rotation = Quaternion.Slerp(rotationClass.angleX.rotation, targetRotation, Time.deltaTime * rotationClass.rotationSpeed);
         }
     }
 
     private void AimAtTargetY()
     {
-        //// Taretin gövdesi ile namlusu arasýndaki yükseklik farkýný tanýmla
+        //// Taretin gï¿½vdesi ile namlusu arasï¿½ndaki yï¿½kseklik farkï¿½nï¿½ tanï¿½mla
         //float fark = angleY.position.y - BarrelHeightAllowance;
 
-        //// Hedefin taretle olan fark vektörünü hesapla
+        //// Hedefin taretle olan fark vektï¿½rï¿½nï¿½ hesapla
         //Vector3 directionToTarget = target.position - angleY.position;
 
-        //// Eðer directionToTarget sýfýr vektörü deðilse
+        //// Eï¿½er directionToTarget sï¿½fï¿½r vektï¿½rï¿½ deï¿½ilse
         //if (directionToTarget.sqrMagnitude > 0.001f)
         //{
-        //    // Yükseklik farkýný hesaba kat
+        //    // Yï¿½kseklik farkï¿½nï¿½ hesaba kat
         //    directionToTarget.y -= fark;
 
-        //    // Hedefe yönelmek için gereken rotasyonu hesapla
+        //    // Hedefe yï¿½nelmek iï¿½in gereken rotasyonu hesapla
         //    Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
 
-        //    // Y ekseninde düzgün bir þekilde dönmesi için interpolasyon (lerp) kullan
+        //    // Y ekseninde dï¿½zgï¿½n bir ï¿½ekilde dï¿½nmesi iï¿½in interpolasyon (lerp) kullan
         //    angleY.rotation = Quaternion.Slerp(angleY.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         //}
-        // Hedefin taretle olan fark vektörünü hesapla
+        // Hedefin taretle olan fark vektï¿½rï¿½nï¿½ hesapla
         Vector3 directionToTarget = target.position - rotationClass.angleY.position;
 
-        // Eðer directionToTarget sýfýr vektörü deðilse
+        // Eï¿½er directionToTarget sï¿½fï¿½r vektï¿½rï¿½ deï¿½ilse
         if (directionToTarget.sqrMagnitude > 0.001f)
         {
-            // Hedefe yönelmek için gereken rotasyonu hesapla
+            // Hedefe yï¿½nelmek iï¿½in gereken rotasyonu hesapla
             Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
 
-            // Y ekseninde düzgün bir þekilde dönmesi için interpolasyon (lerp) kullan
+            // Y ekseninde dï¿½zgï¿½n bir ï¿½ekilde dï¿½nmesi iï¿½in interpolasyon (lerp) kullan
             rotationClass.angleY.rotation = Quaternion.Slerp(rotationClass.angleY.rotation, targetRotation, Time.deltaTime * rotationClass.rotationSpeed);
         }
     }
@@ -354,7 +354,7 @@ public class TurretController : MonoBehaviour
                 FireFourBarrels(fireType);
                 break;
             default:
-                Debug.LogError(" Desteklenmeyen namlu sayýsý: " + barrelCount);
+                Debug.LogError(" Desteklenmeyen namlu sayï¿½sï¿½: " + barrelCount);
                 break;
         }
     }
@@ -463,14 +463,14 @@ public class TurretController : MonoBehaviour
             bullet.transform.rotation = weaponClass.barrels[barrelIndex].rotation;
 
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            rb.velocity = Vector3.zero; // Eski hýzýný sýfýrla
-            rb.angularVelocity = Vector3.zero; // Eski dönme hýzýný sýfýrla
+            rb.linearVelocity = Vector3.zero; // Eski hï¿½zï¿½nï¿½ sï¿½fï¿½rla
+            rb.angularVelocity = Vector3.zero; // Eski dï¿½nme hï¿½zï¿½nï¿½ sï¿½fï¿½rla
             rb.AddForce(weaponClass.barrels[barrelIndex].forward * weaponClass.shotForce);
 
         }
         else
         {
-            // Eðer obje havuzunda mermi yoksa yeni bir mermi oluþtur
+            // Eï¿½er obje havuzunda mermi yoksa yeni bir mermi oluï¿½tur
             GameObject newBullet = Instantiate(bulletClass.bulletPrefab, weaponClass.barrels[barrelIndex].position, weaponClass.barrels[barrelIndex].rotation);
             Rigidbody rb = newBullet.GetComponent<Rigidbody>();
             rb.AddForce(weaponClass.barrels[barrelIndex].forward * weaponClass.shotForce);
@@ -482,7 +482,7 @@ public class TurretController : MonoBehaviour
     public void ReturnBulletToPool(GameObject bullet)
     {
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
         bullet.SetActive(false);

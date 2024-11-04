@@ -13,13 +13,13 @@ public class BulletPysics : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Merminin hýzýný hesapla (m/s)
-        float speed = rb.velocity.magnitude;
+        // Merminin hï¿½zï¿½nï¿½ hesapla (m/s)
+        float speed = rb.linearVelocity.magnitude;
 
-        // Hýzý km/h cinsine çevir
+        // Hï¿½zï¿½ km/h cinsine ï¿½evir
         float speedKmH = speed * 3.6f;
 
-        // Hýzý debug olarak yazdýr
+        // Hï¿½zï¿½ debug olarak yazdï¿½r
         Debug.Log("Current Bullet Speed: " + speedKmH + " km/h");
     }
 }

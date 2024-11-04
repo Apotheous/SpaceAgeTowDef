@@ -83,7 +83,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
         {
             Collider targetCollider = target.GetComponent<Collider>();
 
-            Vector3 targetPosition = targetCollider.bounds.center; // Collider merkezini hedef olarak kullanýr
+            Vector3 targetPosition = targetCollider.bounds.center; // Collider merkezini hedef olarak kullanï¿½r
             weaponClass.Dist = Vector3.Distance(transform.position, targetPosition);
 
 
@@ -215,7 +215,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
                 FireFourBarrels(fireType);
                 break;
             default:
-                Debug.LogError("Desteklenmeyen namlu sayýsý: " + barrelCount);
+                Debug.LogError("Desteklenmeyen namlu sayï¿½sï¿½: " + barrelCount);
                 break;
         }
     }
@@ -321,7 +321,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
             laserClass.impactEffect.Stop();
             laserClass.impactLight.enabled = false;
 
-            // ImpactEffect'in pozisyonunu ve rotasyonunu baþlangýç haline getirmek için
+            // ImpactEffect'in pozisyonunu ve rotasyonunu baï¿½langï¿½ï¿½ haline getirmek iï¿½in
             laserClass.impactEffect.transform.position = Vector3.zero;
             laserClass.impactEffect.transform.rotation = Quaternion.identity;
         }
@@ -344,14 +344,14 @@ public class TryModelController : TurretModel, IDamageable, IClickable
             bullet.transform.rotation = weaponClass.Barrels[barrelIndex].rotation;
 
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            rb.velocity = Vector3.zero; // Eski hýzýný sýfýrla
-            rb.angularVelocity = Vector3.zero; // Eski dönme hýzýný sýfýrla
+            rb.linearVelocity = Vector3.zero; // Eski hï¿½zï¿½nï¿½ sï¿½fï¿½rla
+            rb.angularVelocity = Vector3.zero; // Eski dï¿½nme hï¿½zï¿½nï¿½ sï¿½fï¿½rla
             rb.AddForce(weaponClass.Barrels[barrelIndex].forward * weaponClass.ShotForce);
 
         }
         else
         {
-            // Eðer obje havuzunda mermi yoksa yeni bir mermi oluþtur
+            // Eï¿½er obje havuzunda mermi yoksa yeni bir mermi oluï¿½tur
             
             GameObject newBullet = Instantiate(bulletClass.BulletPrefab, weaponClass.Barrels[barrelIndex].position, weaponClass.Barrels[barrelIndex].rotation);
             newBullet.GetComponent<ReturnPool>().myTurret = gameObject;
@@ -367,7 +367,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     public void ReturnBulletToPool(GameObject bullet)
     {
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
         bullet.SetActive(false);
