@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class EnemyState :Enemy
 {
@@ -12,6 +13,7 @@ public class EnemyState :Enemy
     {
         this.enemy = enemy;
         this.enemyStateMachine = enemyStateMachine;
+        
     }
 
     public virtual void EnterState() { }

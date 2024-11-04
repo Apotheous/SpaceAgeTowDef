@@ -44,6 +44,10 @@ public class PoolStorage : MonoBehaviour
     {
 
     }
+    public void Debuger()
+    {
+        Debug.Log("I am Here");
+    }
 
     // Örnek bir havuzdan eleman alma metodu
     public GameObject GetFromPool(string objectType)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class EnemyAttackState : EnemyState
 {
@@ -14,11 +15,12 @@ public class EnemyAttackState : EnemyState
     private float _distancetoCountExit = 3f;
     private float bulletSpeed = 10f;
 
+    //private PoolStorage poolStorage;
+
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
 
     }
-
     public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
     {
         base.AnimationTriggerEvent(triggerType);
