@@ -62,6 +62,7 @@ public class EnemyMainBase : MonoBehaviour
                 // Spawn point'e taþýr ve aktif hale getirir
                 myUnit.transform.position = mySpawnPoint[mySpawnPointIndex].position;
                 myUnit.SetActive(true);
+                myUnit.GetComponent<Enemy>().EnemyStartMeth();
                 myUnitList.Add(myUnit);
 
                 //myUnit.GetComponent<BoxCollider>().enabled = true;

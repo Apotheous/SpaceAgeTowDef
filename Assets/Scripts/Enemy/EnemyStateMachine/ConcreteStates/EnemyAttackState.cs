@@ -30,18 +30,18 @@ public class EnemyAttackState : EnemyState
     {
         base.EnterState();
         Debug.Log("AttackStateEnemy");
-        enemy.targetDir = (enemy.target.position - enemy.transform.position).normalized;
-        // Hedef ile pozisyon arasýndaki farký hesaplayýn, Y eksenini sýfýrlayýn
-        Vector3 targetDir = enemy.target.position - enemy.transform.position;
+        //enemy.targetDir = (enemy.target.position - enemy.transform.position).normalized;
+        //// Hedef ile pozisyon arasýndaki farký hesaplayýn, Y eksenini sýfýrlayýn
+        //Vector3 targetDir = enemy.target.position - enemy.transform.position;
 
-        // Y eksenini sýfýrlayarak sadece XZ düzleminde hesaplama yapýyoruz
-        targetDir.y = 0;
+        //// Y eksenini sýfýrlayarak sadece XZ düzleminde hesaplama yapýyoruz
+        //targetDir.y = 0;
 
-        // Yön vektörünü normalize et (birim vektör yap)
-        targetDir = targetDir.normalized;
+        //// Yön vektörünü normalize et (birim vektör yap)
+        //targetDir = targetDir.normalized;
 
-        // Düþmaný hedefe doðru döndür (sadece yatay eksende)
-        enemy.transform.rotation = Quaternion.LookRotation(targetDir);
+        //// Düþmaný hedefe doðru döndür (sadece yatay eksende)
+        //enemy.transform.rotation = Quaternion.LookRotation(targetDir);
 
         enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_SHOOT_AUTO);
 

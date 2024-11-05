@@ -22,7 +22,7 @@ public class EnemyIdleState : EnemyState
     {
         base.EnterState();
         Debug.Log("IdleStateEnemy");
-        enemy.moveSpeed = 2f;
+        enemy.moveSpeed = 0f;
         _targetPos = GetRandomPointInCircle();
         enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_WALK_FRONT);
         

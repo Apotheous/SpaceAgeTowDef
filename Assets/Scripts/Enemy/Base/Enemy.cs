@@ -106,6 +106,11 @@ public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     }
     private void Start()
     {
+        EnemyStartMeth();
+    }
+
+    public void EnemyStartMeth()
+    {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         CurrentHealth = MaxHealth;
@@ -117,10 +122,11 @@ public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         Debug.Log("EnemyStarted");
         healthBar.fillAmount = CurrentHealth / MaxHealth;
     }
+
     private void Update()
     {
        
-        WalkDirectionControl();
+
 
         StateMachine.CurrentEnemyState.FrameUpdate();
         //// Mevcut duruma bağlı olarak her kare güncellenir
@@ -170,27 +176,6 @@ public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         currentState = newState;
     }
 
-    #region RbInformation
-
-    void WalkDirectionControl()
-    {
-        if (rb != null)
-        {
-            //if (moveSpeed > 0)
-            //{
-            //    ChangeAnimationState(animatoinClass.ENEMY_WALK_FRONT);
-            //}
-            //if (moveSpeed < 0)
-            //{
-            //    ChangeAnimationState(animatoinClass.ENEMY_WALK_BACK);
-            //}
-            //if (moveSpeed == 0)
-            //{
-            //    ChangeAnimationState(animatoinClass.ENEMY_IDLE);
-            //}
-        }
-    }
-    #endregion
 
     #region SelectionTarget
 
