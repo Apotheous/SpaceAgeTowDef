@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public class MyWeapon
     {
         public Transform myBarrelT;
+        public BasicPool myPool;
         public EnemyGunnerType enemy_Gnnr_Type;
         
         public float GizmosRange;

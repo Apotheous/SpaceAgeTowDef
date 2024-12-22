@@ -6,7 +6,8 @@ using Zenject;
 public class EnemyAttackState : EnemyState
 {
     private Transform _playerTransform;
-
+    private GameObject myBullet;
+    private Rigidbody myBulletRb;
     private float _timer;
     private float _timeBetweenShots = 2f;
 
@@ -65,18 +66,19 @@ public class EnemyAttackState : EnemyState
             _timer = 0;
 
             // Havuzdan mermi al
-            GameObject bullet = PoolStorage.Instance.GetFromPool("bullet");
-            bullet.transform.position = enemy.myWeapon.myBarrelT.position;
+            myBullet = enemy.myWeapon.myPool.GetFromPool();
+            myBulletRb = myBullet.GetComponent<Rigidbody>();
+            myBullet.transform.position = enemy.myWeapon.myBarrelT.position;
 
             // Hedefe yönlendir
             Vector3 targetDir = (enemy.target.position - enemy.myWeapon.myBarrelT.position).normalized;
-            bullet.transform.forward = targetDir;
+            myBullet.transform.forward = targetDir;
 
             // Kuvvet uygula
-            bullet.GetComponent<Rigidbody>().AddForce(targetDir * bulletSpeed, ForceMode.Impulse);
+            myBulletRb.AddForce(targetDir * bulletSpeed, ForceMode.Impulse);
 
             // Belirli bir süre sonra mermiyi havuza iade et
-            PoolStorage.Instance.StartReturnBulletCoroutine(bullet, 3f);
+            enemy.myWeapon.myPool.StartReturnBulletCoroutine(myBullet, 3f);
         }
 
         if (Vector2.Distance(enemy.target.position, enemy.transform.position) > _distancetoCountExit)
