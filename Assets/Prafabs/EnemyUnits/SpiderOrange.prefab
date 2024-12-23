@@ -1537,6 +1537,7 @@ MonoBehaviour:
   targetDir: {x: 0, y: 0, z: 0}
   myWeapon:
     myBarrelT: {fileID: 0}
+    myPool: {fileID: 0}
     enemy_Gnnr_Type: 2
     GizmosRange: 10
     attackRange: 1
@@ -1618,9 +1619,9 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6184637841116627165}
   m_Enabled: 1
-  m_AgentTypeID: 1479372276
+  m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

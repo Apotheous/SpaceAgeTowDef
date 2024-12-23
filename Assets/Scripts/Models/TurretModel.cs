@@ -40,10 +40,10 @@ public class TurretModel : MonoBehaviour
     [System.Serializable]
     public class BulletClass
     {
-        public List<GameObject> Bullets = new List<GameObject>();
-        [HideInInspector]
-        public List<GameObject> BulletPool = new List<GameObject>();//--????
-        public GameObject BulletPrefab;
+        public BasicPool pool;
+        public GameObject myBullet;
+        public Rigidbody myBulletRb;
+
     }
     public BulletClass bulletClass;
 
@@ -162,7 +162,7 @@ public class TurretModel : MonoBehaviour
                         weaponClass.RangeOfVision = 40.0f;
                         weaponClass.FiringRange = 30.0f;
                         Health = 100.0f;
-                        weaponClass.ShotForce = 250;
+                        weaponClass.ShotForce = 100;
                         weaponClass.FireRate = 0.2f;
                         weaponClass.BarrelTimerRate = 0.5f;
                         weaponClass.BarrelTimerLine = 3f;
