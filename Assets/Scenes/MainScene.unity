@@ -658,7 +658,7 @@ MonoBehaviour:
   poolObjects:
   - {fileID: 11400000, guid: d0110a64794468846bd7badba56e0eb9, type: 2}
   isObjectUnderParent: 1
-  initPoolSize: 100
+  initPoolSize: 10
 --- !u!4 &203462279 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4132372235345845787, guid: 0256eb1108034d246b7994a456ef68d0, type: 3}

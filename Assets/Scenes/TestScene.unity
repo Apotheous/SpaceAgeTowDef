@@ -656,7 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolObjects:
-  - {fileID: 11400000, guid: 664e46e02c3e2904eae1f649b93e8155, type: 2}
+  - {fileID: 11400000, guid: d0110a64794468846bd7badba56e0eb9, type: 2}
   isObjectUnderParent: 1
   initPoolSize: 100
 --- !u!4 &203462279 stripped
@@ -3320,9 +3320,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1821685342196986717, guid: 565339108db179846a7e34430cefadfa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1993416850223595831, guid: 565339108db179846a7e34430cefadfa, type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993416850223595831, guid: 565339108db179846a7e34430cefadfa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630951092819863281, guid: 565339108db179846a7e34430cefadfa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6630951092819863281, guid: 565339108db179846a7e34430cefadfa, type: 3}
       propertyPath: m_LocalPosition.x

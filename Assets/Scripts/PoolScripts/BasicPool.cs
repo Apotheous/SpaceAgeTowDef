@@ -16,7 +16,7 @@ public class BasicPool : MonoBehaviour
 
     public Pool_Class pool_Class;
  
-    private Queue<GameObject> my_Pool_Queue;
+    [SerializeField]private Queue<GameObject> my_Pool_Queue;
 
     void Start()
     {
@@ -36,6 +36,8 @@ public class BasicPool : MonoBehaviour
                 astScale = (float)System.Math.Round(astScale, 3);
                 my_object.transform.localScale = new Vector3(astScale, astScale, astScale);
                 my_object.transform.parent = transform;
+                my_object.transform.position = transform.position;
+                my_object.transform.transform.rotation = transform.rotation;
                 my_object.SetActive(false);
                 my_Pool_Queue.Enqueue(my_object); 
             }
@@ -55,23 +57,34 @@ public class BasicPool : MonoBehaviour
         return null; 
     }
 
-    public void ReturnToPool(GameObject bullet)
+    public void ReturnToPool(GameObject obj)
     {
-        bullet.SetActive(false);
+        obj.SetActive(false);
 
-        bullet.transform.parent = transform;
-
-        my_Pool_Queue.Enqueue(bullet); 
+        obj.transform.parent = transform;
+       
+        obj.transform.position = transform.position;
+        obj.transform.rotation = transform.rotation;
+        if (obj.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            rb.linearVelocity = Vector3.zero; // Rigidbody'nin velocity sıfırlanıyor
+            rb.angularVelocity = Vector3.zero; // Angular velocity sıfırlanıyor
+        }
+        else
+        {
+            Debug.LogWarning($"Rigidbody bulunamadı: {obj.name}");
+        }
+        my_Pool_Queue.Enqueue(obj); 
     }
 
-    public void StartReturnBulletCoroutine(GameObject bullet, float delay)
+    public void StartReturnBulletCoroutine(GameObject obj, float delay)
     {
-        StartCoroutine(ReturnBulletToPoolAfterTime(bullet, delay));
+        StartCoroutine(ReturnBulletToPoolAfterTime(obj, delay));
     }
 
-    private IEnumerator ReturnBulletToPoolAfterTime(GameObject bullet, float delay)
+    private IEnumerator ReturnBulletToPoolAfterTime(GameObject obj, float delay)
     {
         yield return new WaitForSeconds(delay);
-        ReturnToPool(bullet);
+        ReturnToPool(obj);
     }
 }

@@ -36,7 +36,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
 
     GameObject nearestEnemy;
 
-    float Turret_Damage;
+    
 
 
     void Start()
@@ -330,20 +330,12 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     {
         bulletClass.myBullet = bulletClass.pool.GetFromPool();
 
-        bulletClass.myBullet.GetComponent<Bullet>().my_Damage = Turret_Damage;
-
         gunShot.Invoke();
-        // Mermiyi namlunun pozisyonuna ve rotasyonuna ayarla
-        bulletClass.myBullet.transform.position = weaponClass.Barrels[barrelIndex].position;
-        bulletClass.myBullet.transform.rotation = weaponClass.Barrels[barrelIndex].rotation;
 
         bulletClass.myBulletRb = bulletClass.myBullet.GetComponent<Rigidbody>();
-        bulletClass.myBulletRb.linearVelocity = Vector3.zero;
-        bulletClass.myBulletRb.angularVelocity = Vector3.zero;
+
         bulletClass.myBulletRb.AddForce(weaponClass.Barrels[barrelIndex].forward * weaponClass.ShotForce);
         
-
-        //bulletClass.myBullet.SetActive(true);
         bulletClass.myBullet.SetActive(true);
         bulletClass.pool.StartReturnBulletCoroutine(bulletClass.myBullet, 5f);
     }

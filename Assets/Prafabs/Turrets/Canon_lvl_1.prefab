@@ -706,7 +706,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 718801069883366809, guid: d2e900de86c7c3642a1d9102588aa5ae, type: 3}
       propertyPath: pool_Class.pool_Object_Size
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1257664491306380613, guid: d2e900de86c7c3642a1d9102588aa5ae, type: 3}
       propertyPath: m_LocalScale.x
