@@ -328,56 +328,24 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     }
     public void FireBulletFromPool(int barrelIndex)
     {
+        bulletClass.myBullet = bulletClass.pool.GetFromPool();
 
-        if (bulletClass.pool.transform.childCount > 0)
-        {
-            bulletClass.myBullet = bulletClass.pool.GetFromPool();
+        bulletClass.myBullet.GetComponent<Bullet>().my_Damage = Turret_Damage;
 
-            bulletClass.myBullet.transform.SetParent(null);
-            //bulletClass.Bullets.RemoveAt(0);
-            bulletClass.myBullet.GetComponent<Bullet>().my_Damage = Turret_Damage;
-            //bulletClass.myBullet.SetActive(true);
+        gunShot.Invoke();
+        // Mermiyi namlunun pozisyonuna ve rotasyonuna ayarla
+        bulletClass.myBullet.transform.position = weaponClass.Barrels[barrelIndex].position;
+        bulletClass.myBullet.transform.rotation = weaponClass.Barrels[barrelIndex].rotation;
 
-            gunShot.Invoke();
-            // Mermiyi namlunun pozisyonuna ve rotasyonuna ayarla
-            bulletClass.myBullet.transform.position = weaponClass.Barrels[barrelIndex].position;
-            bulletClass.myBullet.transform.rotation = weaponClass.Barrels[barrelIndex].rotation;
+        bulletClass.myBulletRb = bulletClass.myBullet.GetComponent<Rigidbody>();
+        bulletClass.myBulletRb.linearVelocity = Vector3.zero;
+        bulletClass.myBulletRb.angularVelocity = Vector3.zero;
+        bulletClass.myBulletRb.AddForce(weaponClass.Barrels[barrelIndex].forward * weaponClass.ShotForce);
+        
 
-            bulletClass.myBulletRb = bulletClass.myBullet.GetComponent<Rigidbody>();
-            bulletClass.myBulletRb.linearVelocity = Vector3.zero; 
-            bulletClass.myBulletRb.angularVelocity = Vector3.zero; 
-            bulletClass.myBulletRb.AddForce(weaponClass.Barrels[barrelIndex].forward * weaponClass.ShotForce);
-
-            bulletClass.pool.StartReturnBulletCoroutine(bulletClass.myBullet,5f);
-
-        }
-        else
-        {
-            // E�er obje havuzunda mermi yoksa yeni bir mermi olu�tur
-
-            //GameObject newBullet = Instantiate(bulletClass.pool., weaponClass.Barrels[barrelIndex].position, weaponClass.Barrels[barrelIndex].rotation);
-            //newBullet.GetComponent<ReturnPool>().myTurret = gameObject;
-            //Turret_Damage = newBullet.GetComponent<Bullet>().my_Damage;
-
-            //Rigidbody rb = newBullet.GetComponent<Rigidbody>();
-            //rb.AddForce(weaponClass.Barrels[barrelIndex].forward * weaponClass.ShotForce);
-            //gunShot.Invoke();
-
-        }
-    }
-
-    public void ReturnBulletToPool(GameObject bullet)
-    {
-        Rigidbody rb = bulletClass.myBullet.GetComponent<Rigidbody>();
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-
-        bullet.SetActive(false);
-        bullet.transform.SetParent(weaponClass.Barrels[0]);
-        bullet.transform.localPosition = Vector3.zero;
-        bullet.transform.localRotation = Quaternion.identity;
-
-        //bulletClass.Bullets.Add(bullet);
+        //bulletClass.myBullet.SetActive(true);
+        bulletClass.myBullet.SetActive(true);
+        bulletClass.pool.StartReturnBulletCoroutine(bulletClass.myBullet, 5f);
     }
 
     #endregion

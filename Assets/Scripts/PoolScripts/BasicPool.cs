@@ -48,6 +48,7 @@ public class BasicPool : MonoBehaviour
         {
             GameObject obj = my_Pool_Queue.Dequeue();
             obj.SetActive(true);
+            obj.transform.SetParent(null);
             return obj;
         }
 
@@ -57,7 +58,9 @@ public class BasicPool : MonoBehaviour
     public void ReturnToPool(GameObject bullet)
     {
         bullet.SetActive(false);
+
         bullet.transform.parent = transform;
+
         my_Pool_Queue.Enqueue(bullet); 
     }
 

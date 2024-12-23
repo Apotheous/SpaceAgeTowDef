@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Level: 0
+  Level: 2
   GunnerType: 1
   Health: 100
   CurrentXP: 0
@@ -360,25 +360,25 @@ MonoBehaviour:
   weaponClass:
     Barrels:
     - {fileID: 6992603170567003391}
-    ShotForce: 100
-    RangeOfVision: 40
-    FiringRange: 30
+    ShotForce: 400
+    RangeOfVision: 70
+    FiringRange: 60
     Dist: 0
     OnVision: 0
     OnTarget: 0
     Timer: 0
     FireRate: 0.2
     BarrelTimer: 0
-    BarrelTimerRate: 0.5
-    BarrelTimerLine: 3
+    BarrelTimerRate: 1
+    BarrelTimerLine: 2
   bulletClass:
     pool: {fileID: 7672714004214361600}
-    myBullet: {fileID: 0}
+    myBullet: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
     myBulletRb: {fileID: 0}
   rotationClass:
     AngleX: {fileID: 4000010650229702}
     AngleY: {fileID: 4000014011301926}
-    RotationSpeed: 1
+    RotationSpeed: 3
     NotDeep: 0
     NotDeepT: 0
     BarrelHeightAllowance: 1
@@ -706,7 +706,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 718801069883366809, guid: d2e900de86c7c3642a1d9102588aa5ae, type: 3}
       propertyPath: pool_Class.pool_Object_Size
-      value: 5
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1257664491306380613, guid: d2e900de86c7c3642a1d9102588aa5ae, type: 3}
       propertyPath: m_LocalScale.x
