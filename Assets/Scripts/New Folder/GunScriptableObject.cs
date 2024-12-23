@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
-[CreateAssetMenu(fileName = "GunScriptableObject", menuName = "Scriptable Objects/GunScriptableObject")]
+[CreateAssetMenu(fileName = "GunScriptableObject", menuName = "Guns/Gun", order = 0)]
 public class GunScriptableObject : ScriptableObject
 {
     public ImpactType ImpactType;

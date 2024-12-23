@@ -139,8 +139,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3125480588403421316}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.0007835423, y: 0.99886966, z: -0.017752806, w: 0.04408636}
+  m_LocalPosition: {x: -1.1214248, y: 1.7639824, z: 33.597225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -198,7 +198,7 @@ MonoBehaviour:
   Type: 0
   enemyGroupTag: Enemy
   speed: 70
-  my_Damage: 10
+  my_Damage: 0
   explosionRadius: 0
 --- !u!96 &1074398050538834808
 TrailRenderer:
