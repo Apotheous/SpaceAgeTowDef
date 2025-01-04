@@ -345,27 +345,50 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     #region Trackingtarget
     private void AimAtTargetX()
     {
-        Vector3 directionToTarget = target.position - rotationClass.AngleX.position;
+        // Target'ın collider komponenti
+        Collider targetCollider = target.GetComponent<Collider>();
+        if (targetCollider == null) return;
 
+        // Rotasyon noktasından collider'a en yakın noktayı bul
+        Vector3 closestPoint = targetCollider.ClosestPoint(rotationClass.AngleX.position);
+        Vector3 directionToTarget = closestPoint - rotationClass.AngleX.position;
         directionToTarget.y = 0;
 
         if (directionToTarget.sqrMagnitude > 0.001f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+            rotationClass.AngleX.rotation = Quaternion.Slerp(
+                rotationClass.AngleX.rotation,
+                targetRotation,
+                Time.deltaTime * rotationClass.RotationSpeed
+            );
 
-            rotationClass.AngleX.rotation = Quaternion.Slerp(rotationClass.AngleX.rotation, targetRotation, Time.deltaTime * rotationClass.RotationSpeed);
+            // Debug için görsel çizgi
+            Debug.DrawLine(rotationClass.AngleX.position, closestPoint, Color.red);
         }
     }
 
     private void AimAtTargetY()
     {
-        Vector3 directionToTarget = target.position - rotationClass.AngleY.position;
+        // Target'ın collider komponenti
+        Collider targetCollider = target.GetComponent<Collider>();
+        if (targetCollider == null) return;
+
+        // Rotasyon noktasından collider'a en yakın noktayı bul
+        Vector3 closestPoint = targetCollider.ClosestPoint(rotationClass.AngleY.position);
+        Vector3 directionToTarget = closestPoint - rotationClass.AngleY.position;
 
         if (directionToTarget.sqrMagnitude > 0.001f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+            rotationClass.AngleY.rotation = Quaternion.Slerp(
+                rotationClass.AngleY.rotation,
+                targetRotation,
+                Time.deltaTime * rotationClass.RotationSpeed
+            );
 
-            rotationClass.AngleY.rotation = Quaternion.Slerp(rotationClass.AngleY.rotation, targetRotation, Time.deltaTime * rotationClass.RotationSpeed);
+            // Debug için görsel çizgi
+            Debug.DrawLine(rotationClass.AngleY.position, closestPoint, Color.blue);
         }
     }
     #endregion

@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Level: 2
+  Level: 0
   GunnerType: 1
   Health: 100
   CurrentXP: 0
@@ -360,17 +360,17 @@ MonoBehaviour:
   weaponClass:
     Barrels:
     - {fileID: 6992603170567003391}
-    ShotForce: 400
-    RangeOfVision: 70
-    FiringRange: 60
+    ShotForce: 100
+    RangeOfVision: 40
+    FiringRange: 30
     Dist: 0
     OnVision: 0
     OnTarget: 0
     Timer: 0
     FireRate: 0.2
     BarrelTimer: 0
-    BarrelTimerRate: 1
-    BarrelTimerLine: 2
+    BarrelTimerRate: 0.5
+    BarrelTimerLine: 3
   bulletClass:
     pool: {fileID: 7672714004214361600}
     myBullet: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744, type: 3}
@@ -378,7 +378,7 @@ MonoBehaviour:
   rotationClass:
     AngleX: {fileID: 4000010650229702}
     AngleY: {fileID: 4000014011301926}
-    RotationSpeed: 3
+    RotationSpeed: 1
     NotDeep: 0
     NotDeepT: 0
     BarrelHeightAllowance: 1

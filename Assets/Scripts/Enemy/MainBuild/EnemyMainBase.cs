@@ -74,11 +74,11 @@ public class EnemyMainBase : MonoBehaviour
 
                 poolIndex++; // Sýradaki pool elemanýna geç
                 mySpawnPointIndex++;
-                if (mySpawnPointIndex>=mySpawnPoint.Length)
+                if (mySpawnPointIndex >= mySpawnPoint.Length)
                 {
                     mySpawnPointIndex = 0;
                 }
-            }
+        }
 
         //}
         
