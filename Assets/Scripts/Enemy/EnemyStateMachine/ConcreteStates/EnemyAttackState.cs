@@ -95,11 +95,6 @@ public class EnemyAttackState : EnemyState
         }
 
     }
-    private IEnumerator ReturnBulletToPoolAfterTime(GameObject bullet, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        PoolStorage.Instance.ReturnToPool(bullet);
-    }
 
     public override void PhysicsUpdate()
     {
