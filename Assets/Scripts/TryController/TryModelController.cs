@@ -47,7 +47,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
 
     private void Update()
     {
-        //Information();
+        Information();
         UpdateTarget();
         if (weaponClass.OnTarget)
         {
@@ -76,29 +76,34 @@ public class TryModelController : TurretModel, IDamageable, IClickable
 
     private void Information()
     {
-        
         if (target != null)
         {
             Collider targetCollider = target.GetComponent<Collider>();
 
             Vector3 targetPosition = targetCollider.bounds.center;
             weaponClass.Dist = Vector3.Distance(transform.position, targetPosition);
-            
+
             weaponClass.OnVision = weaponClass.Dist < weaponClass.RangeOfVision;
             weaponClass.OnTarget = false;
+
             RaycastHit hit;
             Vector3 rayOrigin = weaponClass.Barrels[0].position;
             Vector3 rayDirection = weaponClass.Barrels[0].forward * weaponClass.RangeOfVision;
-            if (Physics.Raycast(weaponClass.Barrels[0].position, weaponClass.Barrels[0].forward, out hit, weaponClass.RangeOfVision))
+
+            Debug.DrawRay(rayOrigin, rayDirection, Color.blue);
+
+            if (Physics.Raycast(rayOrigin, weaponClass.Barrels[0].forward, out hit, weaponClass.RangeOfVision))
             {
-                Debug.DrawRay(rayOrigin, rayDirection, Color.blue);
                 if (hit.transform != null && hit.transform.tag == enemyGroupTag)
                 {
-                    Debug.DrawRay(rayOrigin, rayDirection, Color.green);
                     if (weaponClass.Dist < weaponClass.FiringRange)
                     {
                         Debug.DrawRay(rayOrigin, rayDirection, Color.red);
                         weaponClass.OnTarget = true;
+                    }
+                    else
+                    {
+                        Debug.DrawRay(rayOrigin, rayDirection, Color.green);
                     }
                 }
             }
@@ -285,7 +290,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     public void FireBulletFromPool(int barrelIndex)
     {
         bulletClass.myBullet = bulletClass.pool.GetFromPool();
-
+        bulletClass.myBullet.transform.position = weaponClass.Barrels[barrelIndex].position;
         gunShot.Invoke();
 
         bulletClass.myBulletRb = bulletClass.myBullet.GetComponent<Rigidbody>();
