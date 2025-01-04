@@ -22,7 +22,6 @@ public class TurretModel : MonoBehaviour
         public List<Transform> Barrels = new List<Transform>();
         public int ShotForce;
 
-        public float RangeOfVision;
         public float FiringRange;
         public float Dist;
 
@@ -105,7 +104,6 @@ public class TurretModel : MonoBehaviour
                 switch (level)
                 {
                     case LevelProp.LEVEL_ONE:
-                        weaponClass.RangeOfVision = 50.0f;
                         weaponClass.FiringRange = 70.0f;
                         maxHealth = 100.0f;
                         currentHealth = maxHealth;
@@ -122,7 +120,6 @@ public class TurretModel : MonoBehaviour
                         Cost = 500;
                         break;
                     case LevelProp.LEVEL_TWO:
-                        weaponClass.RangeOfVision = 5.0f;
                         weaponClass.FiringRange = 7.0f;
                         maxHealth = 100.0f;
                         currentHealth = maxHealth;
@@ -139,7 +136,6 @@ public class TurretModel : MonoBehaviour
                         Cost = 500;
                         break;
                     case LevelProp.LEVEL_THREE:
-                        weaponClass.RangeOfVision = 5.0f;
                         weaponClass.FiringRange = 7.0f;
                         maxHealth = 100.0f;
                         currentHealth = maxHealth;
@@ -162,7 +158,6 @@ public class TurretModel : MonoBehaviour
                 switch (level)
                 {
                     case LevelProp.LEVEL_ONE:
-                        weaponClass.RangeOfVision = 40.0f;
                         weaponClass.FiringRange = 30.0f;
                         maxHealth = 100.0f;
                         currentHealth = maxHealth;
@@ -178,7 +173,6 @@ public class TurretModel : MonoBehaviour
                         Cost = 500;
                         break;
                     case LevelProp.LEVEL_TWO:
-                        weaponClass.RangeOfVision = 50.0f;
                         weaponClass.FiringRange = 40.0f;
                         maxHealth = 100.0f;
                         currentHealth = maxHealth;
@@ -194,7 +188,6 @@ public class TurretModel : MonoBehaviour
                         Cost = 500;
                         break;
                     case LevelProp.LEVEL_THREE:
-                        weaponClass.RangeOfVision = 70.0f;
                         weaponClass.FiringRange = 60.0f;
                         maxHealth = 100.0f;
                         currentHealth = maxHealth;

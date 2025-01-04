@@ -72,16 +72,16 @@ public class TryModelController : TurretModel, IDamageable, IClickable
             Vector3 targetPosition = targetCollider.bounds.center;
             weaponClass.Dist = Vector3.Distance(transform.position, targetPosition);
 
-            weaponClass.OnVision = weaponClass.Dist < weaponClass.RangeOfVision;
+            weaponClass.OnVision = weaponClass.Dist < weaponClass.FiringRange;
             weaponClass.OnTarget = false;
 
             RaycastHit hit;
             Vector3 rayOrigin = weaponClass.Barrels[0].position;
-            Vector3 rayDirection = weaponClass.Barrels[0].forward * weaponClass.RangeOfVision;
+            Vector3 rayDirection = weaponClass.Barrels[0].forward * weaponClass.FiringRange;
 
             Debug.DrawRay(rayOrigin, rayDirection, Color.blue);
 
-            if (Physics.Raycast(rayOrigin, weaponClass.Barrels[0].forward, out hit, weaponClass.RangeOfVision))
+            if (Physics.Raycast(rayOrigin, weaponClass.Barrels[0].forward, out hit, weaponClass.FiringRange))
             {
                 if (hit.transform != null && hit.transform.tag == enemyGroupTag)
                 {
@@ -130,7 +130,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
             }
         }
 
-        if (nearestEnemy != null && shortestDistance <= weaponClass.RangeOfVision)
+        if (nearestEnemy != null && shortestDistance <= weaponClass.FiringRange)
         {
 
             target = nearestEnemy.transform;
@@ -144,7 +144,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, weaponClass.RangeOfVision);
+        Gizmos.DrawWireSphere(transform.position, weaponClass.FiringRange);
     }
 
     void OnTriggerEnter(Collider collider)
