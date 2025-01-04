@@ -10,7 +10,8 @@ public class TurretModel : MonoBehaviour
     public string Name;
     public LevelProp Level;
     public GunnerType GunnerType;
-    public float Health;
+    public float maxHealth;
+    public float currentHealth;
     public int CurrentXP = 0;
     public int NextLevelXP;
     public int Cost;
@@ -74,7 +75,6 @@ public class TurretModel : MonoBehaviour
         public Light impactLight;
 
     }
-
     public LaserClass laserClass;
 
     //public TurretModel(string name, LevelProp level, GunnerType gunnerType, int currentXP, bool useLaser)
@@ -107,7 +107,8 @@ public class TurretModel : MonoBehaviour
                     case LevelProp.LEVEL_ONE:
                         weaponClass.RangeOfVision = 50.0f;
                         weaponClass.FiringRange = 70.0f;
-                        Health = 100.0f;
+                        maxHealth = 100.0f;
+                        currentHealth = maxHealth;
                         weaponClass.ShotForce = 100;
                         weaponClass.FireRate = 1.0f;
                         weaponClass.BarrelTimer = 0;
@@ -123,7 +124,8 @@ public class TurretModel : MonoBehaviour
                     case LevelProp.LEVEL_TWO:
                         weaponClass.RangeOfVision = 5.0f;
                         weaponClass.FiringRange = 7.0f;
-                        Health = 100.0f;
+                        maxHealth = 100.0f;
+                        currentHealth = maxHealth;
                         weaponClass.ShotForce = 100;
                         weaponClass.FireRate = 1.0f;
                         weaponClass.BarrelTimer = 0;
@@ -139,7 +141,8 @@ public class TurretModel : MonoBehaviour
                     case LevelProp.LEVEL_THREE:
                         weaponClass.RangeOfVision = 5.0f;
                         weaponClass.FiringRange = 7.0f;
-                        Health = 100.0f;
+                        maxHealth = 100.0f;
+                        currentHealth = maxHealth;
                         weaponClass.ShotForce = 100;
                         weaponClass.FireRate = 1.0f;
                         weaponClass.BarrelTimer = 0;
@@ -161,7 +164,8 @@ public class TurretModel : MonoBehaviour
                     case LevelProp.LEVEL_ONE:
                         weaponClass.RangeOfVision = 40.0f;
                         weaponClass.FiringRange = 30.0f;
-                        Health = 100.0f;
+                        maxHealth = 100.0f;
+                        currentHealth = maxHealth;
                         weaponClass.ShotForce = 100;
                         weaponClass.FireRate = 0.2f;
                         weaponClass.BarrelTimerRate = 0.5f;
@@ -176,7 +180,8 @@ public class TurretModel : MonoBehaviour
                     case LevelProp.LEVEL_TWO:
                         weaponClass.RangeOfVision = 50.0f;
                         weaponClass.FiringRange = 40.0f;
-                        Health = 100.0f;
+                        maxHealth = 100.0f;
+                        currentHealth = maxHealth;
                         weaponClass.ShotForce = 300;
                         weaponClass.FireRate = 0.2f;
                         weaponClass.BarrelTimerRate = 2f;
@@ -191,7 +196,8 @@ public class TurretModel : MonoBehaviour
                     case LevelProp.LEVEL_THREE:
                         weaponClass.RangeOfVision = 70.0f;
                         weaponClass.FiringRange = 60.0f;
-                        Health = 100.0f;
+                        maxHealth = 100.0f;
+                        currentHealth = maxHealth;
                         weaponClass.ShotForce = 400;
                         weaponClass.FireRate = 0.2f;
                         weaponClass.BarrelTimerRate = 1f;

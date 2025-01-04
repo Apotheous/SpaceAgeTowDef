@@ -10,8 +10,6 @@ using UnityEngine.UIElements;
 public class TryModelController : TurretModel, IDamageable, IClickable
 {
     public Transform target;
-    public float MaxHealth { get ; set ; }
-    public float CurrentHealth { get ; set ; }
 
     [HideInInspector]
     private TowerBuildManager towerBuildManager;
@@ -32,17 +30,9 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     public bool UiState;
 
     GameObject nearestEnemy;
-
-    
-
-
     void Start()
     {
- 
         TurretModelStart();
-        
-        MaxHealth = Health;
-        CurrentHealth = MaxHealth;
     }
 
     private void Update()
@@ -173,19 +163,16 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     #region IDamageable
     public void Damage(float damageAmount)
     {
-        CurrentHealth -= damageAmount;
-        healthBar.fillAmount = CurrentHealth / MaxHealth;
-        if (CurrentHealth <= 0)
+        currentHealth -= damageAmount;
+        healthBar.fillAmount = currentHealth / maxHealth;
+        if (currentHealth <= 0)
         {
-            Debug.Log("Turret+-+- Damage");
             Die();
         }
     }
 
     public void Die()
     {
-        Debug.Log("Turret+-+- die");
-        //StateMachine.ChangeState(DieState);
         Destroy(this.gameObject, 2.5f);
     }
 
