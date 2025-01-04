@@ -123,6 +123,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -206,6 +209,9 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -356,9 +362,9 @@ MonoBehaviour:
     BarrelTimerRate: 0.5
     BarrelTimerLine: 0.1
   bulletClass:
-    Bullets: []
-    BulletPool: []
-    BulletPrefab: {fileID: 0}
+    pool: {fileID: 0}
+    myBullet: {fileID: 0}
+    myBulletRb: {fileID: 0}
   rotationClass:
     AngleX: {fileID: 4843503667625813516}
     AngleY: {fileID: 7303910739625553769}
@@ -393,6 +399,7 @@ MonoBehaviour:
         m_CallState: 2
   healthBar: {fileID: 6676562975725697097}
   UiState: 1
+  trackingSystem: {fileID: 0}
 --- !u!54 &2622864135799030651
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -479,6 +486,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -613,6 +623,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 82faa08b5e78ddf40bec34e33059f748, type: 3}
+  m_Resource: {fileID: 8300000, guid: 82faa08b5e78ddf40bec34e33059f748, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

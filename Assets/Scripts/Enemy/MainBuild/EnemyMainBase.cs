@@ -8,93 +8,115 @@ public class EnemyMainBase : MonoBehaviour
 {
     public static EnemyMainBase instance;
     public List<GameObject> myUnitList = new List<GameObject>();
-    public GameObject myUnits;
+    public GameObject myUnits; // Kullanýlmýyor, EnemyCreator() metodunda kullanýlýyor ama o metod çaðrýlmýyor
     public Transform[] mySpawnPoint;
     public int mySpawnPointIndex;
-
     public float Timer;
     public float spawnRate;
-
     public SO_Controller obj_Pool;
     private int poolIndex = 0;
+
     private void Awake()
     {
+        // Singleton pattern düzeltmesi
         if (instance == null)
+        {
             instance = this;
-        else
+            DontDestroyOnLoad(gameObject); // Eðer sahneler arasý geçiþte korunmasý gerekiyorsa
+        }
+        else if (instance != this)
+        {
             Destroy(gameObject);
+            return;
+        }
+
+        // Baþlangýç kontrolleri
+        if (obj_Pool == null)
+        {
+            Debug.LogError("Object pool is not assigned!");
+            enabled = false;
+            return;
+        }
+
+        if (mySpawnPoint == null || mySpawnPoint.Length == 0)
+        {
+            Debug.LogError("No spawn points assigned!");
+            enabled = false;
+            return;
+        }
     }
 
     private void Update()
     {
-        // Enemy'leri pool'dan sýrayla spawn ediyoruz
         GetEnemyFromPool();
     }
 
     private void GetEnemyFromPool()
     {
         Timer += Time.deltaTime;
-
         if (Timer >= spawnRate)
         {
-            // Pool'daki bir objeyi spawn ediyoruz
-            GetPoolObject();
-
-            Timer = 0f; // Timer'ý sýfýrla
-        }
-    }
-
-    private void GetPoolObject()
-    {
-        //for (int i = 0; i < mySpawnPoint.Length; i++)
-        //{
-
-            if (poolIndex >= obj_Pool.transform.childCount)
-            {
-                poolIndex = 0; // Pool'daki son objeye gelindiyse baþa dön
-            }
-
-            // Pool'dan sýradaki enemy objesini alýyoruz
-            GameObject myUnit = obj_Pool.transform.GetChild(poolIndex).gameObject;
-
-            if (!myUnit.activeInHierarchy)
-            {
-                // Spawn point'e taþýr ve aktif hale getirir
-                myUnit.transform.position = mySpawnPoint[mySpawnPointIndex].position;
-                myUnit.SetActive(true);
-                myUnit.GetComponent<Enemy>().EnemyStartMeth();
-                myUnitList.Add(myUnit);
-
-                //myUnit.GetComponent<BoxCollider>().enabled = true;
-                //myUnit.GetComponent<Rigidbody>().isKinematic = false;
-                //myUnit.GetComponent<Enemy>().CurrentHealth = 50;
-                //myUnit.GetComponent<Enemy>().moveSpeed = 2;
-
-                Debug.Log(myUnit.GetComponent<Enemy>().CurrentHealth);
-
-                poolIndex++; // Sýradaki pool elemanýna geç
-                mySpawnPointIndex++;
-                if (mySpawnPointIndex >= mySpawnPoint.Length)
-                {
-                    mySpawnPointIndex = 0;
-                }
-        }
-
-        //}
-        
-    }
-
-
-    private void EnemyCreator()
-    {
-        Timer += Time.deltaTime;
-
-        if (Timer >= spawnRate)
-        {
-            GameObject myUnit = Instantiate(myUnits, mySpawnPoint[0]);
-            myUnitList.Add(myUnit);
-
+            SpawnNextEnemy();
             Timer = 0f;
+        }
+    }
+
+    private void SpawnNextEnemy()
+    {
+        if (obj_Pool.transform.childCount == 0) return;
+
+        // Pool index kontrolü
+        if (poolIndex >= obj_Pool.transform.childCount)
+        {
+            poolIndex = 0;
+        }
+
+        // Spawn point index kontrolü
+        if (mySpawnPointIndex >= mySpawnPoint.Length)
+        {
+            mySpawnPointIndex = 0;
+        }
+
+        // Pool'dan düþman al
+        GameObject myUnit = obj_Pool.transform.GetChild(poolIndex).gameObject;
+
+        // Eðer obje zaten aktifse, sonraki objeyi dene
+        if (myUnit.activeInHierarchy)
+        {
+            poolIndex++;
+            return;
+        }
+
+        // Düþmaný spawn et ve ayarla
+        SetupEnemy(myUnit);
+
+        // Ýndexleri güncelle
+        poolIndex++;
+        mySpawnPointIndex++;
+    }
+
+    private void SetupEnemy(GameObject myUnit)
+    {
+        if (!myUnit || mySpawnPointIndex >= mySpawnPoint.Length) return;
+
+        myUnit.transform.position = mySpawnPoint[mySpawnPointIndex].position;
+
+        Enemy enemyComponent = myUnit.GetComponent<Enemy>();
+        if (enemyComponent != null)
+        {
+            enemyComponent.EnemyStartMeth();
+            Debug.Log($"Enemy spawned with health: {enemyComponent.CurrentHealth}");
+        }
+        else
+        {
+            Debug.LogWarning($"Enemy component missing on unit: {myUnit.name}");
+        }
+
+        myUnit.SetActive(true);
+
+        if (!myUnitList.Contains(myUnit))
+        {
+            myUnitList.Add(myUnit);
         }
     }
 }

@@ -409,6 +409,7 @@ MonoBehaviour:
         m_CallState: 2
   healthBar: {fileID: 8430607301019789637}
   UiState: 1
+  trackingSystem: {fileID: 0}
 --- !u!1 &4844656143857621363
 GameObject:
   m_ObjectHideFlags: 0

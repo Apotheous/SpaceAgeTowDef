@@ -31,9 +31,6 @@ public class TryModelController : TurretModel, IDamageable, IClickable
 
     public bool UiState;
 
-
-    //public List<GameObject> enemies;
-
     GameObject nearestEnemy;
 
     
@@ -50,7 +47,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
 
     private void Update()
     {
-        Information();
+        //Information();
         UpdateTarget();
         if (weaponClass.OnTarget)
         {
@@ -79,15 +76,13 @@ public class TryModelController : TurretModel, IDamageable, IClickable
 
     private void Information()
     {
+        
         if (target != null)
         {
             Collider targetCollider = target.GetComponent<Collider>();
 
-            Vector3 targetPosition = targetCollider.bounds.center; // Collider merkezini hedef olarak kullan�r
+            Vector3 targetPosition = targetCollider.bounds.center;
             weaponClass.Dist = Vector3.Distance(transform.position, targetPosition);
-
-
-            //weaponClass.Dist = Vector3.Distance(transform.position, target.position);
             
             weaponClass.OnVision = weaponClass.Dist < weaponClass.RangeOfVision;
             weaponClass.OnTarget = false;
@@ -119,11 +114,10 @@ public class TryModelController : TurretModel, IDamageable, IClickable
             weaponClass.Timer = 0f;
         }
     }
-    //garbage && garbage collecter
+  
     void UpdateTarget()
     {
         
-        //enemies = GameObject.FindGameObjectsWithTag(enemyGroupTag);
         float shortestDistance = Mathf.Infinity;
         nearestEnemy = null;
         foreach (GameObject enemy in EnemyMainBase.instance.myUnitList)
@@ -146,7 +140,6 @@ public class TryModelController : TurretModel, IDamageable, IClickable
         {
 
             target = nearestEnemy.transform;
-            //targetEnemy = nearestEnemy.GetComponent<EnemyUnit>();
         }
         else
         {
@@ -289,6 +282,19 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     #endregion
 
     #region BulletPool
+    public void FireBulletFromPool(int barrelIndex)
+    {
+        bulletClass.myBullet = bulletClass.pool.GetFromPool();
+
+        gunShot.Invoke();
+
+        bulletClass.myBulletRb = bulletClass.myBullet.GetComponent<Rigidbody>();
+
+        bulletClass.myBulletRb.AddForce(weaponClass.Barrels[barrelIndex].forward * weaponClass.ShotForce);
+
+        bulletClass.myBullet.SetActive(true);
+        bulletClass.pool.StartReturnBulletCoroutine(bulletClass.myBullet, 5f);
+    }
     void Laser()
     {
         if (!laserClass.lineRenderer.enabled)
@@ -326,30 +332,15 @@ public class TryModelController : TurretModel, IDamageable, IClickable
             laserClass.impactEffect.transform.rotation = Quaternion.identity;
         }
     }
-    public void FireBulletFromPool(int barrelIndex)
-    {
-        bulletClass.myBullet = bulletClass.pool.GetFromPool();
 
-        gunShot.Invoke();
-
-        bulletClass.myBulletRb = bulletClass.myBullet.GetComponent<Rigidbody>();
-
-        bulletClass.myBulletRb.AddForce(weaponClass.Barrels[barrelIndex].forward * weaponClass.ShotForce);
-        
-        bulletClass.myBullet.SetActive(true);
-        bulletClass.pool.StartReturnBulletCoroutine(bulletClass.myBullet, 5f);
-    }
 
     #endregion
 
     #region Trackingtarget
     private void AimAtTargetX()
     {
-        // Target'ın collider komponenti
         Collider targetCollider = target.GetComponent<Collider>();
         if (targetCollider == null) return;
-
-        // Rotasyon noktasından collider'a en yakın noktayı bul
         Vector3 closestPoint = targetCollider.ClosestPoint(rotationClass.AngleX.position);
         Vector3 directionToTarget = closestPoint - rotationClass.AngleX.position;
         directionToTarget.y = 0;
@@ -362,19 +353,14 @@ public class TryModelController : TurretModel, IDamageable, IClickable
                 targetRotation,
                 Time.deltaTime * rotationClass.RotationSpeed
             );
-
-            // Debug için görsel çizgi
-            Debug.DrawLine(rotationClass.AngleX.position, closestPoint, Color.red);
         }
     }
 
     private void AimAtTargetY()
     {
-        // Target'ın collider komponenti
         Collider targetCollider = target.GetComponent<Collider>();
         if (targetCollider == null) return;
 
-        // Rotasyon noktasından collider'a en yakın noktayı bul
         Vector3 closestPoint = targetCollider.ClosestPoint(rotationClass.AngleY.position);
         Vector3 directionToTarget = closestPoint - rotationClass.AngleY.position;
 
@@ -386,9 +372,6 @@ public class TryModelController : TurretModel, IDamageable, IClickable
                 targetRotation,
                 Time.deltaTime * rotationClass.RotationSpeed
             );
-
-            // Debug için görsel çizgi
-            Debug.DrawLine(rotationClass.AngleY.position, closestPoint, Color.blue);
         }
     }
     #endregion
