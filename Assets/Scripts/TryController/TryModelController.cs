@@ -16,7 +16,6 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     [HideInInspector]
     private Transform mybuilder;
 
-    public FireType selectedFireType;
     public string enemyGroupTag;
 
     public UnityEvent gunShot;
@@ -182,10 +181,10 @@ public class TryModelController : TurretModel, IDamageable, IClickable
     #region Fire Funcs
     void Firing()
     {
-        if (!UiState) Fire(weaponClass.Barrels.Count, selectedFireType);
+        if (!UiState) Fire(weaponClass.Barrels.Count, GunnerType);
     }
 
-    public void Fire(int barrelCount, FireType fireType)
+    public void Fire(int barrelCount, GunnerType fireType)
     {
 
         switch (barrelCount)
@@ -205,24 +204,24 @@ public class TryModelController : TurretModel, IDamageable, IClickable
         }
     }
 
-    public void FireOneBarrel(FireType fireType)
+    public void FireOneBarrel(GunnerType fireType)
     {
         switch (fireType)
         {
-            case FireType.Bullet:
+            case GunnerType.GUNNER:
                 FireBulletFromPool(0);
                 break;
-            case FireType.Laser:
+            case GunnerType.LASER:
                 FireLaser(1);
                 break;
         }
     }
 
-    public void FireTwoBarrels(FireType fireType)
+    public void FireTwoBarrels(GunnerType fireType)
     {
         switch (fireType)
         {
-            case FireType.Bullet:
+            case GunnerType.GUNNER:
                 if (weaponClass.BarrelTimer == 0)
                 {
                     FireBulletFromPool(0);
@@ -234,17 +233,17 @@ public class TryModelController : TurretModel, IDamageable, IClickable
                     weaponClass.BarrelTimer = 0;
                 }
                 break;
-            case FireType.Laser:
+            case GunnerType.LASER:
                 FireLaser(2);
                 break;
         }
     }
 
-    public void FireFourBarrels(FireType fireType)
+    public void FireFourBarrels(GunnerType fireType)
     {
         switch (fireType)
         {
-            case FireType.Bullet:
+            case GunnerType.GUNNER:
                 if (weaponClass.BarrelTimer == 0)
                 {
                     FireBulletFromPool(0);
@@ -258,7 +257,7 @@ public class TryModelController : TurretModel, IDamageable, IClickable
                     weaponClass.BarrelTimer = 0;
                 }
                 break;
-            case FireType.Laser:
+            case GunnerType.LASER:
                 FireLaser(4);
                 break;
         }

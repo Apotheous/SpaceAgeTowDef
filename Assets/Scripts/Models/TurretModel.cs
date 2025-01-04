@@ -114,7 +114,7 @@ public class TurretModel : MonoBehaviour
                         weaponClass.BarrelTimer = 0;
                         weaponClass.BarrelTimerRate = 0.5f;
                         weaponClass.BarrelTimerLine = 0.1f;
-                        rotationClass.RotationSpeed = 2.0f;
+                        rotationClass.RotationSpeed = 5.0f;
                         rotationClass.BarrelHeightAllowance = 1.0f;
                         laserClass.DamageOverTime = 30;
                         laserClass.ShowAmount = 0.5f;
@@ -131,7 +131,7 @@ public class TurretModel : MonoBehaviour
                         weaponClass.BarrelTimer = 0;
                         weaponClass.BarrelTimerRate = 0.4f;
                         weaponClass.BarrelTimerLine = 0.1f;
-                        rotationClass.RotationSpeed = 2.0f;
+                        rotationClass.RotationSpeed = 8.0f;
                         rotationClass.BarrelHeightAllowance = 1.0f;
                         laserClass.DamageOverTime = 30;
                         laserClass.ShowAmount = 0.5f;
@@ -148,7 +148,7 @@ public class TurretModel : MonoBehaviour
                         weaponClass.BarrelTimer = 0;
                         weaponClass.BarrelTimerRate = 0.2f;
                         weaponClass.BarrelTimerLine = 0.1f;
-                        rotationClass.RotationSpeed = 2.0f;
+                        rotationClass.RotationSpeed = 10.0f;
                         rotationClass.BarrelHeightAllowance = 1.0f;
                         laserClass.DamageOverTime = 30;
                         laserClass.ShowAmount = 0.5f;
@@ -170,7 +170,7 @@ public class TurretModel : MonoBehaviour
                         weaponClass.FireRate = 0.2f;
                         weaponClass.BarrelTimerRate = 0.5f;
                         weaponClass.BarrelTimerLine = 3f;
-                        rotationClass.RotationSpeed = 1.0f;
+                        rotationClass.RotationSpeed = 5.0f;
                         rotationClass.BarrelHeightAllowance = 1.0f;
                         laserClass.DamageOverTime = 30;
                         laserClass.ShowAmount = 0.5f;
@@ -186,7 +186,7 @@ public class TurretModel : MonoBehaviour
                         weaponClass.FireRate = 0.2f;
                         weaponClass.BarrelTimerRate = 2f;
                         weaponClass.BarrelTimerLine = 0.1f;
-                        rotationClass.RotationSpeed = 2.0f;
+                        rotationClass.RotationSpeed = 7.0f;
                         rotationClass.BarrelHeightAllowance = 1.0f;
                         laserClass.DamageOverTime = 30;
                         laserClass.ShowAmount = 0.5f;
@@ -202,7 +202,7 @@ public class TurretModel : MonoBehaviour
                         weaponClass.FireRate = 0.2f;
                         weaponClass.BarrelTimerRate = 1f;
                         weaponClass.BarrelTimerLine = 2f;
-                        rotationClass.RotationSpeed = 3.0f;
+                        rotationClass.RotationSpeed = 10.0f;
                         rotationClass.BarrelHeightAllowance = 1.0f;
                         laserClass.DamageOverTime = 30;
                         laserClass.ShowAmount = 0.5f;

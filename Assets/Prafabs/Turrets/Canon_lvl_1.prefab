@@ -379,7 +379,7 @@ MonoBehaviour:
   rotationClass:
     AngleX: {fileID: 4000010650229702}
     AngleY: {fileID: 4000014011301926}
-    RotationSpeed: 1
+    RotationSpeed: 5
     NotDeep: 0
     NotDeepT: 0
     BarrelHeightAllowance: 1
@@ -391,7 +391,6 @@ MonoBehaviour:
     impactEffect: {fileID: 0}
     impactLight: {fileID: 0}
   target: {fileID: 0}
-  selectedFireType: 0
   enemyGroupTag: Enemy
   gunShot:
     m_PersistentCalls:
