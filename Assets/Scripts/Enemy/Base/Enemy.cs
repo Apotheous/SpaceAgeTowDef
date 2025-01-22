@@ -10,6 +10,8 @@ using static UnityEngine.GraphicsBuffer;
 public class Enemy : MonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 {
    
+
+
     public float movementDirection;
     
     public Rigidbody rb;

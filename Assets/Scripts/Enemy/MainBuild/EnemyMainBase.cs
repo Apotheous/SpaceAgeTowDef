@@ -7,22 +7,30 @@ using UnityEngine;
 public class EnemyMainBase : MonoBehaviour
 {
     public static EnemyMainBase instance;
+
+    // Liste: Düþmanlarýn tutulduðu liste
     public List<GameObject> myUnitList = new List<GameObject>();
-    public GameObject myUnits; // Kullanýlmýyor, EnemyCreator() metodunda kullanýlýyor ama o metod çaðrýlmýyor
-    public Transform[] mySpawnPoint;
-    public int mySpawnPointIndex;
-    public float Timer;
-    public float spawnRate;
-    public SO_Controller obj_Pool;
-    private int poolIndex = 0;
+
+    // Spawn ile ilgili deðiþkenler
+    [SerializeField] private BasicPool myPool;
+    [SerializeField] private SpawnPointGenerator spawnPointGenerator;
+
+    [SerializeField] private GameObject asteroidsMain;
+    [SerializeField] private int spawnPointCount = 10;
+    [SerializeField] private float spawnInterval = 2f;
+    [SerializeField] private float stopCoroutineSec;
+
+    private WaitForSeconds waitTime;
+    private Coroutine spawnCoroutine;
+    private int mySpawnPointIndex;
 
     private void Awake()
     {
-        // Singleton pattern düzeltmesi
+        // Singleton pattern
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Eðer sahneler arasý geçiþte korunmasý gerekiyorsa
+            DontDestroyOnLoad(gameObject);
         }
         else if (instance != this)
         {
@@ -31,75 +39,83 @@ public class EnemyMainBase : MonoBehaviour
         }
 
         // Baþlangýç kontrolleri
-        if (obj_Pool == null)
+        if (myPool == null)
         {
             Debug.LogError("Object pool is not assigned!");
             enabled = false;
             return;
         }
+    }
 
-        if (mySpawnPoint == null || mySpawnPoint.Length == 0)
+    private void Start()
+    {
+        waitTime = new WaitForSeconds(spawnInterval);
+        spawnCoroutine = StartCoroutine(SpawnRoutine());
+    }
+
+    private IEnumerator SpawnRoutine()
+    {
+        if (stopCoroutineSec > 0)
         {
-            Debug.LogError("No spawn points assigned!");
-            enabled = false;
+            float elapsedTime = 0f;
+
+            while (elapsedTime < stopCoroutineSec)
+            {
+                yield return waitTime;
+                SpawnEnemy();
+
+                elapsedTime += spawnInterval;
+            }
+        }
+        else
+        {
+            while (true)
+            {
+                yield return waitTime;
+                SpawnEnemy();
+            }
+        }
+    }
+
+    public void StopSpawning()
+    {
+        if (spawnCoroutine != null)
+        {
+            StopCoroutine(spawnCoroutine);
+        }
+    }
+
+    private void SpawnEnemy()
+    {
+        if (spawnPointGenerator == null || myPool == null) return;
+
+        // Rastgele bir spawn noktasý seç
+        mySpawnPointIndex = Random.Range(0, spawnPointCount);
+
+        // Havuzdan düþman al
+        GameObject newEnemy = myPool.GetFromPool();
+        if (newEnemy == null)
+        {
+            Debug.LogError("Pool returned null object!");
             return;
         }
-    }
 
-    private void Update()
-    {
-        GetEnemyFromPool();
-    }
+        // Spawn noktasýný belirle
+        newEnemy.transform.position = spawnPointGenerator.GenerateSpawnPoint();
 
-    private void GetEnemyFromPool()
-    {
-        Timer += Time.deltaTime;
-        if (Timer >= spawnRate)
+        // AsteroidsMain'e baðla (varsa)
+        if (asteroidsMain != null)
         {
-            SpawnNextEnemy();
-            Timer = 0f;
-        }
-    }
-
-    private void SpawnNextEnemy()
-    {
-        if (obj_Pool.transform.childCount == 0) return;
-
-        // Pool index kontrolü
-        if (poolIndex >= obj_Pool.transform.childCount)
-        {
-            poolIndex = 0;
+            newEnemy.transform.SetParent(asteroidsMain.transform);
         }
 
-        // Spawn point index kontrolü
-        if (mySpawnPointIndex >= mySpawnPoint.Length)
-        {
-            mySpawnPointIndex = 0;
-        }
-
-        // Pool'dan düþman al
-        GameObject myUnit = obj_Pool.transform.GetChild(poolIndex).gameObject;
-
-        // Eðer obje zaten aktifse, sonraki objeyi dene
-        if (myUnit.activeInHierarchy)
-        {
-            poolIndex++;
-            return;
-        }
-
-        // Düþmaný spawn et ve ayarla
-        SetupEnemy(myUnit);
-
-        // Ýndexleri güncelle
-        poolIndex++;
-        mySpawnPointIndex++;
+        // Düþman ayarlarýný yap
+        SetupEnemy(newEnemy);
     }
 
     private void SetupEnemy(GameObject myUnit)
     {
-        if (!myUnit || mySpawnPointIndex >= mySpawnPoint.Length) return;
 
-        myUnit.transform.position = mySpawnPoint[mySpawnPointIndex].position;
 
         Enemy enemyComponent = myUnit.GetComponent<Enemy>();
         if (enemyComponent != null)

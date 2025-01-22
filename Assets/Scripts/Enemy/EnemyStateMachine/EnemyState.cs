@@ -9,6 +9,7 @@ public class EnemyState :Enemy
     protected EnemyStateMachine enemyStateMachine;
 
 
+
     public EnemyState(Enemy enemy, EnemyStateMachine enemyStateMachine)
     {
         this.enemy = enemy;

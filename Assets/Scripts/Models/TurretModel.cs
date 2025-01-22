@@ -25,7 +25,6 @@ public class TurretModel : MonoBehaviour
         public float FiringRange;
         public float Dist;
 
-        public bool OnVision;
         public bool OnTarget;
 
         public float Timer;

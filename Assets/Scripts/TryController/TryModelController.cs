@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,45 +55,51 @@ public class TryModelController : TurretModel, IDamageable, IClickable
             }
         }
 
-        if (target != null && weaponClass.OnVision)
+        if (target != null )
         {
             AimAtTargetX();
 
             AimAtTargetY();
         }
     }
-
     private void Information()
     {
         if (target != null)
         {
+            // Hedefin Collider bileşenini al
             Collider targetCollider = target.GetComponent<Collider>();
 
+            // Hedef pozisyonunu belirle
             Vector3 targetPosition = targetCollider.bounds.center;
+
+            // Taret ile hedef arasındaki mesafeyi hesapla
             weaponClass.Dist = Vector3.Distance(transform.position, targetPosition);
 
-            weaponClass.OnVision = weaponClass.Dist < weaponClass.FiringRange;
+            // Başlangıçta hedefte olmadığını varsay
             weaponClass.OnTarget = false;
 
+            // Raycast için başlangıç pozisyonu ve yönü belirle
             RaycastHit hit;
             Vector3 rayOrigin = weaponClass.Barrels[0].position;
             Vector3 rayDirection = weaponClass.Barrels[0].forward * weaponClass.FiringRange;
 
+            // Mavi ışını her zaman çiz
             Debug.DrawRay(rayOrigin, rayDirection, Color.blue);
 
+            // Raycast kontrolü
             if (Physics.Raycast(rayOrigin, weaponClass.Barrels[0].forward, out hit, weaponClass.FiringRange))
             {
+                // Eğer ışın bir düşmana çarptıysa
                 if (hit.transform != null && hit.transform.tag == enemyGroupTag)
                 {
-                    if (weaponClass.Dist < weaponClass.FiringRange)
-                    {
-                        Debug.DrawRay(rayOrigin, rayDirection, Color.red);
-                        weaponClass.OnTarget = true;
-                    }
-                    else
-                    {
-                        Debug.DrawRay(rayOrigin, rayDirection, Color.green);
-                    }
+                    // Hedef ateş menzili içerisindeyse kırmızı ışını çiz ve hedefe kilitlen
+                    Debug.DrawRay(rayOrigin, rayDirection, Color.red);
+                    weaponClass.OnTarget = true;
+                }
+                else
+                {
+                    // Hedef ateş menzilinde değilse yeşil ışını çiz
+                    Debug.DrawRay(rayOrigin, rayDirection, Color.green);
                 }
             }
         }

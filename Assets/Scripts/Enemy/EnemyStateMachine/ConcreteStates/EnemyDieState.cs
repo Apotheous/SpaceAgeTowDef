@@ -23,7 +23,7 @@ public class EnemyDieState : EnemyState
         enemy.ChangeAnimationState(enemy.animatoinClass.ENEMY_DIE);
         //Destroy(enemy.gameObject, 0.5f);
         enemy.gameObject.SetActive(false);
-        enemy.transform.SetParent(EnemyMainBase.instance.obj_Pool.transform);
+        //enemy.transform.SetParent(EnemyMainBase.instance.obj_Pool.transform);
 
         //TryModelController.Instance.enemies.Remove(enemy.gameObject);
         EnemyMainBase.instance.myUnitList.Remove(enemy.gameObject);
