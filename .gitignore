@@ -25,6 +25,8 @@
 
 # Visual Studio cache directory
 .vs/
+.vsconfig
+Packages/com.ptc.vuforia.engine-10.29.6.tgz
 
 # Gradle cache directory
 .gradle/
