@@ -197,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   enemyGroupTag: Enemy
-  speed: 70
+  speed: 10
   my_Damage: 10
   explosionRadius: 0
 --- !u!96 &1074398050538834808
@@ -255,16 +255,16 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.05333382
-        inSlope: 0
-        outSlope: 0
+        value: 0.0019442365
+        inSlope: -0.09388026
+        outSlope: -0.09388026
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 1
       - serializedVersion: 3
-        time: 0.21176201
-        value: 0.033346713
+        time: 0.033400074
+        value: 0.0010246482
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -272,13 +272,13 @@ TrailRenderer:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.62353516
+        time: 0.07295883
         value: 0
-        inSlope: 0
-        outSlope: 0
+        inSlope: -0.11629905
+        outSlope: -0.11629905
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 1
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
