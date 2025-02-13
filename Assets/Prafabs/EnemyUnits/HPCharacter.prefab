@@ -2289,7 +2289,7 @@ MonoBehaviour:
     myPool: {fileID: 360769683095600379}
     enemy_Gnnr_Type: 0
     GizmosRange: 30
-    attackRange: 102.67
+    attackRange: 2
     ammoPrefab: {fileID: 3125480588403421316, guid: 706215e987975d74f8bc1f9215f2f744,
       type: 3}
     explosionRadius: 0
@@ -2375,7 +2375,7 @@ NavMeshAgent:
   m_Acceleration: 4
   avoidancePriority: 50
   m_AngularSpeed: 60
-  m_StoppingDistance: 0.1
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
